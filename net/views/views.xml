@@ -10,28 +10,18 @@
           <field name="ip"/>
           <field name="device_system"/>
           <field name="mem_usage" widget="percentpie"/>
-          <field name="cpu_usage" widget="percentpie"/>
           <field name="cpu_load" widget="percentpie"/>
-          <field name="host_datetime" widget="date"/>
+          <field name="processes" />
+          <field name="host_datetime" />
           <field name="uptime" />
 
           <field name="is_up" widget="boolean_toggle" readonly="1"/>
         </tree>
       </field>
     </record>
-<!--
-    <record model="ir.ui.view" id="net.list">
-      <field name="name">net list</field>
-      <field name="model">net.net</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
-      </field>
-    </record>
--->
+
+    
+
 
     <!-- actions opening views on models -->
 <!--
