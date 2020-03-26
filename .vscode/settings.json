@@ -1,0 +1,7 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/eradar/odoo/",
+    ],
+    "git.ignoreLimitWarning": true,
+    "python.pythonPath": "/home/eradar/.virtualenvs/odoo-venv/bin/python3.6",
+}
