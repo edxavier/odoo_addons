@@ -1,7 +1,8 @@
 {
     "python.autoComplete.extraPaths": [
         "/home/eradar/odoo/",
+        "C:\\Program Files (x86)\\Odoo 13.0\\server",
     ],
     "git.ignoreLimitWarning": true,
-    "python.pythonPath": "/home/eradar/.virtualenvs/odoo-venv/bin/python3.6",
+    //"python.pythonPath": "/home/eradar/.virtualenvs/odoo-venv/bin/python3.6",
 }

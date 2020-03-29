@@ -20,6 +20,71 @@
       </field>
     </record>
 
+    <!-- net.host form view -->
+    <record id="net_host_view_form" model="ir.ui.view">
+      <field name="name">net.host.view.form</field>
+      <field name="model">net.host</field>
+      <field name="arch" type="xml">
+        <form string="Nuevo host">
+          <sheet>
+            <div class="oe_title">
+              <h1>
+                <field name="name" placeholder="Nombre"/>
+              </h1>
+            </div>
+            <group string='Datos generales'>
+              <group>
+                <field name="ip"/>
+                <field name="device_type"/>
+              </group>
+              <group>
+                <field name="device_os"/>
+                <field name="device_system"/>
+              </group>
+            </group>
+            <group string="Datos de rendimiento">
+              <group>
+                <field name="is_up" readonly="1"/>
+                <field name="mem_usage" readonly="1"/>
+                <field name="cpu_load" readonly="1"/>
+              </group>
+              <group>
+                <field name="processes" readonly="1"/>
+                <field name="host_datetime" readonly="1"/>
+                <field name="uptime" readonly="1"/>
+              </group>
+            </group>
+
+            <notebook>
+              <page string="Historial de memoria">
+                <field name="memory_hist" context="{'default_host_id': active_id}" readonly="1">
+                  <tree>
+                    <field name="total"></field>     
+                    <field name="usage"></field>
+                    <field name="avialable"></field>          
+                    <field name="free"></field>          
+                    <field name="buffered"></field>          
+                    <field name="cached"></field>          
+                    <field name="shared"></field>          
+                  </tree>
+                </field>
+              </page>
+              <page string="Historial de sistema">
+                <field name="systat_hist" context="{'default_host_id': active_id}" >
+                  <tree >  
+                    <field name="cpu_usage"></field>
+                    <field name="raw_total"></field>       
+                    <field name="raw_io_wait"></field>       
+                    <field name="raw_user"></field>       
+                    <field name="raw_idle"></field>       
+                  </tree>
+                </field>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
     
 
 
@@ -30,6 +95,9 @@
       <field name="name">Hosts</field>
       <field name="res_model">net.host</field>
       <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+        <p class="o_view_nocontent_smiling_face">Registra tu Host</p>
+      </field>
   </record>
 
     <!-- server action to the one above -->
@@ -51,7 +119,7 @@
     <!-- Top menu item -->
 <!--
 -->
-    <menuitem name="Gestion de red" id="net.menu_root"/>
+    <menuitem name="Gestion de red" id="net.menu_root" web_icon="net,static/description/icon.png"/>
     <!-- menu categories -->
     <menuitem name="Equipos" id="net.equipos_menu" parent="net.menu_root" action="net.action_window"/>
 <!--

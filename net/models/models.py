@@ -10,8 +10,8 @@ class Host(models.Model):
     name = fields.Char(string="Nombre", required=True, help='Nombre o clasificacion del equipo')
     ip = fields.Char(string="Direccion IPv4", required=True, index=True)
     hostname = fields.Char(string="Hostname")
-    device_type = fields.Selection(string='Tipo equipo', selection=[('server', 'Servidor'), ('workstation', 'Workstation'), ('other', 'Otro')])
-    device_os = fields.Selection(string='S. operativo', selection=[('linux', 'Linux'), ('win', 'Windows'), ('other', 'Otro')])
+    device_type = fields.Selection(string='Tipo equipo', selection=[('server', 'Servidor'), ('workstation', 'Workstation'), ('other', 'Otro')], default='workstation')
+    device_os = fields.Selection(string='S. operativo', selection=[('linux', 'Linux'), ('win', 'Windows'), ('other', 'Otro')], default='linux')
     device_system = fields.Selection(string="Sistema", selection=[('aircon', 'Aircon'), ('sdc', 'SDC'), ('radar', 'Radar'), ('none', 'Ninguno')], default='none')
     is_up = fields.Boolean(default=False, string="Conexion")
     mem_usage = fields.Float(default=0, string="Uso RAM")
@@ -20,11 +20,6 @@ class Host(models.Model):
     processes = fields.Float(default=0, string="Procesos")
     host_datetime = fields.Char(string="Fecha")
     uptime = fields.Char(string="Uptime")
-#     value = fields.Integer()
-#     value2 = fields.Float(compute="_value_pc", store=True)
-#     description = fields.Text()
-#
-#     @api.depends('value')
-#     def _value_pc(self):
-#         for record in self:
-#             record.value2 = float(record.value) / 100
+
+    memory_hist = fields.One2many('net.memory', 'host_id', string='Hostorial de memeoria')
+    systat_hist = fields.One2many('net.systat', 'host_id', string='Historial de sistema')
