@@ -7,11 +7,12 @@
       <field name="arch" type="xml">
         <tree>
           <field name="name"/>
+          <field name="hostname"/>
           <field name="ip"/>
-          <field name="device_system"/>
           <field name="mem_usage" widget="percentpie"/>
           <field name="cpu_load" widget="percentpie"/>
-          <field name="processes" />
+          <field name="cpu_usage" widget="percentpie"/>
+          <field name="processes" widget='integer'/>
           <field name="host_datetime" />
           <field name="uptime" />
 
@@ -59,6 +60,7 @@
               <page string="Historial de memoria">
                 <field name="memory_hist" context="{'default_host_id': active_id}" readonly="1">
                   <tree>
+                    <field name="usage_percent" widget='progressbar'></field>
                     <field name="total"></field>     
                     <field name="usage"></field>
                     <field name="avialable"></field>          
@@ -72,11 +74,10 @@
               <page string="Historial de sistema">
                 <field name="systat_hist" context="{'default_host_id': active_id}" >
                   <tree >  
-                    <field name="cpu_usage"></field>
-                    <field name="raw_total"></field>       
-                    <field name="raw_io_wait"></field>       
-                    <field name="raw_user"></field>       
-                    <field name="raw_idle"></field>       
+                    <field name="cpu_usage" widget='percentpie'></field>
+                    <field name="cpu_io_wait" widget='percentpie'></field>
+                    <field name="cpu_user" widget='percentpie'></field>
+                    <field name="raw_total" optional="1"></field>   
                   </tree>
                 </field>
               </page>

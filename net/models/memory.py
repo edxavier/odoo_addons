@@ -7,9 +7,12 @@ class Memory(models.Model):
     _name = 'net.memory'
     _description = 'Entrada historial de memoria'
 
-    def compute_usage(self):
-        pass
+    @api.depends('total', 'usage')
+    def compute_usage_percent(self):
+        for rec in self:
+            rec.usage_percent = (rec.usage/rec.total) * 100
 
+    # unidades en MB
     total = fields.Float(default=0, string='Total')
     free = fields.Float(default=0, string='Libre')
     usage = fields.Float(default=0, string='Uso')
@@ -17,6 +20,8 @@ class Memory(models.Model):
     shared = fields.Float(default=0, string='Shared')
     cached = fields.Float(default=0, string='Cached')
     avialable = fields.Float(default=0, string='Disponible')
+
+    usage_percent = fields.Float(default=0, compute='compute_usage_percent', store=True, string='Uso')
 
     #usage_percent = fields.Float(default=0, compute=compute_usage)
     
