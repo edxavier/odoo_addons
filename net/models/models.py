@@ -23,3 +23,7 @@ class Host(models.Model):
 
     memory_hist = fields.One2many('net.memory', 'host_id', string='Hostorial de memeoria')
     systat_hist = fields.One2many('net.systat', 'host_id', string='Historial de sistema')
+
+    interfaces = fields.One2many('net.interface', 'host_id', string='Interfaces')
+    storages = fields.One2many('net.storage', 'host_id', string='Almacenamiento')
+    processes_running = fields.One2many('net.soft', 'host_id', string='Procesos')

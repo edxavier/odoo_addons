@@ -5,7 +5,7 @@
       <field name="name">Listado de Hosts</field>
       <field name="model">net.host</field>
       <field name="arch" type="xml">
-        <tree>
+        <tree default_order="id desc">
           <field name="name"/>
           <field name="hostname"/>
           <field name="ip"/>
@@ -59,7 +59,7 @@
             <notebook>
               <page string="Historial de memoria">
                 <field name="memory_hist" context="{'default_host_id': active_id}" readonly="1">
-                  <tree>
+                  <tree default_order="id desc">
                     <field name="usage_percent" widget='progressbar'></field>
                     <field name="total"></field>     
                     <field name="usage"></field>
@@ -77,8 +77,54 @@
                     <field name="cpu_usage" widget='percentpie'></field>
                     <field name="cpu_io_wait" widget='percentpie'></field>
                     <field name="cpu_user" widget='percentpie'></field>
-                    <field name="raw_total" optional="1"></field>   
+                    <field name="cpu_kernel" widget='percentpie' optional="1"></field>
+                    <field name="cpu_soft_irq" widget='percentpie' optional="1"></field>
+                    <field name="cpu_hard_int" widget='percentpie' optional="1"></field>
+                    <field name="io_send" widget='integer'></field>
+                    <field name="io_received" widget='integer'></field>
+                    <field name="interrupts" widget='integer'></field>
+                    <field name="context_sw" widget='integer'></field>
+                    <field name="raw_io_send" widget='integer' optional="1"></field>
+
                   </tree>
+                </field>
+              </page>
+              <page string="Interfaces">
+                <field name="interfaces" context="{'default_host_id': active_id}" >
+                  <tree >  
+                    <field name="description" />
+                    <field name="if_type" />
+                    <field name="mac" />
+                    <field name="oper_stat" />
+                    <field name="in_octets" />
+                    <field name="in_errors" />
+                    <field name="out_octets" />
+                    <field name="out_errors" />
+
+                  </tree>  
+                </field>
+              </page>
+              <page string="Almacenamiento">
+                <field name="storages" context="{'default_host_id': active_id}" >
+                  <tree >  
+                    <field name="name" />
+                    <field name="dev_type" />
+                    <field name="size" />
+                    <field name="perc_used" widget='percentpie'/>
+                    <field name="alloc_fails" />
+                  </tree>  
+                </field>
+              </page>
+              <page string="Procesos">
+                <field name="processes_running" context="{'default_host_id': active_id}" >
+                  <tree >  
+                    <field name="pid" />
+                    <field name="name" />
+                    <field name="proc_type" />
+                    <field name="status" />
+                    <field name="mem" />
+                    <field name="cpu_perc" />
+                  </tree>  
                 </field>
               </page>
             </notebook>
