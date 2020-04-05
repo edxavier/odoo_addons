@@ -1,0 +1,24 @@
+<odoo>
+    <data>
+        <record id="view_host_filter" model="ir.ui.view">
+            <field name="name">Filtros Host</field>
+            <field name="model">net.host</field>
+            <field name="arch" type="xml">
+                <search string="Buscar host">
+                    <field name="name" filter_domain="[('name', 'ilike', self)]"/>
+                    <field name="hostname" filter_domain="[('hostname', 'ilike', self)]"/>
+                    <field name="device_system" filter_domain="[('device_system', 'ilike', self)]"/>
+                    <field name="ip" filter_domain="[('ip', 'like', self)]"/>
+                    <separator/>
+                       <!-- <filter string="Conectado" name="is_up" domain="[('is_up', '=', True)]"/>-->
+                    <separator/>
+                    <group expand="0" name="group_by" string="Agrupar por">
+                        <filter name="group_device_system" string="Sistema" domain="[]" context="{'group_by' : 'device_system'}" />
+                        <filter name="group_is_up" string="Conexion" domain="[]" context="{'group_by' : 'is_up'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+    
+    </data>
+</odoo>

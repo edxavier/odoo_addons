@@ -1,0 +1,121 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="net.memory_list">
+            <field name="name">Historial de memoria2</field>
+            <field name="model">net.memory</field>
+            <field name="arch" type="xml">
+                <tree default_order="id desc">
+                    <field name="host_id"></field>     
+                    <field name="usage_percent" widget='progressbar'></field>
+                    <field name="total"></field>     
+                    <field name="usage"></field>
+                    <field name="avialable"></field>          
+                    <field name="free"></field>          
+                    <field name="buffered"></field>          
+                    <field name="cached"></field>          
+                    <field name="shared"></field>    
+                    <field name="create_date"></field>    
+                </tree>
+            </field>
+        </record>
+    
+        <record model="ir.ui.view" id="net.systat_list">
+            <field name="name">Historial de rendimiento</field>
+            <field name="model">net.systat</field>
+            <field name="arch" type="xml">
+                <tree default_order="id desc">
+                    <field name="cpu_usage" widget='percentpie'></field>
+                    <field name="cpu_io_wait" widget='percentpie'></field>
+                    <field name="cpu_user" widget='percentpie'></field>
+                    <field name="cpu_kernel" widget='percentpie' optional="1"></field>
+                    <field name="cpu_soft_irq" widget='percentpie' optional="1"></field>
+                    <field name="cpu_hard_int" widget='percentpie' optional="1"></field>
+                    <field name="io_send" widget='integer'></field>
+                    <field name="io_received" widget='integer'></field>
+                    <field name="interrupts" widget='integer'></field>
+                    <field name="context_sw" widget='integer'></field>
+                    <field name="raw_io_send" widget='integer' optional="1"></field>
+                    <field name="create_date" widget='datetime'></field>    
+                </tree>
+            </field>
+        </record>
+    
+
+        <record model="ir.ui.view" id="net.interface_list">
+            <field name="name">Interfaces</field>
+            <field name="model">net.interface</field>
+            <field name="arch" type="xml">
+                <tree default_order="id desc">
+                    <field name="description" />
+                    <field name="if_type" />
+                    <field name="mac" />
+                    <field name="oper_stat" />
+                    <field name="in_octets" />
+                    <field name="in_errors" />
+                    <field name="out_octets" />
+                    <field name="out_errors" />
+                </tree>
+            </field>
+        </record>
+    
+        <record model="ir.ui.view" id="net.storage_list">
+            <field name="name">Almacenamiento</field>
+            <field name="model">net.storage</field>
+            <field name="arch" type="xml">
+                <tree default_order="id desc">
+                    <field name="name" />
+                    <field name="dev_type" />
+                    <field name="size" />
+                    <field name="perc_used" widget='percentpie'/>
+                    <field name="alloc_fails" />  
+                </tree>
+            </field>
+        </record>
+    
+
+        <record model="ir.ui.view" id="net.process_list">
+            <field name="name">Historial de rendimiento</field>
+            <field name="model">net.soft</field>
+            <field name="arch" type="xml">
+                <tree default_order="id desc">
+                    <field name="pid" />
+                    <field name="name" />
+                    <field name="proc_type" />
+                    <field name="status" />
+                    <field name="mem" />
+                    <field name="cpu_perc" />
+                </tree>
+            </field>
+        </record>
+    
+        <!-- 
+        -->
+        <record model="ir.ui.view" id="net_memory_line_graph">
+            <field name="name">Grafico de memoria</field>
+            <field name="model">net.memory</field>
+            <field name="type">graph</field>
+            <field name="arch" type="xml">
+                    <graph string="Historial de memoria" type="line">
+                        <field name="create_date" type="row" interval='hour'/>
+                        <field name="total" type="col"/>
+                        <field name="usage_percent" type='average'/>
+                    </graph>
+                </field>
+        </record>
+
+        <record model="ir.ui.view" id="net_memory_line_graph">
+            <field name="name">Grafico de rendimiento</field>
+            <field name="model">net.systat</field>
+            <field name="type">graph</field>
+            <field name="arch" type="xml">
+                    <graph string="Historial de rendimiento" type="line">
+                        <field name="create_date" type="row" interval='hour'/>
+                        <field name="cpu_usage" type='average'/>
+
+                    </graph>
+                </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="net.detail_dash_template">
+        <div class="mt-3" id='myDash'>
+        </div>
+    </t>
+
+    <t t-name="net.detail_chart_dash">
+        <div class="container-fluid mt-2">
+            <div class="row">
+                <div class="col-xs-12 col-md-12 col-lg-12 col-sm-8">
+                    <div class="card">
+                        <div class="card-body">
+                          <h2 class="card-title">Estadisticas Detalladas   <t t-esc="widget.host_name"/> </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-6">
+                    <div class="card ">
+                        <div class="card-body">
+                            <div id="mem_bar_chart" ></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card ">
+                        <div class="card-body">
+                            <div id="cpu_usage_bar_chart" ></div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-12">
+                    <div class="card ">
+                        <div class="card-body">
+                            <div id="cpu_load" ></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-2">
+                <div class="col-12">
+                    <div class="card ">
+                        <div class="card-body">
+                            <div id="mem_hist_chart" ></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row mt-2">
+                <div class="col-12">
+                    <div class="card ">
+                        <div class="card-body">
+                            <div id="cpu_usage" ></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-12">
+                    <div class="card ">
+                        <div class="card-body">
+                            <div id="cpu_ctxsw_int" ></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-12">
+                    <div class="card ">
+                        <div class="card-body">
+                            <div id="io_chart" ></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+    </t>
+</templates>

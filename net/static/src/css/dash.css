@@ -1,0 +1,5 @@
+/* Sobreescribimos esta clase para que pueda haber scroll de lo contrario al llenar la pantalla no se podra visualizar lo que esta fuera */
+.o_action_manager{
+    overflow: auto !important;
+}
+    

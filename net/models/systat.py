@@ -28,14 +28,13 @@ class SyStats(models.Model):
     raw_soft_irq = fields.Float(default=0, string='Raw Sof IRQ')
     raw_cpu_interrupt = fields.Float(default=0, string='Raw CPU Interrups')
 
-    cpu_load = fields.Float(default=0, string='Carga cpu')
-
     raw_total = fields.Float(default=0, compute='compute_raw_total', store=True)
-    
+
+    cpu_load = fields.Float(default=0, string='Carga cpu')    
     cpu_usage = fields.Float(default=0, string='Uso cpu')
+
     cpu_io_wait = fields.Float(default=0, string='IO wait')
     cpu_user = fields.Float(default=0, string='Usuario')
-
     cpu_kernel = fields.Float(default=0, string='Kernel')
     cpu_soft_irq = fields.Float(default=0, string='Int. Soft')
     cpu_hard_int = fields.Float(default=0, string='Int. Hard')

@@ -5,7 +5,7 @@
       <field name="name">Listado de Hosts</field>
       <field name="model">net.host</field>
       <field name="arch" type="xml">
-        <tree default_order="id desc">
+        <tree default_order="id desc" decoration-muted='is_up == False'>
           <field name="name"/>
           <field name="hostname"/>
           <field name="ip"/>
@@ -21,6 +21,19 @@
       </field>
     </record>
 
+    <record id="open_systat_hist" model="ir.actions.act_window">
+      <field name="name">Historial de rendimiento</field>
+      <field name="res_model">net.systat</field>
+      <field name="view_mode">tree,graph,form</field>
+      
+      <field name="domain">[('host_id','=', active_id)]</field>
+      <field name="context">{}</field>
+      <field name="help" type="html">
+        <p class="o_view_nocontent_smiling_face">No se ha registrado ningun dato aun</p>
+      </field>
+    </record>
+      
+
     <!-- net.host form view -->
     <record id="net_host_view_form" model="ir.ui.view">
       <field name="name">net.host.view.form</field>
@@ -28,6 +41,17 @@
       <field name="arch" type="xml">
         <form string="Nuevo host">
           <sheet>
+
+            <div class="oe_button_box" name="button_box">
+              <button name="open_mem_history" type="object" class="oe_stat_button" icon="fa-tachometer" >
+                <field name="mem_hist_count" widget="statinfo" string="Memoria"/>
+              </button>
+              <button name="%(open_systat_hist)d" type="action" class="oe_stat_button" icon="fa-heart" >
+                <field name="sys_hist_count" widget="statinfo" string="Rendimiento"/>
+              </button>
+              
+            </div>
+
             <div class="oe_title">
               <h1>
                 <field name="name" placeholder="Nombre"/>
@@ -46,85 +70,28 @@
             <group string="Datos de rendimiento">
               <group>
                 <field name="is_up" readonly="1"/>
-                <field name="mem_usage" readonly="1"/>
-                <field name="cpu_load" readonly="1"/>
+                <field name="mem_usage" readonly="0"/>
+                <field name="cpu_load" readonly="0"/>
               </group>
               <group>
-                <field name="processes" readonly="1"/>
+                <field name="processes" readonly="0"/>
                 <field name="host_datetime" readonly="1"/>
                 <field name="uptime" readonly="1"/>
               </group>
             </group>
 
             <notebook>
-              <page string="Historial de memoria">
-                <field name="memory_hist" context="{'default_host_id': active_id}" readonly="1">
-                  <tree default_order="id desc">
-                    <field name="usage_percent" widget='progressbar'></field>
-                    <field name="total"></field>     
-                    <field name="usage"></field>
-                    <field name="avialable"></field>          
-                    <field name="free"></field>          
-                    <field name="buffered"></field>          
-                    <field name="cached"></field>          
-                    <field name="shared"></field>          
-                  </tree>
-                </field>
-              </page>
-              <page string="Historial de sistema">
-                <field name="systat_hist" context="{'default_host_id': active_id}" >
-                  <tree >  
-                    <field name="cpu_usage" widget='percentpie'></field>
-                    <field name="cpu_io_wait" widget='percentpie'></field>
-                    <field name="cpu_user" widget='percentpie'></field>
-                    <field name="cpu_kernel" widget='percentpie' optional="1"></field>
-                    <field name="cpu_soft_irq" widget='percentpie' optional="1"></field>
-                    <field name="cpu_hard_int" widget='percentpie' optional="1"></field>
-                    <field name="io_send" widget='integer'></field>
-                    <field name="io_received" widget='integer'></field>
-                    <field name="interrupts" widget='integer'></field>
-                    <field name="context_sw" widget='integer'></field>
-                    <field name="raw_io_send" widget='integer' optional="1"></field>
-
-                  </tree>
-                </field>
-              </page>
               <page string="Interfaces">
-                <field name="interfaces" context="{'default_host_id': active_id}" >
-                  <tree >  
-                    <field name="description" />
-                    <field name="if_type" />
-                    <field name="mac" />
-                    <field name="oper_stat" />
-                    <field name="in_octets" />
-                    <field name="in_errors" />
-                    <field name="out_octets" />
-                    <field name="out_errors" />
-
-                  </tree>  
+                <field name="interfaces" context="{'default_host_id': active_id}">
                 </field>
               </page>
               <page string="Almacenamiento">
                 <field name="storages" context="{'default_host_id': active_id}" >
-                  <tree >  
-                    <field name="name" />
-                    <field name="dev_type" />
-                    <field name="size" />
-                    <field name="perc_used" widget='percentpie'/>
-                    <field name="alloc_fails" />
-                  </tree>  
                 </field>
               </page>
               <page string="Procesos">
                 <field name="processes_running" context="{'default_host_id': active_id}" >
-                  <tree >  
-                    <field name="pid" />
-                    <field name="name" />
-                    <field name="proc_type" />
-                    <field name="status" />
-                    <field name="mem" />
-                    <field name="cpu_perc" />
-                  </tree>  
+                  
                 </field>
               </page>
             </notebook>
@@ -142,26 +109,16 @@
       <field name="name">Hosts</field>
       <field name="res_model">net.host</field>
       <field name="view_mode">tree,form</field>
+      <!--<field name="context">{'search_default_is_up':1}</field>-->
       <field name="help" type="html">
         <p class="o_view_nocontent_smiling_face">Registra tu Host</p>
       </field>
   </record>
 
-    <!-- server action to the one above -->
-<!--
-    <record model="ir.actions.server" id="net.action_server">
-      <field name="name">net server</field>
-      <field name="model_id" ref="model_net_net"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": model._name,
-        }
-      </field>
-    </record>
--->
+  <record id="net_action_dashboard" model="ir.actions.client">
+    <field name="name">Dashboard</field>
+    <field name="tag">net_dashboard</field>
+  </record>
 
     <!-- Top menu item -->
 <!--
@@ -169,6 +126,12 @@
     <menuitem name="Gestion de red" id="net.menu_root" web_icon="net,static/description/icon.png"/>
     <!-- menu categories -->
     <menuitem name="Equipos" id="net.equipos_menu" parent="net.menu_root" action="net.action_window"/>
+
+    <menuitem id="menu_net_dashboard"
+      parent="net.menu_root"
+      name="Dashboard"
+      action="net_action_dashboard"
+      sequence="-100"/>
 <!--
     <menuitem name="Menu 2" id="net.menu_2" parent="net.menu_root"/>
 -->

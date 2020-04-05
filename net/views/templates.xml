@@ -1,5 +1,17 @@
 <odoo>
     <data>
+      <!-- HR Dashboard Assests. We are making changes on assets backend -->
+      <template id="assets_backend" name="Net assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/net/static/src/js/plotly-basic.min.js"/>
+            <script type="text/javascript" src="/net/static/src/js/Chart.min.js"/>
+            <script type="text/javascript" src="/net/static/src/js/Chart.bundle.min.js"/>
+            <script type="text/javascript" src="/net/static/src/js/dashboard.js"/>
+            <script type="text/javascript" src="/net/static/src/js/detail_dash.js"/>
+            <link rel="stylesheet" href="/net/static/src/css/Chart.min.css"/>
+            <link rel="stylesheet" href="/net/static/src/css/dash.css"/>
+          </xpath>
+    </template>
 <!--
         <template id="listing">
           <ul>

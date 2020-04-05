@@ -28,10 +28,16 @@
         'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
-        'views/memory.xml',
+        'views/tree_views.xml',
+        'views/filters.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',
     ],
+    'qweb': [
+        "static/src/xml/dashboard.xml",
+        "static/src/xml/detail_dash.xml"
+    ],
+    'application': True,
 }
