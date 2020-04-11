@@ -7,8 +7,7 @@
         """,
 
     'description': """
-        Se registra datos de los recursos como memoria y procesador para lelvar un historial y tener informacion
-        actualizada
+        Base de datos de todos los elementos de configuracion, servicios, componentes y todo lo relacionado en el funcionamiento del negocio
     """,
 
     'author': "Eder Xavier Rojas",

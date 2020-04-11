@@ -50,7 +50,7 @@ class Host(models.Model):
         }"""
         return {
             'type': 'ir.actions.client',
-            'name':'Detailed Dashboard',
+            'name':'Panel estadisticas',
             'tag':'net_detail_dash',
             'target':'new',
             'context':{

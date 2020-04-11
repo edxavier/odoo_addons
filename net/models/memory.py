@@ -71,8 +71,8 @@ class Memory(models.Model):
         io_received_serie = { 'type':'scatter', 'x':[], 'y':[], 'name': 'Bloques leidos', 'line':{'shape': 'spline', 'smoothing':0.8} }
 
         
-        mem_hist = self.env['net.memory'].search([('host_id', '=', host_id)], limit=100, order='create_date desc')
-        stat_hist = self.env['net.systat'].search([('host_id', '=', host_id)], limit=100, order='create_date desc')
+        mem_hist = self.env['net.memory'].search([('host_id', '=', host_id)], limit=1500, order='create_date desc')
+        stat_hist = self.env['net.systat'].search([('host_id', '=', host_id)], limit=1500, order='create_date desc')
             
         last_mem_hist = self.env['net.memory'].search([('host_id', '=', host_id)], limit=1, order='create_date desc')
         last_stat_hist = self.env['net.systat'].search([('host_id', '=', host_id)], limit=1, order='create_date desc')
@@ -183,7 +183,6 @@ class Memory(models.Model):
 
     @api.model
     def get_memory_history(self):
-        print("*************************************************+++")
         hosts_ids = self.env['net.host'].search([])
         mem_history_ds = []
         cpu_load_history_ds = []
@@ -202,8 +201,8 @@ class Memory(models.Model):
             cpu_load_serie = { 'type':'scatter', 'x':[], 'y':[], 'name': h.name, 'line':{'shape': 'spline', 'smoothing':0.8} }
             cpu_usage_serie = { 'type':'scatter', 'x':[], 'y':[], 'name': h.name, 'line':{'shape': 'spline', 'smoothing':0.8} }
 
-            hist = self.env['net.memory'].search([('host_id', '=', h.id)], limit=100, order='create_date desc')
-            stat_hist = self.env['net.systat'].search([('host_id', '=', h.id)], limit=100, order='create_date desc')
+            hist = self.env['net.memory'].search([('host_id', '=', h.id)], limit=200, order='create_date desc')
+            stat_hist = self.env['net.systat'].search([('host_id', '=', h.id)], limit=200, order='create_date desc')
             
             last_hist = self.env['net.memory'].search([('host_id', '=', h.id)], limit=1, order='create_date desc')
             
