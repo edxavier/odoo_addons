@@ -201,8 +201,8 @@ class Memory(models.Model):
             cpu_load_serie = { 'type':'scatter', 'x':[], 'y':[], 'name': h.name, 'line':{'shape': 'spline', 'smoothing':0.8} }
             cpu_usage_serie = { 'type':'scatter', 'x':[], 'y':[], 'name': h.name, 'line':{'shape': 'spline', 'smoothing':0.8} }
 
-            hist = self.env['net.memory'].search([('host_id', '=', h.id)], limit=200, order='create_date desc')
-            stat_hist = self.env['net.systat'].search([('host_id', '=', h.id)], limit=200, order='create_date desc')
+            hist = self.env['net.memory'].search([('host_id', '=', h.id)], limit=500, order='create_date desc')
+            stat_hist = self.env['net.systat'].search([('host_id', '=', h.id)], limit=500, order='create_date desc')
             
             last_hist = self.env['net.memory'].search([('host_id', '=', h.id)], limit=1, order='create_date desc')
             

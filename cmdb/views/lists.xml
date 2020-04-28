@@ -1,0 +1,70 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="cmdb.item_list">
+            <field name="name">Listado de Items</field>
+            <field name="model">cmdb.item</field>
+            <field name="arch" type="xml">
+              <tree>
+                <field name="sequence"/>
+                <field name="name"/>
+                <field name="item_type"/>
+                <field name="serie"/>
+                <field name="inventory"/>
+                <field name="system"/>
+                <field name="building"/>
+                <field name="office"/>
+                <field name="status"/>
+              </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="cmdb.service_list">
+            <field name="name">Listado de servicios</field>
+            <field name="model">cmdb.service</field>
+            <field name="arch" type="xml">
+              <tree>
+                <field name="sequence"/>
+                <field name="name"/>
+                <field name="service_type"/>
+                <field name="category"/>
+                <field name="owner"/>
+                <field name="status"/>
+              </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="cmdb.component_list">
+            <field name="name">Listado de componentes</field>
+            <field name="model">cmdb.component</field>
+            <field name="arch" type="xml">
+              <tree>
+                <field name="name"/>
+                <field name="item"/>
+                <field name="component_type"/>
+                <field name="serie"/>
+              </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="cmdb.office_list">
+          <field name="name">Listado de Oficinas</field>
+          <field name="model">cmdb.office</field>
+          <field name="arch" type="xml">
+            <tree>
+              <field name="name"/>
+              <field name="building"/>
+            </tree>
+          </field>
+        </record>
+        <record model="ir.ui.view" id="cmdb.model_list">
+          <field name="name">Listado de modelos</field>
+          <field name="model">cmdb.model</field>
+          <field name="arch" type="xml">
+            <tree>
+              <field name="name"/>
+              <field name="manufacturer"/>
+            </tree>
+          </field>
+        </record>
+
+    </data>
+</odoo>

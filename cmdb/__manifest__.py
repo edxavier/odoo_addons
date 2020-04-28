@@ -27,6 +27,11 @@
         'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
+        'views/lists.xml',
+        'views/forms.xml',
+        'data/secuences.xml',
+        'data/defaults.xml',
+        
     ],
     # only loaded in demonstration mode
     'demo': [

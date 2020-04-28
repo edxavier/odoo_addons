@@ -1,0 +1,279 @@
+<odoo>
+    <data noupdate="1">
+        
+        <!-- SISTEMAS -->
+        <record id="aircon" model="cmdb.system">
+            <field name="name">AIRCON</field>
+        </record>
+        <record id="sdc" model="cmdb.system">
+            <field name="name">SDC</field>
+        </record>
+        <record id="ssr_pri" model="cmdb.system">
+            <field name="name">RADAR PRI</field>
+        </record>
+        <record id="ssr_sec" model="cmdb.system">
+            <field name="name">RADAR SEC</field>
+        </record>
+        <record id="meteo" model="cmdb.system">
+            <field name="name">METEO</field>
+        </record>
+
+        <!-- EDIFICIOS -->
+        <record id="building_ccr" model="cmdb.building">
+            <field name="name">C.C.R MGA</field>
+        </record>
+        <record id="building_cr" model="cmdb.building">
+            <field name="name">C.R LNB</field>
+        </record>
+
+        <!-- OFICINAS -->
+        <record id="off_se" model="cmdb.office">
+            <field name="name">Sala de equipos</field>
+            <field name="building" ref="building_ccr"></field>
+        </record>
+        <record model="cmdb.office" id="off_sups">
+            <field name="name">Sala UPS</field>
+            <field name="building" ref="building_ccr"></field>
+        </record>
+        <record model="cmdb.office" id="off_selnb">
+            <field name="name">Sala Equipos LNB</field>
+            <field name="building" ref="building_cr"></field>
+        </record>
+        <record model="cmdb.office" id="off_saalnb">
+            <field name="name">Sala A/A LNB</field>
+            <field name="building" ref="building_cr"></field>
+        </record>
+
+        <!-- MARCAS -->
+        <record model="cmdb.manufacturer" id="hp">
+            <field name="name">HP</field>
+        </record>
+        <record model="cmdb.manufacturer" id="indra">
+            <field name="name">INDRA</field>
+        </record>
+        <record model="cmdb.manufacturer" id="cisco">
+            <field name="name">CISCO</field>
+        </record>
+        <record model="cmdb.manufacturer" id="dell">
+            <field name="name">DELL</field>
+        </record>
+        <record model="cmdb.manufacturer" id="aviat">
+            <field name="name">AVIAT</field>
+        </record>
+
+        <!-- MODELOS -->
+        <record model="cmdb.model" id="hp_zr">
+            <field name="name">ZR2440W</field>
+            <field name="manufacturer" ref="hp"></field>
+        </record>
+        <record model="cmdb.model" id="hp_compaq">
+            <field name="name">COMPAQ 8200</field>
+            <field name="manufacturer" ref="hp"></field>
+        </record>
+        <record model="cmdb.model" id="hp_z420">
+            <field name="name">Z420</field>
+            <field name="manufacturer" ref="hp"></field>
+        </record>
+
+        <!-- TIPOS DE COMPONENTES -->
+        <record model="cmdb.component.type" id="ram">
+            <field name="name">Memoria RAM</field>
+        </record>
+        <record model="cmdb.component.type" id="sdd">
+            <field name="name">Disco duro</field>
+        </record>
+        <record model="cmdb.component.type" id="serial_port">
+            <field name="name">Puerto serie</field>
+        </record>
+        <record model="cmdb.component.type" id="mother_board">
+            <field name="name">Tarjeta madre</field>
+        </record>
+        <record model="cmdb.component.type" id="power">
+            <field name="name">Fuente de poder</field>
+        </record>
+
+        <!-- TIPOS DE ITEM -->
+        <record model="cmdb.item.type" id="other">
+            <field name="name">Otro</field>
+        </record>
+        <record model="cmdb.item.type" id="workstation">
+            <field name="name">Workstation</field>
+        </record>
+        <record model="cmdb.item.type" id="server">
+            <field name="name">Servidor</field>
+        </record>
+        <record model="cmdb.item.type" id="monitor">
+            <field name="name">Pantalla</field>
+        </record>
+        <record model="cmdb.item.type" id="printer">
+            <field name="name">Impresora</field>
+        </record>
+        <record model="cmdb.item.type" id="switch">
+            <field name="name">Switch</field>
+        </record>
+        <record model="cmdb.item.type" id="router">
+            <field name="name">Router</field>
+        </record>
+        <record model="cmdb.item.type" id="antenna">
+            <field name="name">Antena</field>
+        </record>
+        <record model="cmdb.item.type" id="idu">
+            <field name="name">IDU</field>
+        </record>
+        <record model="cmdb.item.type" id="odu">
+            <field name="name">ODU</field>
+        </record>
+        <record model="cmdb.item.type" id="radio_card">
+            <field name="name">Tarjeta Radio</field>
+        </record>
+        <record model="cmdb.item.type" id="tel_card">
+            <field name="name">Tarjeta Telefonia</field>
+        </record>
+        <record model="cmdb.item.type" id="proc_card">
+            <field name="name">Tarjeta Procesadora</field>
+        </record>
+        <record model="cmdb.item.type" id="ups">
+            <field name="name">UPS</field>
+        </record>
+        <record model="cmdb.item.type" id="sensor">
+            <field name="name">Sensor</field>
+        </record>
+
+        <!-- TIPOS DE SERVICIO -->
+        <record model="cmdb.service.type" id="other">
+            <field name="name">Otro</field>
+        </record>
+        <record model="cmdb.service.type" id="meteo">
+            <field name="name">Meteo</field>
+        </record>
+        <record model="cmdb.service.type" id="radio">
+            <field name="name">Radio</field>
+        </record>
+        <record model="cmdb.service.type" id="telephony">
+            <field name="name">Telefonia</field>
+        </record>
+        <record model="cmdb.service.type" id="infrastructure">
+            <field name="name">Infraestructura</field>
+        </record>
+        <record model="cmdb.service.type" id="print">
+            <field name="name">Impresion</field>
+        </record>
+        <record model="cmdb.service.type" id="reproduction">
+            <field name="name">Reproduccion</field>
+        </record>
+        <record model="cmdb.service.type" id="message">
+            <field name="name">Mensajeria</field>
+        </record>
+        <record model="cmdb.service.type" id="radar">
+            <field name="name">Radar</field>
+        </record>
+
+        <!-- SERVICIOs -->
+        <record model="cmdb.service" id="other">
+            <field name="name">Otro</field>
+            <field name="category">intern</field>
+            <field name="service_type" ref="other"></field>
+        </record>
+        <record model="cmdb.service" id="aftn">
+            <field name="name">AFTN</field>
+            <field name="category">extern</field>
+            <field name="service_type" ref="message"></field>
+        </record>
+        <record model="cmdb.service" id="aidc">
+            <field name="name">AIDC</field>
+            <field name="category">extern</field>
+            <field name="service_type" ref="message"></field>
+        </record>
+
+        <record model="cmdb.service" id="1194eaai">
+            <field name="name">119.4 EAAI</field>
+            <field name="category">intern</field>
+            <field name="service_type" ref="radio"></field>
+        </record>
+        <record model="cmdb.service" id="1194cuesta">
+            <field name="name">119.4 La cuesta</field>
+            <field name="category">extern</field>
+            <field name="service_type" ref="radio"></field>
+        </record>
+
+        <record model="cmdb.service" id="cenamer">
+            <field name="name">AD CENAMER</field>
+            <field name="category">extern</field>
+            <field name="service_type" ref="telephony"></field>
+        </record>
+        <record model="cmdb.service" id="coco">
+            <field name="name">AD COCO</field>
+            <field name="category">extern</field>
+            <field name="service_type" ref="telephony"></field>
+        </record>
+        <record model="cmdb.service" id="liberia">
+            <field name="name">AD LIBERIA</field>
+            <field name="category">extern</field>
+            <field name="service_type" ref="telephony"></field>
+        </record>
+        <record model="cmdb.service" id="tnt">
+            <field name="name">AD TNT</field>
+            <field name="category">extern</field>
+            <field name="service_type" ref="telephony"></field>
+        </record>
+        <record model="cmdb.service" id="salvador">
+            <field name="name">AD SALVADOR</field>
+            <field name="category">extern</field>
+            <field name="service_type" ref="telephony"></field>
+        </record>
+        <record model="cmdb.service" id="2617">
+            <field name="name">2617</field>
+            <field name="category">intern</field>
+            <field name="service_type" ref="telephony"></field>
+        </record>
+        <record model="cmdb.service" id="2618">
+            <field name="name">2618</field>
+            <field name="category">intern</field>
+            <field name="service_type" ref="telephony"></field>
+        </record>
+        <record model="cmdb.service" id="2619">
+            <field name="name">2619</field>
+            <field name="category">intern</field>
+            <field name="service_type" ref="telephony"></field>
+        </record>
+        <record model="cmdb.service" id="2620">
+            <field name="name">2620</field>
+            <field name="category">intern</field>
+            <field name="service_type" ref="telephony"></field>
+        </record>
+        
+        <!-- ESTADOS DE SERVICIO -->
+        <record model="cmdb.service.status" id="active">
+            <field name="name">Activo</field>
+        </record>
+        <record model="cmdb.service.status" id="inactive">
+            <field name="name">Inactivo</field>
+        </record>
+        <record model="cmdb.service.status" id="retired">
+            <field name="name">Retirado</field>
+        </record>
+        
+        <!-- ESTADOS DE ITEM -->
+        <record model="cmdb.item.status" id="operative">
+            <field name="name">Operando</field>
+        </record>
+        <record model="cmdb.item.status" id="degraded">
+            <field name="name">Degradado</field>
+        </record>
+        <record model="cmdb.item.status" id="fail">
+            <field name="name">En fallo</field>
+        </record>
+        <record model="cmdb.item.status" id="maint">
+            <field name="name">En mantenimiento</field>
+        </record>
+        <record model="cmdb.item.status" id="retired">
+            <field name="name">Retirado (inoperativo)</field>
+        </record>
+        <record model="cmdb.item.status" id="no_use">
+            <field name="name">Sin usar</field>
+        </record>
+                
+
+
+    </data>
+</odoo>

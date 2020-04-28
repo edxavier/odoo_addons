@@ -1,2 +1,15 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_net_manager,net.host,model_net_host,net_manager_group,1,1,1,1
+access_cmdb_manager,cmdb.item,model_cmdb_item,cmdb_manager_group,1,1,1,1
+access_cmpnt_manager,cmdb.component,model_cmdb_component,cmdb_manager_group,1,1,1,1
+access_srvc_manager,cmdb.service,model_cmdb_service,cmdb_manager_group,1,1,1,1
+access_building_manager,cmdb.building,model_cmdb_building,cmdb_manager_group,1,1,1,1
+access_office_manager,cmdb.office,model_cmdb_office,cmdb_manager_group,1,1,1,1
+access_system_manager,cmdb.system,model_cmdb_system,cmdb_manager_group,1,1,1,1
+access_model_manager,cmdb.model,model_cmdb_model,cmdb_manager_group,1,1,1,1
+access_manufacturer_manager,cmdb.manufacturer,model_cmdb_manufacturer,cmdb_manager_group,1,1,1,1
+access_item_status_manager,cmdb.item_status,model_cmdb_item_status,cmdb_manager_group,1,1,1,1
+access_service_status_manager,cmdb.service_status,model_cmdb_service_status,cmdb_manager_group,1,1,1,1
+access_item_type_manager,cmdb.item_type,model_cmdb_item_type,cmdb_manager_group,1,1,1,1
+access_service_type_manager,cmdb.service_type,model_cmdb_service_type,cmdb_manager_group,1,1,1,1
+access_component_type_manager,cmdb.component_type,model_cmdb_component_type,cmdb_manager_group,1,1,1,1
+
