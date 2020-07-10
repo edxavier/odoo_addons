@@ -1,2 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_schd_schd,schd.schd,model_schd_schd,base.group_user,1,1,1,1
+access_sched_turn,sched.turn,model_sched_turn,base.group_user,1,1,1,1
+access_sched_cicle,sched.cicle,model_sched_cicle,base.group_user,1,1,1,1
+access_sched_template,sched.template,model_sched_template,base.group_user,1,1,1,1
+access_sched_employe,sched.employe,model_sched_employe,base.group_user,1,1,1,1
+access_sched_rol,sched.rol,model_sched_rol,base.group_user,1,1,1,1
+access_sched_schedule,sched.schedule,model_sched_schedule,base.group_user,1,1,1,1

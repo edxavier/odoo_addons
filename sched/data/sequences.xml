@@ -1,0 +1,16 @@
+<odoo>
+    <data noupdate="1">
+          <record id="seq_cicle" model="ir.sequence">
+              <field name="name">Secuencia de ciclos</field>
+              <field name="code">sched.cicle.sequence</field>
+              <field name="prefix">C</field>
+              <field name="padding">4</field>
+          </record>
+          <record id="seq_employe" model="ir.sequence">
+              <field name="name">Secuencia de empleado</field>
+              <field name="code">sched.employe.sequence</field>
+              <field name="prefix">E</field>
+              <field name="padding">4</field>
+          </record>
+    </data>
+</odoo>

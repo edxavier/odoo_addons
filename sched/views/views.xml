@@ -15,35 +15,164 @@
     </record>
 -->
 
+<record id="mobile_service_view_calendar" model="ir.ui.view">
+  <field name="name">sched.calendar</field>
+  <field name="model">sched.schedule</field>
+  <field name="arch" type="xml">
+      <calendar string="Horario"
+                color="employe_id"
+                date_start="turn_date"
+                mode="month"
+                quick_add="False">
+          <field name="employe_id"/>
+          <field name="turn_id"/>
+      </calendar>
+  </field>
+</record>
+
+<record model="ir.ui.view" id="partner_instructor_form_view">
+  <field name="name">partner.employenumber</field>
+  <field name="model">res.partner</field>
+  <field name="inherit_id" ref="base.view_partner_form"/>
+  <field name="arch" type="xml">
+    <field name="category_id" position="after">
+        <field name="employe_number"  placeholder="Numero de empleado"/>
+    </field>
+  </field>
+</record>
+
+
+<record model="ir.ui.view" id="sched.list">
+  <field name="name">schd list</field>
+  <field name="model">sched.schedule</field>
+  <field name="arch" type="xml">
+    <tree>
+      <field name="employe_id"/>
+      <field name="turn_id"/>
+      <field name="turn_date"/>
+    </tree>
+  </field>
+</record>
+
+<record id="sched_template_view_form" model="ir.ui.view">
+  <field name="name">template form</field>
+  <field name="model">sched.template</field>
+  <field name="arch" type="xml">
+     <form string="Nueva plantilla">
+      <sheet>            
+          <field name="name"/>
+          <field name="cicles" context="{'default_template': active_id}">
+            <tree string="Ciclos"  editable="bottom">
+              <field name="template"  readonly="1" invisible='1'/>
+              <field name="sequence" string='Codigo'  widget='handle'/>
+              <field name="name"/>
+              <field name="day1"  options="{'no_create': True, 'no_create_edit':True, 'no_open': True,}"/>
+              <field name="day2" options="{'no_create': True, 'no_create_edit':True, 'no_open': True,}" />
+              <field name="day3" options="{'no_create': True, 'no_create_edit':True, 'no_open': True,}" />
+              <field name="day4" options="{'no_create': True, 'no_create_edit':True, 'no_open': True,}" />
+              <field name="day5" options="{'no_create': True, 'no_create_edit':True, 'no_open': True,}" />
+              <field name="day6" options="{'no_create': True, 'no_create_edit':True, 'no_open': True,}" />
+              <field name="day7" options="{'no_create': True, 'no_create_edit':True, 'no_open': True,}" />
+              <field name="hours" string="Hrs Trabajadas"/>
+              <field name="turn_hours" string="Hrs Turno"/>
+              <field name="extra_hours" string="Hrs Extra"/>
+             
+          </tree>
+          </field>
+          <field name="employes" context="{'default_template': active_id}">
+            <tree string="Empleados"  editable="bottom">
+              <field name="template"  readonly="1" invisible='1' options="{'no_create': True, 'no_create_edit':True, 'no_open': True,}"/>
+              <field name="name" string='Codigo'  widget='handle'/>
+              <field name="employe" options="{'no_create': True, 'no_create_edit':True, 'no_open': True,}"/>
+              <field name="last_cicle" options="{'no_create': True, 'no_create_edit':True, 'no_open': True,}"/>
+          </tree>
+          </field>
+      </sheet>
+    </form>
+  </field>
+</record>
+
+
+
+<record id="sched_rol_view_form" model="ir.ui.view">
+  <field name="name">Rol form</field>
+  <field name="model">sched.rol</field>
+  <field name="arch" type="xml">
+     <form string="Nuevo Rol">
+      <header>
+        <button string="Generar" name="action_generar_horario" type="object" class="oe_highlight" states="created"/>
+        <button string="Dar formato" name="generate_sched_formating" type="object" class="oe_highlight" states="created"/>
+
+        <field name="state" widget="statusbar" statusbar_visible="draft,created,generated"/>
+      </header>
+      <sheet>           
+        <div class="oe_button_box" name="button_box">
+          <button name="open_horario" type="object" class="oe_stat_button" icon="fa-calendar" string="Ver Horario">
+          </button>
+          
+        </div> 
+
+        <group>
+          <group>
+            <field name="name" />
+            <field name="template_id" options="{'no_create': True, 'no_create_edit':True, 'no_open': True,}"/>
+          </group>
+          <group>
+            <field name="weeks" widget="integer" attrs="{'min':4, 'max':5}"/>
+            <field name="start_date"/>
+          </group>   
+          <group>
+            <field name="area_boss"/>
+            <field name="deparment_boss"/>
+            <field name="maint_manager"/>
+          </group>        
+          <group>
+            <field name="comments"/>
+          </group>
+
+          <field name="schedule_ids" context="{'default_rol_id': active_id}" attrs="{'readonly': [('state','=','draft')]}">
+            <tree string="Horario"  editable="bottom">
+              <field name="employe_id" options="{'no_create': True, 'no_create_edit':True, 'no_open': True,}"/>
+              <field name="turn_id" options="{'no_create': True, 'no_create_edit':True, 'no_open': True,}"/>
+              <field name="turn_date_str"  />
+           </tree>
+          </field>
+        </group>
+      </sheet>
+    </form>
+  </field>
+</record>
+
+
+
+
     <!-- actions opening views on models -->
-<!--
-    <record model="ir.actions.act_window" id="schd.action_window">
-      <field name="name">schd window</field>
-      <field name="res_model">schd.schd</field>
+    <record model="ir.actions.act_window" id="sched.action_turn">
+      <field name="name">Turno</field>
+      <field name="res_model">sched.turn</field>
       <field name="view_mode">tree,form</field>
     </record>
--->
+ <!-- actions opening views on models -->
+  <record model="ir.actions.act_window" id="sched.action_template">
+    <field name="name">Plantilla</field>
+    <field name="res_model">sched.template</field>
+    <field name="view_mode">tree,form</field>
+  </record>
 
-    <!-- server action to the one above -->
-<!--
-    <record model="ir.actions.server" id="schd.action_server">
-      <field name="name">schd server</field>
-      <field name="model_id" ref="model_schd_schd"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": model._name,
-        }
-      </field>
-    </record>
--->
+ <!-- actions opening views on models -->
+  <record model="ir.actions.act_window" id="sched.action_rol">
+    <field name="name">Rol</field>
+    <field name="res_model">sched.rol</field>
+    <field name="view_mode">tree,form</field>
+  </record>
 
     <!-- Top menu item -->
-<!--
-    <menuitem name="schd" id="schd.menu_root"/>
--->
+    <menuitem name="Horario" id="sched.menu_root" web_icon="sched,static/description/icon.png"/>
+    <menuitem name="Turnos" id="sched.menu_turn" parent="sched.menu_root" action="sched.action_turn"/>
+    <menuitem name="Plantillas" id="sched.menu_template" parent="sched.menu_root" action="sched.action_template"  sequence="1"/>
+    <menuitem name="Roles" id="sched.menu_rol" parent="sched.menu_root" action="sched.action_rol"  sequence="0"/>
+
+
     <!-- menu categories -->
 <!--
     <menuitem name="Menu 1" id="schd.menu_1" parent="schd.menu_root"/>

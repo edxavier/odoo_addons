@@ -1,0 +1,300 @@
+<odoo>
+
+
+    <template id="custom_header">
+        <div class="header">
+            <div class="row">
+                <div class="col-3 mb4">
+                    <img t-if="res_company.logo" t-att-src="image_data_uri(res_company.logo)" style="max-height: 45px;margin-lef:10px" alt="Logo" />
+                </div>
+                <div class="col-9 text-right" style="margin-top:12px;margin-right:10px;" t-field="res_company.name" name="moto" />
+            </div>
+            <div class="col-12">
+                <div style="border-bottom: 1px solid black;" />
+
+                <h6 class="text-center mt2">GERENCIA DE MANTENIMIENTO E INSTALACIONES <br/> PROGRAMACION DE TURNOS <br/>  <span t-field="o.name" /></h6>
+            </div>
+                        
+            <table  class="mt-1" style='table-layout:fixed; width:100%;font-size:11px'>
+                <tr>
+                    <td>
+                        <table style='table-layout:fixed; width:90%'>
+                            <tbody>
+                                <tr class="table-secondary">
+                                    <!-- <th class='head' style='width:50px'>ID</th> -->
+                                    <th class="text-center" style='border: 1px solid #BDBDBD'  colspan="2">Tipos de turno</th>
+                                </tr>
+                                    <tr >
+                                        <!--  <td style='border-bottom: 1px solid #BDBDBD'>{{disp.id}} <span t-field="o.identificacion" /></td> -->
+                                        <td style='padding-left:10px; border: 1px solid #BDBDBD; '> Turno T1: 06:00 am - 02:00 pm, 8 horas</td>
+                                        <td style='padding-left:10px; border: 1px solid #BDBDBD;'> Turno T1: 06:00 am - 02:00 pm, 8 horas</td>
+                                    </tr>
+                                    <tr >
+                                        <!--  <td style='border-bottom: 1px solid #BDBDBD'>{{disp.id}} <span t-field="o.identificacion" /></td> -->
+                                        <td style='padding-left:10px; border: 1px solid #BDBDBD; '>  Turno T1: 06:00 am - 02:00 pm, 8 horas</td>
+                                        <td style='padding-left:10px; border: 1px solid #BDBDBD;'> Turno T1: 06:00 am - 02:00 pm, 8 horas</td>
+                                    </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td  align="right">
+
+                        <table  style='width:90%; border: 1px solid #BDBDBD;'>
+                            <tbody>
+                                <tr style='border: 1px solid #BDBDBD;'>
+                                    <!-- <th class='head' style='width:50px'>ID</th> -->
+                                    <td  style="padding-left:10px">DEPARTAMENTO DE:</td>
+                                    <td >ELECTRONICA Y COMUNICACIONES</td>
+                                </tr>
+                                    <tr  style='border: 1px solid #BDBDBD'>
+                                        <!--  <td style='border-bottom: 1px solid #BDBDBD'>{{disp.id}} <span t-field="o.identificacion" /></td> -->
+                                        <td style="padding-left:10px">AREA DE:</td>
+                                        <td> ESTACION RADAR</td>
+                                    </tr>
+                                    <tr  style='border: 1px solid #BDBDBD;'>
+                                        <!--  <td style='border-bottom: 1px solid #BDBDBD'>{{disp.id}} <span t-field="o.identificacion" /></td> -->
+                                        <td style="padding-left:10px">ELABORADO: </td>
+                                        <td style=''> 02/06/2020</td>
+                                    </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </template>
+
+    <template id="custom_footer">
+        
+            <div class="footer o_standard_footer">
+                <table style='table-layout:fixed; width:100%;font-size:11px'>
+                    <tbody>
+                        <tr >
+                                <!--  <td style='border-bottom: 1px solid #BDBDBD'>{{disp.id}} <span t-field="o.identificacion" /></td> -->
+                            <td class="text-right">Elaborado por:&#xA0;</td>
+                            <td  class="text-center" style='border-top: 1px solid #263238;'><span t-field="o.area_boss" /><br/> Jefe Inmediato</td>
+                            <td class="text-right">Revisado por:&#xA0;</td>
+                            <td  class="text-center" style='border-top: 1px solid #263238; '> <span t-field="o.deparment_boss" /><br/>Jefe Departamento</td>
+                            <td class="text-right">Vo. Bo.:&#xA0;</td>
+                            <td  class="text-center" style='border-top: 1px solid #263238;'> <span t-field="o.maint_manager" /><br/> Gerente de Mantto e instalaciones</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="7">&#xA0;</td>
+                        </tr>
+                        <tr>
+                            <td> Observacion: </td>
+                            <td colspan="6" style='border-bottom: 1px solid #263238;'>
+                                <span t-field="o.comments" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>&#xA0;</td>
+                            <td colspan="6" style='border-bottom: 1px solid #263238;'></td>
+                        </tr>
+                        <tr>
+                            <td> Revisado: </td>
+                            <td colspan="2" style='border-bottom: 1px solid #263238;'></td>
+                            <td colspan="4"></td>
+                        </tr>
+                        <tr>
+                            <td> </td>
+                            <td colspan="2"> RRHH</td>
+                            <td colspan="4"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                    <div class="text-center" style="border-top: 0px solid black; font-size:11px;margin-top:2px">
+                        <div t-if="report_type == 'pdf'" class="text-muted">
+                            Pagina:
+                            <span class="page" />
+                            /
+                            <span class="topage" />
+                        </div>
+                    </div>
+            </div>
+    </template>
+
+    
+    <template id="report_horario">
+
+        <!-- res_company es una variable disponible a nivel global en los templates de reportes es usado en la cabecera  -->
+        <t t-set="company" t-value="res_company" />
+
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <t t-call="sched.custom_header" />
+                    <t t-call="sched.custom_footer" />
+
+                    <div class="page">
+                        <t t-foreach="o.generate_sched_formating()" t-as="week">
+                            <table t-if="week_size > 0"  style='width:100%; font-size:12px;margin-top:6px'>
+                                <thead>
+                                    <tr>
+                                        <!-- <th class='head' style='width:50px'>ID</th> -->
+                                        <th class="table-dark text-center font-weight-bold" style='border: 1px solid #BDBDBD; font-size:13px'  colspan="14">Semana del <t t-esc="o.format_week_date(week[0][0].turn_date)"/>  al  <t t-esc="o.format_week_date(week[0][6].turn_date)"/></th>
+                                    </tr>
+                                    <tr class="">
+                                        <th class="table-active text-center" style='border: 1px solid #BDBDBD' > <strong> Nombre y Apellido</strong> </th>
+                                        <th class="table-active text-center" style='border: 1px solid #BDBDBD;width:90px' >#Empleado</th>
+                                        <th class="table-active text-center" style='border: 1px solid #BDBDBD' >Cargo</th>
+                                        <th class="table-active text-center" style='border: 1px solid #BDBDBD; width:90px' >Turno</th>
+                                        <t t-foreach="week[0]" t-as="rol">
+                                            <th class="table-active text-center text-capitalize" style='padding-left:10px; border: 1px solid #BDBDBD; width:70px;font-weight: bold'> <t t-esc="o.format_date(rol.turn_date)"/></th>
+                                        </t>
+                                        <th class="table-active text-center" style='border: 1px solid #BDBDBD;width:100px' >Horas Trabajadas</th>
+                                        <th class="table-active text-center" style='border: 1px solid #BDBDBD;width:90px' >Horas Turno</th>
+                                        <th class="table-active text-center" style='border: 1px solid #BDBDBD;width:90px' >Horas Extra</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                        <t t-foreach="week" t-as="emp">
+                                            <tr >
+                                                <!--  <td class="text-center" style='border-bottom: 1px solid #BDBDBD'>{{disp.id}} <span t-field="o.identificacion" /></td> -->
+                                                <td style='padding-left:10px; border: 1px solid #BDBDBD; '> <t t-esc="emp[0].employe_id.name"/></td>
+                                                <td class="text-center" style='border: 1px solid #BDBDBD' ><t t-esc="emp[0].employe_id.employe_number"/></td>
+                                                <td class="text-center" style='border: 1px solid #BDBDBD' >Ing. Mantto. Radar</td>
+                                                <td class="text-center" style='border: 1px solid #BDBDBD' > <t t-esc="emp[0].cicle_id.name"/></td>
+                                                <t t-foreach="emp" t-as="rol">
+                                                    <td t-if="rol.turn_id.name == 'VAC'" class="text-center" style='border: 1px solid #BDBDBD; background-color:#fffde7'> 
+                                                        <span t-if="rol.turn_id.name == 'L'">--</span>
+                                                        <t t-else="" t-esc="rol.turn_id.name"/>
+                                                    </td>
+                                                    <td t-elif="o.is_holiday(rol.turn_date)" class="text-center" style='border: 1px solid #BDBDBD; background-color:#f0f4c3'> 
+                                                        <span t-if="rol.turn_id.name == 'L'">--</span>
+                                                        <t t-else="" t-esc="rol.turn_id.name"/>
+                                                    </td>
+                                                    <td t-elif="rol_index == 5 or rol_index == 6" class="text-center" style='border: 1px solid #BDBDBD; background-color:#fce4ec'> 
+                                                        <span t-if="rol.turn_id.name == 'L'">--</span>
+                                                        <t t-else="" t-esc="rol.turn_id.name"/>
+                                                    </td>
+                                                    <td t-else="" class="text-center" style='border: 1px solid #BDBDBD;'> 
+                                                        <span t-if="rol.turn_id.name == 'L'">--</span>
+                                                        <t t-else="" t-esc="rol.turn_id.name"/>
+                                                    </td>
+                                                </t>
+                                                <td class="text-center" style='border: 1px solid #BDBDBD' >
+                                                    <span t-if="emp[0].turn_id.name == 'VAC'">0</span>
+                                                    <t t-else="" t-esc="emp[0].cicle_id.hours"/>
+                                                </td>
+                                                <td class="text-center" style='border: 1px solid #BDBDBD' >
+                                                    <span t-if="emp[0].turn_id.name == 'VAC'">0</span>
+                                                    <t t-else="" t-esc="emp[0].cicle_id.turn_hours"/>
+                                                </td>
+                                                <td class="text-center" style='border: 1px solid #BDBDBD' >
+                                                    <span t-if="emp[0].turn_id.name == 'VAC'">0</span>
+                                                    <t t-else="" t-esc="emp[0].cicle_id.extra_hours"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                </tbody>
+                            </table>
+                            <h1 t-else="" >No hay datos para mostrar</h1>                        
+                            <div t-if="week_index == 3 and week_size > 0" style="page-break-before: always;"/>
+                        </t>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+
+    <template id="report_horario2">
+        <t t-call="web.html_container">
+            <div class="header" style="border-bottom: 1px solid black">
+                <h3 class="text-center">Attendance Recap Report</h3>
+                <h4 class="text-center">
+                    <strong>From</strong>:
+                    sfsdfsdf
+                    <strong>To</strong>:
+                    adadsasdasd
+                </h4>
+            </div>
+            <div class="article">
+                <table class="table table-condensed table-bordered" style="width: 100%">
+                    <thead>
+                        <th class="text-center" style="width: 70%">Employee</th>
+                        <th class="text-center" style="width: 15%">Presence</th>
+                        <th class="text-center" style="width: 15%">Absence</th>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="docs" t-as="doc">
+                            <tr>
+                                <td>
+                                   EDER
+                                </td>
+                                <td class="text-center">
+                                    <span t-esc="doc['name']"/>
+                                </td>
+                                <td class="text-center">
+                                    asdsdasd
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+            <div class="footer">
+                <div class="row text-center" style="border-top: 1px solid black;">
+                    <div class="col col-3 offset-9 text-right">
+                        <ul class="list-inline mt-2">
+                            <li class="list-inline-item">Page:</li>
+                            <li class="list-inline-item">
+                                <span class="page"/>
+                            </li>
+                            <li class="list-inline-item">/</li>
+                            <li class="list-inline-item">
+                                <span class="topage"/>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+
+
+    <record model="report.paperformat" id="paperformat_horario_report">
+        <field name="name">paperformat.horario.report</field>
+        <field name="default" eval="True"/>
+        <!--<field name="format">Letter</field>-->
+        <field name="orientation">Landscape</field>
+        <field name="page_height">279</field>
+        <field name="page_width">216</field>
+        <field name="margin_top">40</field> <!--Margen top de todo el documento incluye cabecera-->
+        <field name="margin_right">5</field>
+        <field name="margin_bottom">30</field>
+        <field name="margin_left">5</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">37</field> <!-- Espaceado de cabecera y contenido, de  lo contrario la cabecera se sobre pone-->
+        <field name="dpi">90</field>
+    </record>
+
+    <!--
+    <report 
+        paperformat="paperformat_horario_report"
+        id="action_report_horario"
+        model="sched.rol" 
+        string="Horario Custom" 
+        report_type="qweb-pdf" 
+        name="sched.report_horario2" 
+        file="sched.report_horario" 
+    />
+    -->
+
+    <report 
+    paperformat="paperformat_horario_report"
+    id="action_report_horario_normal"
+    model="sched.rol" 
+    string="Horario Normal" 
+    report_type="qweb-pdf" 
+    name="sched.report_horario" 
+    file="sched.report_horario" 
+/>
+
+    </odoo>

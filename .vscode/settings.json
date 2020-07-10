@@ -4,5 +4,6 @@
         "C:\\Program Files (x86)\\Odoo 13.0\\server",
     ],
     "git.ignoreLimitWarning": true,
+    "python.pythonPath": "C:\\Users\\Eder Xavier Rojas\\odoo_env",
     //"python.pythonPath": "/home/eradar/.virtualenvs/odoo-venv/bin/python3.6",
 }

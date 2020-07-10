@@ -1,0 +1,35 @@
+<odoo>
+    <data>
+        <record id="cat_tecnico" model="res.partner.category">
+            <field name="name">Ing. Mantto. Radar</field>
+        </record>
+
+        <record id="turno_libre" model="sched.turn">
+            <field name="name">L</field>
+            <field name="hours">0</field>
+        </record>
+        <record id="turno_t1" model="sched.turn">
+            <field name="name">T1</field>
+            <field name="hours">8</field>
+        </record>
+        <record id="turno_t2" model="sched.turn">
+            <field name="name">T2</field>
+            <field name="hours">8</field>
+        </record>
+        <record id="turno_t3" model="sched.turn">
+            <field name="name">T3</field>
+            <field name="hours">8</field>
+        </record>
+        <record id="turno_A" model="sched.turn">
+            <field name="name">A</field>
+            <field name="hours">9</field>
+        </record>
+        <record id="turno_vac" model="sched.turn">
+            <field name="name">VAC</field>
+            <field name="hours">0</field>
+        </record>
+
+
+        
+    </data>
+</odoo>
