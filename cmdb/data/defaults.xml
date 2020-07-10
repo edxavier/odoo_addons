@@ -168,80 +168,6 @@
             <field name="name">Radar</field>
         </record>
 
-        <!-- SERVICIOs -->
-        <record model="cmdb.service" id="other">
-            <field name="name">Otro</field>
-            <field name="category">intern</field>
-            <field name="service_type" ref="other"></field>
-        </record>
-        <record model="cmdb.service" id="aftn">
-            <field name="name">AFTN</field>
-            <field name="category">extern</field>
-            <field name="service_type" ref="message"></field>
-        </record>
-        <record model="cmdb.service" id="aidc">
-            <field name="name">AIDC</field>
-            <field name="category">extern</field>
-            <field name="service_type" ref="message"></field>
-        </record>
-
-        <record model="cmdb.service" id="1194eaai">
-            <field name="name">119.4 EAAI</field>
-            <field name="category">intern</field>
-            <field name="service_type" ref="radio"></field>
-        </record>
-        <record model="cmdb.service" id="1194cuesta">
-            <field name="name">119.4 La cuesta</field>
-            <field name="category">extern</field>
-            <field name="service_type" ref="radio"></field>
-        </record>
-
-        <record model="cmdb.service" id="cenamer">
-            <field name="name">AD CENAMER</field>
-            <field name="category">extern</field>
-            <field name="service_type" ref="telephony"></field>
-        </record>
-        <record model="cmdb.service" id="coco">
-            <field name="name">AD COCO</field>
-            <field name="category">extern</field>
-            <field name="service_type" ref="telephony"></field>
-        </record>
-        <record model="cmdb.service" id="liberia">
-            <field name="name">AD LIBERIA</field>
-            <field name="category">extern</field>
-            <field name="service_type" ref="telephony"></field>
-        </record>
-        <record model="cmdb.service" id="tnt">
-            <field name="name">AD TNT</field>
-            <field name="category">extern</field>
-            <field name="service_type" ref="telephony"></field>
-        </record>
-        <record model="cmdb.service" id="salvador">
-            <field name="name">AD SALVADOR</field>
-            <field name="category">extern</field>
-            <field name="service_type" ref="telephony"></field>
-        </record>
-        <record model="cmdb.service" id="2617">
-            <field name="name">2617</field>
-            <field name="category">intern</field>
-            <field name="service_type" ref="telephony"></field>
-        </record>
-        <record model="cmdb.service" id="2618">
-            <field name="name">2618</field>
-            <field name="category">intern</field>
-            <field name="service_type" ref="telephony"></field>
-        </record>
-        <record model="cmdb.service" id="2619">
-            <field name="name">2619</field>
-            <field name="category">intern</field>
-            <field name="service_type" ref="telephony"></field>
-        </record>
-        <record model="cmdb.service" id="2620">
-            <field name="name">2620</field>
-            <field name="category">intern</field>
-            <field name="service_type" ref="telephony"></field>
-        </record>
-        
         <!-- ESTADOS DE SERVICIO -->
         <record model="cmdb.service.status" id="active">
             <field name="name">Activo</field>
@@ -252,6 +178,95 @@
         <record model="cmdb.service.status" id="retired">
             <field name="name">Retirado</field>
         </record>
+
+        <!-- SERVICIOs -->
+        <record model="cmdb.service" id="other">
+            <field name="name">Otro</field>
+            <field name="category">intern</field>
+            <field name="service_type" ref="other"></field>
+            <field name="status" ref="active"></field>
+        </record>
+        <record model="cmdb.service" id="aftn">
+            <field name="name">AFTN</field>
+            <field name="category">extern</field>
+            <field name="status" ref="active"></field>
+            <field name="service_type" ref="message"></field>
+        </record>
+        <record model="cmdb.service" id="aidc">
+            <field name="name">AIDC</field>
+            <field name="category">extern</field>
+            <field name="service_type" ref="message"></field>
+            <field name="status" ref="active"></field>
+        </record>
+
+        <record model="cmdb.service" id="1194eaai">
+            <field name="name">119.4 EAAI</field>
+            <field name="category">intern</field>
+            <field name="service_type" ref="radio"></field>
+            <field name="status" ref="active"></field>
+        </record>
+        <record model="cmdb.service" id="1194cuesta">
+            <field name="name">119.4 La cuesta</field>
+            <field name="category">extern</field>
+            <field name="service_type" ref="radio"></field>
+            <field name="status" ref="active"></field>
+        </record>
+
+        <record model="cmdb.service" id="cenamer">
+            <field name="name">AD CENAMER</field>
+            <field name="category">extern</field>
+            <field name="service_type" ref="telephony"></field>
+            <field name="status" ref="active"></field>
+        </record>
+        <record model="cmdb.service" id="coco">
+            <field name="name">AD COCO</field>
+            <field name="category">extern</field>
+            <field name="service_type" ref="telephony"></field>
+            <field name="status" ref="active"></field>
+        </record>
+        <record model="cmdb.service" id="liberia">
+            <field name="name">AD LIBERIA</field>
+            <field name="category">extern</field>
+            <field name="service_type" ref="telephony"></field>
+            <field name="status" ref="active"></field>
+        </record>
+        <record model="cmdb.service" id="tnt">
+            <field name="name">AD TNT</field>
+            <field name="category">extern</field>
+            <field name="service_type" ref="telephony"></field>
+            <field name="status" ref="active"></field>
+        </record>
+        <record model="cmdb.service" id="salvador">
+            <field name="name">AD SALVADOR</field>
+            <field name="category">extern</field>
+            <field name="service_type" ref="telephony"></field>
+            <field name="status" ref="active"></field>
+        </record>
+        <record model="cmdb.service" id="2617">
+            <field name="name">2617</field>
+            <field name="category">intern</field>
+            <field name="service_type" ref="telephony"></field>
+            <field name="status" ref="active"></field>
+        </record>
+        <record model="cmdb.service" id="2618">
+            <field name="name">2618</field>
+            <field name="category">intern</field>
+            <field name="service_type" ref="telephony"></field>
+            <field name="status" ref="active"></field>
+        </record>
+        <record model="cmdb.service" id="2619">
+            <field name="name">2619</field>
+            <field name="category">intern</field>
+            <field name="service_type" ref="telephony"></field>
+            <field name="status" ref="active"></field>
+        </record>
+        <record model="cmdb.service" id="2620">
+            <field name="name">2620</field>
+            <field name="category">intern</field>
+            <field name="service_type" ref="telephony"></field>
+            <field name="status" ref="active"></field>
+        </record>
+    
         
         <!-- ESTADOS DE ITEM -->
         <record model="cmdb.item.status" id="operative">
