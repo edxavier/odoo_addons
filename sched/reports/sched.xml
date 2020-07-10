@@ -262,10 +262,8 @@
     <record model="report.paperformat" id="paperformat_horario_report">
         <field name="name">paperformat.horario.report</field>
         <field name="default" eval="True"/>
-        <!--<field name="format">Letter</field>-->
+        <field name="format">Letter</field>
         <field name="orientation">Landscape</field>
-        <field name="page_height">279</field>
-        <field name="page_width">216</field>
         <field name="margin_top">40</field> <!--Margen top de todo el documento incluye cabecera-->
         <field name="margin_right">5</field>
         <field name="margin_bottom">30</field>
