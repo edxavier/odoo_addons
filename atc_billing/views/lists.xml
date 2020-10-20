@@ -1,0 +1,27 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="atc_billing.fp_list">
+            <field name="name">Listado de Planes de vuelo</field>
+            <field name="model">atc_billing.flightplan</field>
+            <field name="arch" type="xml">
+              <tree default_order="initial_time desc">
+                <field name="call_sign"/>
+                <field name="register" />
+                <field name="origin"/>
+                <field name="destination"/>
+                <field name="takeoff_time"/>
+                <field name="landing_time"/>
+                <field name="utc_date_str"/>
+                <field name="local_date_str" optional="hide"/>
+
+                <field name="initial_time" optional="hide"/>
+                <field name="arrival_time"/>
+                <field name="flight_type" optional="show"/>
+                <field name="aircraft_type" optional="show"/>
+
+              </tree>
+            </field>
+        </record>
+        
+    </data>
+</odoo>

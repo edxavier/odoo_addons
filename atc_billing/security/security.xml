@@ -1,0 +1,8 @@
+<odoo>
+    <record id="billing_manager" model="res.groups">
+        <field name="name">Administrador Billing</field>
+    </record>
+    <record id="billing_operator" model="res.groups">
+        <field name="name">Operador Billing</field>
+    </record>
+</odoo>

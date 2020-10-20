@@ -1,0 +1,26 @@
+<odoo>
+    <data>
+        <record id="view_fp_filter" model="ir.ui.view">
+            <field name="name">Filtros Planes de Vuelo</field>
+            <field name="model">atc_billing.flightplan</field>
+            <field name="arch" type="xml">
+                <search string="Buscar host">
+                    <field name="call_sign" filter_domain="[('call_sign', 'ilike', self)]"/>
+                    <field name="register" filter_domain="[('register', 'ilike', self)]"/>
+                    <field name="origin" filter_domain="[('origin', 'ilike', self)]"/>
+                    <field name="destination" filter_domain="[('destination', 'like', self)]"/>
+                    <separator/>
+                       <!-- <filter string="Conectado" name="is_up" domain="[('is_up', '=', True)]"/>-->
+                    <separator/>
+                    <group expand="0" name="group_by" string="Agrupar por">
+                        <filter name="group_origin" string="Origen" domain="[]" context="{'group_by' : 'origin'}" />
+                        <filter name="group_destination" string="Destino" domain="[]" context="{'group_by' : 'destination'}" />
+                        <filter name="group_call_sign" string="Callsign" domain="[]" context="{'group_by' : 'call_sign'}" />
+                        <filter name="group_register" string="Registro" domain="[]" context="{'group_by' : 'register'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+    
+    </data>
+</odoo>

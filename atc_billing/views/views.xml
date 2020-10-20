@@ -1,0 +1,20 @@
+<odoo>
+  <data>
+
+  <record model="ir.actions.act_window" id="atc_billing.flight_plans_action_window">
+    <field name="name">Planes de vuelo </field>
+    <field name="res_model">atc_billing.flightplan</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+
+
+
+  <!-- Top menu item -->
+  <menuitem name="Billing" id="atc_billing.menu_root" web_icon="atc_billing,static/description/icon.png"/>
+  <!-- menu categories -->
+  <menuitem name="Planes de vuelo" id="atc_billing.fp_menu" parent="atc_billing.menu_root" action="atc_billing.flight_plans_action_window"/>
+
+
+  </data>
+</odoo>
