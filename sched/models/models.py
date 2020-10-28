@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 from pprint import pprint
 import holidays
 
@@ -44,8 +44,8 @@ class Cicle(models.Model):
                 else:
                     rec.extra_hours = 0
             except Exception as e:
-                print("#########################################")
-                print(e)
+                #print("#########################################")
+                #print(e)
                 pass
 
     sequence = fields.Char()
@@ -116,8 +116,8 @@ class Rol(models.Model):
 
     def action_generar_horario(self):
         for o in self:
-            #o.state = 'generated'
-            print("********************************************+")
+            o.state = 'generated'
+            #print("********************************************+")
             weeks_to_generate = o.weeks
             week_to_project = 12
             matrix = [c for c in o.template_id.cicles]
@@ -152,9 +152,8 @@ class Rol(models.Model):
                     
                     self.generate_turn(o.id, e.employe.id, last_cicle.day7.id, start_date, last_cicle.id)
                     start_date = start_date + timedelta(days=1)
-
-                    
             pass
+
     def get_next_cicle(self, matrix, last_cicle):
         cicle_index = matrix.index(last_cicle)
         if cicle_index < matrix.__len__()-1:
@@ -190,9 +189,11 @@ class Rol(models.Model):
 
     @api.model
     def is_holiday(self, hdate):
-        nic_holidays = holidays.CountryHoliday(country='NI', years=2020)
+        now = datetime.now()
+        #print(now.year)
+        nic_holidays = holidays.CountryHoliday(country='NI', years=now.year)
         print(hdate)
-        print(nic_holidays)
+        #print(nic_holidays)
         print("IS HOLIDAY?")
         print(hdate in nic_holidays)
         return hdate in nic_holidays
@@ -226,7 +227,7 @@ class Rol(models.Model):
             #print(chunked_scheds.__len__())
             if all_scheds.__len__() > 0 :
                 for w in range(o.weeks):
-                    print("+++++++++++++++++++++++++++++ SEMANA: " + str(w+1))
+                    #print("+++++++++++++++++++++++++++++ SEMANA: " + str(w+1))
                     week_rol = []
                     for e in chunked_scheds:
                         emp_rol = []

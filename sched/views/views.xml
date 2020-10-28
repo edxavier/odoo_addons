@@ -101,7 +101,7 @@
      <form string="Nuevo Rol">
       <header>
         <button string="Generar" name="action_generar_horario" type="object" class="oe_highlight" states="created"/>
-        <button string="Dar formato" name="generate_sched_formating" type="object" class="oe_highlight" states="created"/>
+        <!--<button string="Dar formato" name="generate_sched_formating" type="object" class="oe_highlight" states="created"/>-->
 
         <field name="state" widget="statusbar" statusbar_visible="draft,created,generated"/>
       </header>
