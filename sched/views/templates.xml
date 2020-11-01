@@ -1,24 +1,51 @@
 <odoo>
     <data>
-<!--
-        <template id="listing">
-          <ul>
-            <li t-foreach="objects" t-as="object">
-              <a t-attf-href="#{ root }/objects/#{ object.id }">
-                <t t-esc="object.display_name"/>
-              </a>
-            </li>
-          </ul>
-        </template>
-        <template id="object">
-          <h1><t t-esc="object.display_name"/></h1>
-          <dl>
-            <t t-foreach="object._fields" t-as="field">
-              <dt><t t-esc="field"/></dt>
-              <dd><t t-esc="object[field]"/></dd>
-            </t>
-          </dl>
-        </template>
--->
+
+    <!--Lista cambios de turno-->
+    <record model="ir.ui.view" id="sched.turn_change_list">
+      <field name="name">Cambios de turno</field>
+      <field name="model">sched.turn.change</field>
+      <field name="arch" type="xml">
+        <tree >
+          <field name="name" string="Codigo"/>
+          <field name="requested_by"/>
+          <field name="accepted_by" />
+          <field name="original_turn"/>
+          <field name="required_turn"/>
+          <field name="original_turn_date"/>
+          <field name="required_turn_date"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <record id="sched_turn_change_form" model="ir.ui.view">
+        <field name="name">Formulario de cambio de turno</field>
+        <field name="model">sched.turn.change</field>
+        <field name="arch" type="xml">
+           <form string="Nuevo Componente">
+            <sheet>             
+             <div class="oe_title">
+              <h3>
+                <field name="name" readonly="1"/>
+              </h3>
+            </div>  
+             <group>
+                <group>
+                  <field name="requested_by"/>
+                  <field name="original_turn"/>
+                  <field name="original_turn_date"/>
+                </group>
+                <group>
+                    <field name="accepted_by"/>
+                    <field name="required_turn"/>
+                    <field name="required_turn_date"/>
+                </group>
+              </group>
+             
+            </sheet>
+          </form>
+        </field>
+    </record>
     </data>
 </odoo>

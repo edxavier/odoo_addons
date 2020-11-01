@@ -26,6 +26,7 @@
         'views/views.xml',
         'views/templates.xml',
         'reports/sched.xml',
+        'reports/formats.xml',
         'data/sequences.xml',
         'data/defaults.xml',
     ],

@@ -1,0 +1,210 @@
+<odoo>
+
+
+    <template id="turn_change_header">
+        <div class="header">
+            <br/>
+            <div class="row">
+                <div class="col-12 text-center" style="margin-top:4px;font-size:18px;font-weight:600">
+                    AEROPUERTO INTERNACIONAL DE MANAGUA <br/> EAAI  
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-12 text-center" style="margin-top:4px;font-size:20px;font-weight:600">
+                    SOLICITUD DE CAMBIO DE TURNO
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="turn_change_footer">
+        
+            <div class="footer o_standard_footer">
+                <table style='table-layout:fixed; width:100%; font-size:13px;'>
+                    <tbody>
+                        <tr >
+                                <!--  <td style='border-bottom: 1px solid #BDBDBD'>{{disp.id}} <span t-field="o.identificacion" /></td> -->
+                            <td class="text-right">&#xA0;</td>
+                            <td  class="text-center" style='border-top: 1px solid #263238; '>Firma del solicitante</td>
+                            <td class="text-right">&#xA0;</td>
+                            <td  class="text-center" style='border-top: 1px solid #263238;'>Firma del aceptante</td>
+                            <td class="text-right">&#xA0;</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br/>
+                <br/>
+                <table style='table-layout:fixed; width:100%; font-size:13px;'>
+                    <tbody>
+                        <tr >
+                                <!--  <td style='border-bottom: 1px solid #BDBDBD'>{{disp.id}} <span t-field="o.identificacion" /></td> -->
+                            <td class="text-right">Vo. Bo.:&#xA0;</td>
+                            <td  class="text-center" style='border-top: 1px solid #263238; '> Ing. Blanca Jarquín <br/> Jefe de Estación Radar</td>
+                            <td class="text-right">Vo. Bo.:&#xA0;</td>
+                            <td  class="text-center" style='border-top: 1px solid #263238;'>Ing. Bismark Incer <br/>Jefe Departamento</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+            </div>
+    </template>
+
+    
+    <template id="format_turn_change">
+
+        <!-- res_company es una variable disponible a nivel global en los templates de reportes es usado en la cabecera  -->
+        <t t-set="company" t-value="res_company" />
+
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <t t-call="sched.turn_change_header" />
+                    <t t-call="sched.turn_change_footer" />
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    
+                    <div class="page">                        
+                        <div class="row">
+                                <div class="col-12">
+                                    <table style='font-size:16px;width:100%;'>
+                                        <tr >
+                                            <td>
+                                            El técnico:
+                                            </td>
+                                            <td style='border-bottom: 1px solid #BDBDBD;padding:8px 0px 2px 10px;font-weight:600'>
+                                                <span t-esc="o.accepted_by.name"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style='width:35%'>
+                                            Trabajará en sustitución del técnico:
+                                            </td>
+                                            <td style='border-bottom:1px solid #BDBDBD;padding:8px 0px 2px 10px;font-weight:600'>
+                                                <span t-esc="o.requested_by.name"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <table style='font-size:16px;width:100%;margin-top:10px'>
+                                        <tr >
+                                            <td>
+                                            El día:
+                                            </td>
+                                            <td style='border-bottom: 1px solid #BDBDBD; padding:8px 0px 2px 6px;font-weight:600' class='text-center'>
+                                                <span t-esc="o.original_turn_date.strftime('%A %d')"/>
+                                            </td>
+                                            <td class='text-center'>
+                                            Turno
+                                            </td>
+                                            <td style='border-bottom: 1px solid #BDBDBD; padding:8px 0px 2px 6px;font-weight:600' class='text-center'>
+                                                <span t-esc="o.original_turn.name"/>
+                                            </td>
+                                            <td class='text-center'>
+                                            del mes
+                                            </td>
+                                            <td style='border-bottom: 1px solid #BDBDBD; padding:8px 0px 2px 6px;font-weight:600' class='text-center'>
+                                                 <span t-esc="o.original_turn_date.strftime('%B')"/>
+                                            </td>
+                                            <td class='text-center'>
+                                            del año
+                                            </td>
+                                            <td style='border-bottom: 1px solid #BDBDBD; padding:8px 0px 2px 6px;font-weight:600' class='text-center'>
+                                                 <span t-esc="o.original_turn_date.strftime('%Y')"/>
+                                            </td>
+
+                                        </tr>
+                                    </table>
+                                    
+                                    <br/><br/>
+                                    <br/><br/>
+                                    <br/><br/>
+
+                                    <table style='font-size:16px;width:100%;'>
+                                        <tr >
+                                            <td style='width:15%'>
+                                            El técnico:
+                                            </td>
+                                            <td style='border-bottom: 1px solid #BDBDBD;padding:8px 0px 2px 10px;font-weight:600'>
+                                                <span t-esc="o.requested_by.name"/>
+                                            </td>
+                                            <td style='padding:8px 0px 2px 15px;'>
+                                                repondrá el turno
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <table style='font-size:16px;width:100%;margin-top:10px'>
+                                        <tr >
+                                            <td>
+                                            El día:
+                                            </td>
+                                            <td style='border-bottom: 1px solid #BDBDBD; padding:8px 0px 2px 6px;font-weight:600' class='text-center'>
+                                                <span t-esc="o.required_turn_date.strftime('%A %d')"/>
+                                            </td>
+                                            <td class='text-center'>
+                                            Turno
+                                            </td>
+                                            <td style='border-bottom: 1px solid #BDBDBD; padding:8px 0px 2px 6px;font-weight:600' class='text-center'>
+                                                <span t-esc="o.required_turn.name"/>
+                                            </td>
+                                            <td class='text-center'>
+                                            del mes
+                                            </td>
+                                            <td style='border-bottom: 1px solid #BDBDBD; padding:8px 0px 2px 6px;font-weight:600' class='text-center'>
+                                                 <span t-esc="o.required_turn_date.strftime('%B')"/>
+                                            </td>
+                                            <td class='text-center'>
+                                            del año
+                                            </td>
+                                            <td style='border-bottom: 1px solid #BDBDBD; padding:8px 0px 2px 6px;font-weight:600' class='text-center'>
+                                                 <span t-esc="o.required_turn_date.strftime('%Y')"/>
+                                            </td>
+
+                                        </tr>
+                                    </table>
+                                </div>
+                        </div>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <div class="row">
+                            <div class="col-12">Justificacion:&#xA0;&#xA0; <span t-esc="o.justification"/>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+
+
+    <record model="report.paperformat" id="paperformat_turn_change">
+        <field name="name">Formato Cambio de turno</field>
+        <field name="default" eval="True"/>
+        <field name="format">Letter</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">50</field> <!--Margen top de todo el documento incluye cabecera-->
+        <field name="margin_bottom">50</field>
+        <field name="margin_right">15</field>
+        <field name="margin_left">15</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">40</field> <!-- Espaceado de cabecera y contenido, de  lo contrario la cabecera se sobre pone-->
+        <field name="dpi">90</field>
+    </record>
+
+    <report 
+        paperformat="paperformat_turn_change"
+        id="action_report_turn_change"
+        model="sched.turn.change" 
+        string="Cambio de turno" 
+        report_type="qweb-pdf" 
+        name="sched.format_turn_change" 
+        file="sched.format_turn_change" 
+    />
+
+    </odoo>

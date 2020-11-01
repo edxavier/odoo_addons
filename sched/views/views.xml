@@ -1,19 +1,5 @@
 <odoo>
   <data>
-    <!-- explicit list view definition -->
-<!--
-    <record model="ir.ui.view" id="schd.list">
-      <field name="name">schd list</field>
-      <field name="model">schd.schd</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
-      </field>
-    </record>
--->
 
 <record id="mobile_service_view_calendar" model="ir.ui.view">
   <field name="name">sched.calendar</field>
@@ -42,14 +28,34 @@
 </record>
 
 
+
+        <record id="view_sched_filter" model="ir.ui.view">
+            <field name="name">Filtro Horario</field>
+            <field name="model">sched.schedule</field>
+            <field name="arch" type="xml">
+                <search string="Buscar host">
+                    <field name="employe_id" filter_domain="[('employe_id', 'ilike', self)]"/>
+                    <field name="turn_id" filter_domain="[('turn_id', 'ilike', self)]"/>
+                    <field name="turn_date" filter_domain="[('turn_date', 'ilike', self)]"/>
+                    <separator/>
+                       <!-- <filter string="Conectado" name="is_up" domain="[('is_up', '=', True)]"/>-->
+                    <separator/>
+                    <group expand="0" name="group_by" string="Agrupar por">
+                        <filter name="group_employe" string="Empleado" domain="[]" context="{'group_by' : 'employe_id'}" />
+                        <filter name="group_turn" string="Turno" domain="[]" context="{'group_by' : 'turn_id'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
 <record model="ir.ui.view" id="sched.list">
   <field name="name">schd list</field>
   <field name="model">sched.schedule</field>
   <field name="arch" type="xml">
-    <tree>
-      <field name="employe_id"/>
-      <field name="turn_id"/>
-      <field name="turn_date"/>
+    <tree  editable="bottom">
+      <field name="employe_id" readonly="1"/>
+      <field name="turn_id"  options="{'no_create': True, 'no_create_edit':True, 'no_open': True,}"/>
+      <field name="turn_date" readonly="1"/>
     </tree>
   </field>
 </record>
@@ -132,7 +138,7 @@
 
           <field name="schedule_ids" context="{'default_rol_id': active_id}" attrs="{'readonly': [('state','=','draft')]}">
             <tree string="Horario"  editable="bottom">
-              <field name="employe_id" options="{'no_create': True, 'no_create_edit':True, 'no_open': True,}"/>
+              <field name="employe_id"  readonly="1"/>
               <field name="turn_id" options="{'no_create': True, 'no_create_edit':True, 'no_open': True,}"/>
               <field name="turn_date_str"  />
            </tree>
@@ -166,11 +172,20 @@
     <field name="view_mode">tree,form</field>
   </record>
 
+<!-- actions opening views on models -->
+  <record model="ir.actions.act_window" id="sched.action_fmt_turn_change">
+    <field name="name">Cambio de turno</field>
+    <field name="res_model">sched.turn.change</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
     <!-- Top menu item -->
     <menuitem name="Horario" id="sched.menu_root" web_icon="sched,static/description/icon.png"/>
     <menuitem name="Turnos" id="sched.menu_turn" parent="sched.menu_root" action="sched.action_turn"/>
     <menuitem name="Plantillas" id="sched.menu_template" parent="sched.menu_root" action="sched.action_template"  sequence="1"/>
     <menuitem name="Roles" id="sched.menu_rol" parent="sched.menu_root" action="sched.action_rol"  sequence="0"/>
+    <menuitem name="Formatos" id="sched.menu_fmt" parent="sched.menu_root"/>
+    <menuitem name="Cambio de turno" id="sched.menu_fmt_turn_change" parent="sched.menu_fmt" action="sched.action_fmt_turn_change"/>
 
 
     <!-- menu categories -->

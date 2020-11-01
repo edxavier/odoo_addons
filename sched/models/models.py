@@ -4,7 +4,10 @@ from odoo import models, fields, api
 from datetime import date, timedelta, datetime
 from pprint import pprint
 import holidays
+import locale
 
+day_names = ['Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab', 'Dom']
+month_names = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
 
 class Turn(models.Model):
     _name = 'sched.turn'
@@ -107,7 +110,7 @@ class Rol(models.Model):
     maint_manager = fields.Char(string='Gerente de mantto.', default='Ing. Noel Gonzales')
     comments = fields.Text(string='Observaciones')
     state = fields.Selection([('draft', 'Borrador'), ('created', 'Creado'), ('generated', 'Generado')], required=True, string='Estado', default='draft')
-    schedule_ids = fields.One2many('sched.schedule', 'rol_id', string='Horario')
+    schedule_ids = fields.One2many('sched.schedule', 'rol_id', string='Horario', ondelete='cascade')
 
     @api.model
     def create(self, vals):
@@ -130,6 +133,8 @@ class Rol(models.Model):
                 last_cicle = e.last_cicle
                 for week in range(0, week_to_project):
                     last_cicle = self.get_next_cicle(matrix, last_cicle)
+                    if week<weeks_to_generate:
+                        e.last_cicle = last_cicle
                     #print("Next cicle")
                     #print(last_cicle)
                     self.generate_turn(o.id, e.employe.id, last_cicle.day1.id, start_date, last_cicle.id)
@@ -190,6 +195,7 @@ class Rol(models.Model):
     @api.model
     def is_holiday(self, hdate):
         now = datetime.now()
+        
         #print(now.year)
         nic_holidays = holidays.CountryHoliday(country='NI', years=now.year)
         print(hdate)
@@ -245,10 +251,11 @@ class Rol(models.Model):
             yield mlist[i:i+nparts]
 
     def format_date(self, tdate):
-           return  tdate.strftime("%a  %d")
+        #locale.setlocale(locale.LC_ALL, 'es_MX')
+        return  tdate.strftime("%a  %d")
 
     def format_week_date(self, tdate):
-           return  tdate.strftime(" %d %B %Y")
+        return  tdate.strftime(" %d %B %Y")
 
 
 class Schedule(models.Model):
@@ -267,7 +274,7 @@ class Schedule(models.Model):
            rec.tname = rec.employe_id.name + "-" + rec.turn_id.name
 
     tname = fields.Char(string="Turno",  compute='compute_name', store=False,)
-    rol_id = fields.Many2one('sched.rol', string='Rol', required=True)
+    rol_id = fields.Many2one('sched.rol', string='Rol', required=True, ondelete='cascade')
     employe_id = fields.Many2one('res.partner', string='Empleado', required=True)
     turn_id = fields.Many2one('sched.turn', string='Turno', required=True)
 

@@ -21,15 +21,13 @@
             <field name="hours">8</field>
         </record>
         <record id="turno_A" model="sched.turn">
-            <field name="name">A</field>
+            <field name="name">T4</field>
             <field name="hours">9</field>
         </record>
         <record id="turno_vac" model="sched.turn">
             <field name="name">VAC</field>
             <field name="hours">0</field>
         </record>
-
-
         
     </data>
 </odoo>

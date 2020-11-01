@@ -5,3 +5,4 @@ access_sched_template,sched.template,model_sched_template,base.group_user,1,1,1,
 access_sched_employe,sched.employe,model_sched_employe,base.group_user,1,1,1,1
 access_sched_rol,sched.rol,model_sched_rol,base.group_user,1,1,1,1
 access_sched_schedule,sched.schedule,model_sched_schedule,base.group_user,1,1,1,1
+access_sched_turn_change,PermisoCambioTurno,model_sched_turn_change,base.group_user,1,1,1,1

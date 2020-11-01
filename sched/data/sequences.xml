@@ -12,5 +12,12 @@
               <field name="prefix">E</field>
               <field name="padding">4</field>
           </record>
+
+          <record id="seq_turn_change" model="ir.sequence">
+              <field name="name">Secuencia de cambios de turno</field>
+              <field name="code">sched.turn.change.sequence</field>
+              <field name="prefix">CT</field>
+              <field name="padding">4</field>
+          </record>
     </data>
 </odoo>

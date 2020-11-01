@@ -141,13 +141,13 @@
                                     </tr>
                                     <tr class="">
                                         <th class="table-active text-center" style='border: 1px solid #BDBDBD' > <strong> Nombre y Apellido</strong> </th>
-                                        <th class="table-active text-center" style='border: 1px solid #BDBDBD;width:90px' >#Empleado</th>
+                                        <th class="table-active text-center" style='border: 1px solid #BDBDBD;width:85px' >#Empleado</th>
                                         <th class="table-active text-center" style='border: 1px solid #BDBDBD' >Cargo</th>
                                         <th class="table-active text-center" style='border: 1px solid #BDBDBD; width:90px' >Turno</th>
                                         <t t-foreach="week[0]" t-as="rol">
-                                            <th class="table-active text-center text-capitalize" style='padding-left:10px; border: 1px solid #BDBDBD; width:70px;font-weight: bold'> <t t-esc="o.format_date(rol.turn_date)"/></th>
+                                            <th class="table-active text-center text-capitalize" style='padding-left:10px; border: 1px solid #BDBDBD; width:68px;font-weight: bold'> <t t-esc="o.format_date(rol.turn_date)"/></th>
                                         </t>
-                                        <th class="table-active text-center" style='border: 1px solid #BDBDBD;width:100px' >Horas Trabajadas</th>
+                                        <th class="table-active text-center" style='border: 1px solid #BDBDBD;width:102px' >Horas Trabajadas</th>
                                         <th class="table-active text-center" style='border: 1px solid #BDBDBD;width:90px' >Horas Turno</th>
                                         <th class="table-active text-center" style='border: 1px solid #BDBDBD;width:90px' >Horas Extra</th>
                                     </tr>
@@ -262,7 +262,7 @@
 
 
     <record model="report.paperformat" id="paperformat_horario_report">
-        <field name="name">paperformat.horario.report</field>
+        <field name="name">Formato Horaio</field>
         <field name="default" eval="True"/>
         <field name="format">Letter</field>
         <field name="orientation">Landscape</field>
