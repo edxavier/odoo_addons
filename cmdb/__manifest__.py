@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Gestion de la configuracion",
+    'name': "Gestion de la configuracion, inventario tecnico",
 
     'summary': """
         Registro de elementos de configuracion

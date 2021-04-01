@@ -4,18 +4,20 @@
             <field name="name">Listado de Planes de vuelo</field>
             <field name="model">atc_billing.flightplan</field>
             <field name="arch" type="xml">
-              <tree default_order="initial_time desc">
+              <tree default_order="initial_time desc" decoration-it="landing_time == '---' and  takeoff_time == '---'" 
+              decoration-bf="origin=='MNMG' and destination=='MNMG'">
                 <field name="call_sign"/>
                 <field name="register" />
-                <field name="origin"/>
-                <field name="destination"/>
+                <field name="origin" decoration-info="origin=='MNMG'"/>
+                <field name="destination" decoration-success="destination=='MNMG'"/>
                 <field name="takeoff_time"/>
                 <field name="landing_time"/>
-                <field name="utc_date_str"/>
+
+                <field name="utc_date_str" optional="show"/>
                 <field name="local_date_str" optional="hide"/>
 
                 <field name="initial_time" optional="hide"/>
-                <field name="arrival_time"/>
+                <field name="arrival_time" optional="hide"/>
                 <field name="flight_type" optional="show"/>
                 <field name="aircraft_type" optional="show"/>
 

@@ -6,3 +6,4 @@ from . import systat
 from . import interfaces
 from . import storages
 from . import soft_running
+from . import performance

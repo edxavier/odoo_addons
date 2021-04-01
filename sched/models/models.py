@@ -4,32 +4,36 @@ from odoo import models, fields, api
 from datetime import date, timedelta, datetime
 from pprint import pprint
 import holidays
-import locale
+from odoo.exceptions import Warning
+
 
 day_names = ['Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab', 'Dom']
 month_names = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
 
+#Representa una columna en la matriz
 class Turn(models.Model):
     _name = 'sched.turn'
     _description = 'Turno'
 
-    name = fields.Char(required=True)
-    hours = fields.Integer(default=8)
+    name = fields.Char(required=True, string='Turno')
+    hours = fields.Integer(default=8, string='Horas turno')
 
+#Asocia la matriz con los empleados
 class Template(models.Model):
     _name = 'sched.template'
-    _description = 'Matriz Plantilla'
+    _description = 'Plantilla de Matriz'
 
-    name = fields.Char(required=True)
-    cicles = fields.One2many('sched.cicle', 'template', string='Ciclos')
-    employes = fields.One2many('sched.employe', 'template', string='Empleados')
-
-
+    name = fields.Char(required=True, string='Nombre plantilla')
+    cicles = fields.One2many('sched.cicle', 'ctemplate_id', string='Matriz', ondelete='cascade')
+    employes = fields.One2many('sched.employe', 'etemplate_id', string='Empleados', ondelete='cascade')
 
 
+
+
+#Representa una entrada o fila en la matriz
 class Cicle(models.Model):
     _name = 'sched.cicle'
-    _description = 'Ciclo'
+    _description = 'Ciclo/Fila matriz'
     #_rec_name = 'sequence'
 
     @api.depends('day1', 'day2', 'day3', 'day4', 'day5', 'day6', 'day7')
@@ -52,8 +56,8 @@ class Cicle(models.Model):
                 pass
 
     sequence = fields.Char()
-    name = fields.Char(required=True)
-    template = fields.Many2one('sched.template', string='Plantilla', required=True)
+    name = fields.Char(required=True, string='Nombre')
+    ctemplate_id = fields.Many2one('sched.template', string='Plantilla', required=True, ondelete='cascade')
     day1 = fields.Many2one('sched.turn', string='Lunes')
     day2 = fields.Many2one('sched.turn', string='Martes')
     day3 = fields.Many2one('sched.turn', string='Miercoles')
@@ -64,6 +68,7 @@ class Cicle(models.Model):
     hours = fields.Integer(default=0,  compute='compute_hours', store=True)
     turn_hours = fields.Integer(default=48)
     extra_hours = fields.Integer(default=0, compute='compute_extras', store=True)
+    enabled = fields.Boolean(default=True, string='Habilitado', help='Si se deshabilita no sera tomado en cuenta al rotar los turnos')
 
     @api.model
     def create(self, vals):
@@ -72,24 +77,42 @@ class Cicle(models.Model):
         return super(Cicle, self).create(vals)
 
 
+#Referencia empleados y su ultimo turno realizado, para ejecutar la rotacion en base a la matriz correspondiente
 class EmployeTemp(models.Model):
     _name = 'sched.employe'
     _description = 'Empleado'
 
-    @api.model
+    """@api.model
     def get_emp_domain(self):
         cats = self.env['res.partner.category'].search([('name', '=', 'Ing. Mantto. Radar')])
         ids = []
         for cat in cats:
             ids.append(cat.id)
         return [('is_company', '=', False), ('category_id','in', ids)]     
+        params = self._context.get('params')
+        #for doc in self:
+        print(f"**********************{params.get('id', -1)}*****************************")
+        Employe = self.env['sched.employe']    
+        emps = Employe.search([('etemplate_id', '=', params.get('id', -1))])
+        
+        #raise Warning(f"** {emps.id} {emps.employe.id} ****")
+        ids = []
+        for e in emps: 
+            ids.append(emps.employe.id)
+        return [('id', 'not in', ids)]
+        """
+
     
- 
     name = fields.Char(default='--')
-    employe = fields.Many2one('res.partner', string='Empleado', required=True, domain=lambda self: self.get_emp_domain())
-    last_cicle = fields.Many2one('sched.cicle', string='Ultimo ciclo', domain="[('template', '=', template)]")
-    template = fields.Many2one('sched.template', string='Plantilla', required=True)
+    etemplate_id = fields.Many2one('sched.template', string='Plantilla', required=True, ondelete='cascade')
+    #employe = fields.Many2one('cmdb.technician', string='Empleado', required=True, domain=lambda self: self.get_emp_domain())
+    employe = fields.Many2one('cmdb.technician', string='Empleado', required=True)
+    #"[('template', '=', template)]"
+    last_cicle = fields.Many2one('sched.cicle', string='Ultimo ciclo', 
+        help='Ultimo ciclo de turno realizado, guarde la plantilla primero para seleccionarlo')
+    enabled = fields.Boolean(default=True, string='Habilitado', help='Si se deshabilita no sera tomado en cuenta al rotar los turnos')
     
+
     @api.model
     def create(self, vals):
         if vals.get('name', 'Nuevo') == 'Nuevo':
@@ -118,44 +141,43 @@ class Rol(models.Model):
         return super(Rol, self).create(vals)
 
     def action_generar_horario(self):
-        for o in self:
-            o.state = 'generated'
-            #print("********************************************+")
-            weeks_to_generate = o.weeks
+        for rol in self:
+            rol.state = 'generated'
+            weeks_to_generate = rol.weeks
             week_to_project = 12
-            matrix = [c for c in o.template_id.cicles]
-            #print(matrix)
-            for e in o.template_id.employes:
-                start_date = o.start_date # FECHA DE INICO DEL HORARIO
-                #print(e.employe.name)
-                #print(e.last_cicle.name)
-                #print(e.last_cicle)
-                last_cicle = e.last_cicle
+            matrix = [c for c in rol.template_id.cicles]
+            #Recorrer cada empleado en la plantilla
+            for emp in rol.template_id.employes:
+                start_date = rol.start_date # FECHA DE INICO DEL HORARIO
+                last_cicle = emp.last_cicle
+                #Generar horario para las semanas especificadas, tomando siempre en cuenta el ciclo anterior
                 for week in range(0, week_to_project):
+                    #obtener el siguiente ciclo basado en el ultimo, pasando a ser ahora el priximo el anterior de la proxima iteracion
                     last_cicle = self.get_next_cicle(matrix, last_cicle)
+                    #Guardar la referencia de el ultimo ciclo en la plantilla solo para las semanas oficiales, las priemras 4 o 5 semanas, el resto es solo una estimacion
                     if week<weeks_to_generate:
-                        e.last_cicle = last_cicle
-                    #print("Next cicle")
-                    #print(last_cicle)
-                    self.generate_turn(o.id, e.employe.id, last_cicle.day1.id, start_date, last_cicle.id)
+                        emp.last_cicle = last_cicle
+                    
+                    #Crear el ciclo de la semana, en la variable last cicle tenemos el turno correspondiente y la fecha la vamos aumentanto en 1
+                    self.generate_turn(rol.id, emp.employe.id, last_cicle.day1.id, start_date, last_cicle.id)
                     start_date = start_date + timedelta(days=1)
 
-                    self.generate_turn(o.id, e.employe.id, last_cicle.day2.id, start_date, last_cicle.id)
+                    self.generate_turn(rol.id, emp.employe.id, last_cicle.day2.id, start_date, last_cicle.id)
                     start_date = start_date + timedelta(days=1)
                     
-                    self.generate_turn(o.id, e.employe.id, last_cicle.day3.id, start_date, last_cicle.id)
+                    self.generate_turn(rol.id, emp.employe.id, last_cicle.day3.id, start_date, last_cicle.id)
                     start_date = start_date + timedelta(days=1)
                     
-                    self.generate_turn(o.id, e.employe.id, last_cicle.day4.id, start_date, last_cicle.id)
+                    self.generate_turn(rol.id, emp.employe.id, last_cicle.day4.id, start_date, last_cicle.id)
                     start_date = start_date + timedelta(days=1)
                     
-                    self.generate_turn(o.id, e.employe.id, last_cicle.day5.id, start_date, last_cicle.id)
+                    self.generate_turn(rol.id, emp.employe.id, last_cicle.day5.id, start_date, last_cicle.id)
                     start_date = start_date + timedelta(days=1)
                     
-                    self.generate_turn(o.id, e.employe.id, last_cicle.day6.id, start_date, last_cicle.id)
+                    self.generate_turn(rol.id, emp.employe.id, last_cicle.day6.id, start_date, last_cicle.id)
                     start_date = start_date + timedelta(days=1)
                     
-                    self.generate_turn(o.id, e.employe.id, last_cicle.day7.id, start_date, last_cicle.id)
+                    self.generate_turn(rol.id, emp.employe.id, last_cicle.day7.id, start_date, last_cicle.id)
                     start_date = start_date + timedelta(days=1)
             pass
 
@@ -168,7 +190,7 @@ class Rol(models.Model):
         return matrix[cicle_index]
 
     def generate_turn(self, rol_id, emp_id, turn_id, turn_date, cicle_id):
-        obj_res = self.env['sched.schedule'].create({
+        self.env['sched.schedule'].create({
             'rol_id': rol_id,
             'employe_id': emp_id,
             'turn_id': turn_id,
@@ -186,7 +208,7 @@ class Rol(models.Model):
         }"""
         return {
             'name':'Horario',
-            'view_mode':'tree,form,calendar',
+            'view_mode':'calendar,tree,form',
             'res_model':'sched.schedule',
             'type':'ir.actions.act_window',
             'domain':[('rol_id','=', self.id)],
@@ -207,7 +229,7 @@ class Rol(models.Model):
 
     def generate_sched_formating(self):
         for o in self:
-            print(o.weeks)
+            #print(o.weeks)
             #for e in o.template_id.employes:
             #    print(e.employe.name)
             #print("-------------------------------------------------")
@@ -258,6 +280,7 @@ class Rol(models.Model):
         return  tdate.strftime(" %d %B %Y")
 
 
+#Guarda todas las entradas empleado/turno/fecha asocicado al rol el cual especifica que matriz usa para generar las entradas
 class Schedule(models.Model):
     _name = 'sched.schedule'
     _description = 'Horario'
@@ -275,7 +298,7 @@ class Schedule(models.Model):
 
     tname = fields.Char(string="Turno",  compute='compute_name', store=False,)
     rol_id = fields.Many2one('sched.rol', string='Rol', required=True, ondelete='cascade')
-    employe_id = fields.Many2one('res.partner', string='Empleado', required=True)
+    employe_id = fields.Many2one('cmdb.technician', string='Empleado', required=True)
     turn_id = fields.Many2one('sched.turn', string='Turno', required=True)
 
     cicle_id = fields.Many2one('sched.cicle', string='Ciclo',)

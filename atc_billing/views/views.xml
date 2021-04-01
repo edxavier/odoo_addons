@@ -1,6 +1,43 @@
 <odoo>
   <data>
 
+
+ <!-- net.host form view -->
+    <record id="billing_flightplan_view_form" model="ir.ui.view">
+      <field name="name">Formulario Plan de vuelo</field>
+      <field name="model">atc_billing.flightplan</field>
+      <field name="arch" type="xml">
+        <form string="Formulario Plan de Vuelo">
+          <sheet>
+            <div class="oe_title">
+              <h1>
+                <field name="call_sign" placeholder="Call Sign"/>
+              </h1>
+            </div>
+            <group string='Datos generales'>
+              <group>
+                <field name="origin"/>
+                <field name="takeoff_time"/>
+                <field name="register"/>
+              </group>
+              
+              <group>
+                <field name="destination"/>
+                <field name="landing_time"/>
+                <field name="flight_type"/>
+                <field name="aircraft_type"/>
+
+              </group>
+
+            </group>
+
+          </sheet>
+        </form>
+      </field>
+    </record>
+    
+
+
   <record model="ir.actions.act_window" id="atc_billing.flight_plans_action_window">
     <field name="name">Planes de vuelo </field>
     <field name="res_model">atc_billing.flightplan</field>

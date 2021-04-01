@@ -19,6 +19,7 @@ class Service(models.Model):
     relation="service_alternatives", column2='service_alt_id', string='Servicios alternativos')
 
     status = fields.Many2one('cmdb.service.status', ondelete="cascade", string='Estado', required=True)
+    active = fields.Boolean(default=True, string='Activo')
 
     @api.model
     def create(self, vals):

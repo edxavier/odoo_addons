@@ -40,10 +40,13 @@ function (require) {
             this.set("title", 'Dashboard X');
             return this._super().then(function() {
                 self._rpc({
-                    model: 'net.memory',
-                    method: 'get_memory_history',
+                    model: 'net.host.performance',
+                    method: 'get_perfomance_resume',
                 }, []).then(function(result){
                     self.mem_bar_ds = result.mem_bar_ds
+                    self.cpu_performance_bar_ds = result.cpu_performance_bar_ds
+                    self.processes_bar_ds = result.processes_bar_ds
+
                     self.mem_history_ds = result.mem_history_ds
                     self.cpu_load_history_ds = result.cpu_load_history_ds
                     self.cpu_usage_history_ds = result.cpu_usage_history_ds
@@ -93,20 +96,42 @@ function (require) {
             var cpu_load_layout = $.extend( true, {}, base_history_layout );
             var cpu_usage_layout = $.extend( true, {}, base_history_layout );
             var mem_usage_layout = $.extend( true, {}, base_history_layout );
+
             var mem_usage_bar_layout = $.extend( true, {}, base_history_layout);
+            var cpu_performance_bar_layout = $.extend( true, {}, base_history_layout);
+
+            var procs_bar_layout = $.extend( true, {}, base_history_layout);
+
 
             cpu_load_layout.title = "Historial de carga de CPU";
             cpu_usage_layout.title = "Historial de uso de CPU";
             mem_usage_layout.title = "Historial de uso real de memoria";
             mem_usage_bar_layout.title = "Uso de memoria RAM";
+            
+            cpu_performance_bar_layout.title = "Rendimiento de CPU";
+            procs_bar_layout.title = "Procesos";
+            
+            procs_bar_layout.xaxis.title = "Host";
+            cpu_performance_bar_layout.xaxis.title = "Host";
+            mem_usage_bar_layout.xaxis.title = "Host";
+
             mem_usage_bar_layout.barmode =  'stack';
             mem_usage_bar_layout.xaxis.zeroline = true;
-
-            Plotly.newPlot('myChart2', self.mem_history_ds, mem_usage_layout, {editable: true});
-            Plotly.newPlot('cpu_load', self.cpu_load_history_ds, cpu_load_layout, {editable: true});
-            Plotly.newPlot('cpu_usage', self.cpu_usage_history_ds, cpu_usage_layout, {editable: true});
-            Plotly.newPlot('mem_chart', self.mem_bar_ds, mem_usage_bar_layout ,{editable: true});
             
+            procs_bar_layout.xaxis.zeroline = true;
+            cpu_performance_bar_layout.xaxis.zeroline = true;
+
+
+            Plotly.newPlot('myChart2', self.mem_history_ds, mem_usage_layout, {editable: false});
+            Plotly.newPlot('cpu_load', self.cpu_load_history_ds, cpu_load_layout, {editable: false});
+            Plotly.newPlot('cpu_usage', self.cpu_usage_history_ds, cpu_usage_layout, {editable: false});
+            Plotly.newPlot('mem_chart', self.mem_bar_ds, mem_usage_bar_layout ,{editable: false});
+            
+            Plotly.newPlot('procs_bar', self.processes_bar_ds, procs_bar_layout, {editable: false});
+
+            Plotly.newPlot('cpu_bar', self.cpu_performance_bar_ds, cpu_performance_bar_layout, {editable: false});
+
+
         }
 
     });

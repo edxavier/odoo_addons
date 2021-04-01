@@ -1,30 +1,11 @@
 <odoo>
   <data>
-    <!-- explicit list view definition -->
-    <record model="ir.ui.view" id="net.host_list">
-      <field name="name">Listado de Hosts</field>
-      <field name="model">net.host</field>
-      <field name="arch" type="xml">
-        <tree default_order="id desc" decoration-muted='is_up == False'>
-          <field name="name"/>
-          <field name="hostname"/>
-          <field name="ip"/>
-          <field name="mem_usage" widget="percentpie"/>
-          <field name="cpu_load" widget="percentpie"/>
-          <field name="cpu_usage" widget="percentpie"/>
-          <field name="processes" widget='integer'/>
-          <field name="host_datetime" />
-          <field name="uptime" />
-
-          <field name="is_up" widget="boolean_toggle" readonly="1"/>
-        </tree>
-      </field>
-    </record>
+ 
 
     <record id="open_systat_hist" model="ir.actions.act_window">
       <field name="name">Historial de rendimiento</field>
-      <field name="res_model">net.systat</field>
-      <field name="view_mode">tree,graph,form</field>
+      <field name="res_model">net.host.performance</field>
+      <field name="view_mode">tree,form</field>
       
       <field name="domain">[('host_id','=', active_id)]</field>
       <field name="context">{}</field>
@@ -44,9 +25,9 @@
 
             <div class="oe_button_box" name="button_box">
               <button name="open_mem_history" type="object" class="oe_stat_button" icon="fa-tachometer" >
-                <field name="mem_hist_count" widget="statinfo" string="Memoria"/>
+                <field name="mem_hist_count" widget="statinfo" string="Graficos"/>
               </button>
-              <button name="%(open_systat_hist)d" type="action" class="oe_stat_button" icon="fa-heart" >
+              <button name="%(open_systat_hist)d" type="action" class="oe_stat_button" icon="fa-calendar" >
                 <field name="sys_hist_count" widget="statinfo" string="Rendimiento"/>
               </button>
               
@@ -81,19 +62,23 @@
             </group>
 
             <notebook>
+            <!--
               <page string="Interfaces">
                 <field name="interfaces" context="{'default_host_id': active_id}">
                 </field>
               </page>
+              -->
               <page string="Almacenamiento">
                 <field name="storages" context="{'default_host_id': active_id}" >
                 </field>
               </page>
+              <!--
               <page string="Procesos">
                 <field name="processes_running" context="{'default_host_id': active_id}" >
                   
                 </field>
               </page>
+              -->
             </notebook>
           </sheet>
         </form>
@@ -123,15 +108,15 @@
     <!-- Top menu item -->
 <!--
 -->
-    <menuitem name="Gestion de red" id="net.menu_root" web_icon="net,static/description/icon.png"/>
+    <menuitem name="Monitorizacion de equipos" id="net.menu_root" web_icon="net,static/description/icon.png" groups='cmdb.admin_technician_group,cmdb.technician_group'/>
     <!-- menu categories -->
-    <menuitem name="Equipos" id="net.equipos_menu" parent="net.menu_root" action="net.action_window"/>
+    <menuitem name="Equipos" id="net.equipos_menu" parent="net.menu_root" action="net.action_window"  sequence="4"/>
 
     <menuitem id="menu_net_dashboard"
       parent="net.menu_root"
       name="Dashboard"
       action="net_action_dashboard"
-      sequence="-100"/>
+      sequence="5"/>
 <!--
     <menuitem name="Menu 2" id="net.menu_2" parent="net.menu_root"/>
 -->

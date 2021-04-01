@@ -9,11 +9,11 @@ class Host(models.Model):
 
     def memory_history_resume(self):
         for rec in self:
-            self.mem_hist_count = self.env['net.memory'].search_count([('host_id','=', rec.id)])
+            self.mem_hist_count = self.env['net.host.performance'].search_count([('host_id','=', rec.id)])
 
     def systat_history_resume(self):
         for rec in self:
-            self.sys_hist_count = self.env['net.systat'].search_count([('host_id','=', rec.id)])
+            self.sys_hist_count = self.env['net.host.performance'].search_count([('host_id','=', rec.id)])
 
 
     mem_hist_count = fields.Integer("Historial memmoria", compute='memory_history_resume', store=False)
@@ -22,10 +22,21 @@ class Host(models.Model):
     name = fields.Char(string="Nombre", required=True, help='Nombre o clasificacion del equipo')
     ip = fields.Char(string="Direccion IPv4", required=True, index=True)
     hostname = fields.Char(string="Hostname")
+    serial = fields.Char(string="Serie")
+
+    sda_health = fields.Char(string="Disco 1")
+    sdb_health = fields.Char(string="Disco 2")
+    mac_eth0 = fields.Char(string="MAC eth0")
+    ntp_status = fields.Char(string="NTP")
+    ntp_offset = fields.Float(string="NTP offset", default=0,)
+    disk_used = fields.Float(string="Uso /", default=0,)
+
+
     device_type = fields.Selection(string='Tipo equipo', selection=[('server', 'Servidor'), ('workstation', 'Workstation'), ('other', 'Otro')], default='workstation')
     device_os = fields.Selection(string='S. operativo', selection=[('linux', 'Linux'), ('win', 'Windows'), ('other', 'Otro')], default='linux')
     device_system = fields.Selection(string="Sistema", selection=[('aircon', 'Aircon'), ('sdc', 'SDC'), ('radar', 'Radar'), ('none', 'Ninguno')], default='none')
     is_up = fields.Boolean(default=False, string="Conexion")
+    
     mem_usage = fields.Float(default=0, string="Uso RAM")
     cpu_usage = fields.Float(default=0, string="Uso CPU")
     cpu_load = fields.Float(default=0, string="Carga CPU")

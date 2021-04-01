@@ -1,148 +1,217 @@
 <odoo>
     <data>
-         
-    <record id="cmdb_item_view_form" model="ir.ui.view">
-        <field name="name">item form</field>
-        <field name="model">cmdb.item</field>
-        <field name="arch" type="xml">
-           <form string="Nuevo Item">
-            <sheet>
-              
-              <div class="oe_title">
-                <h4>
-                  <field name="sequence" readonly="1"/>
-                </h4>
-              </div>
-            <div class="oe_title">
-              <h3>
-                <field name="name" default_focus="1" placeholder="Nombre"/>
-              </h3>
-            </div>
-            
-             <group>
-                <group>
-                    <field name="maintainable" />
-                    <field name="status" />
-                    <field name="item_type" />
-                    <field name="system" />
-                    <field name="serie"/>
-                    <field name="inventory"/>
-                </group>
-                <group>
-                    <field name="installed" />
-                    <field name="manufacturer" />
-                    <field name="model" />
-                    <field name="building" />
-                    <field name="office" />
-                    <field name="owner" />
-                    <field name="responsable" />
-                </group>
-              </group>
-              <notebook>
-                  <page string="Componentes" >
-                    <field name="components"  context="{'default_item': active_id}">
-                        <tree string="Listado">
-                            <field name="name"/>
-                            <field name="component_type"/>
-                            <field name="serie"/>
-                            <field name="status"/>
-                        </tree>
-                        <form string="Nuevo Componente">
-                            <sheet>  
-                            <div class="oe_title">
-                              <h3>
+
+        <record id="cmdb_item_view_form" model="ir.ui.view">
+            <field name="name">item form</field>
+            <field name="model">cmdb.item</field>
+            <field name="arch" type="xml">
+                <form string="Nuevo Item">
+                    <sheet>
+
+                        <div class="oe_title">
+                            <h4>
+                                <field name="sequence" readonly="1"/>
+                            </h4>
+                        </div>
+                        <div class="oe_title">
+                            <h3>
+                                <field name="name" default_focus="1" placeholder="Nombre"/>
+                            </h3>
+                        </div>
+
+                        <group>
+                            <group>
+                                <field name="maintainable"/>
+                                <field name="item_type"/>
+                                <field name="status"/>
+                                <field name="system"/>
+
+                            </group>
+                            <group>
+                                <field name="building"/>
+                                <field name="office"/>
+                                <field name="owner"/>
+                                <field name="responsable"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Detalles">
+                                <group>
+                                    <group>
+                                        <field name="manufacturer"/>
+                                        <field name="serie"/>
+                                        <field name="installed"/>
+                                    </group>
+                                    <group>
+                                        <field name="model"/>
+                                        <field name="inventory"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Componentes">
+                                <field name="components" context="{'default_item': active_id}">
+                                    <tree string="Listado">
+                                        <field name="name"/>
+                                        <field name="component_type"/>
+                                        <field name="serie"/>
+                                        <field name="status"/>
+                                    </tree>
+                                    <form string="Nuevo Componente">
+                                        <sheet>
+                                            <div class="oe_title">
+                                                <h3>
+                                                    <field name="name" default_focus="1" placeholder="Nombre" readonly="1"/>
+                                                </h3>
+                                            </div>
+                                            <group>
+                                                <group>
+                                                    <field name="item" invisible="1"/>
+                                                    <field name="component_type"/>
+                                                    <field name="status"/>
+                                                </group>
+                                                <group>
+                                                    <field name="serie"/>
+                                                    <field name="manufacturer"/>
+                                                    <field name="model"/>
+                                                </group>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </page>
+                            <page string="Items alternativos">
+                                <field name="alternative_items"/>
+                            </page>
+                        </notebook>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="cmdb_component_view_form" model="ir.ui.view">
+            <field name="name">component form</field>
+            <field name="model">cmdb.component</field>
+            <field name="arch" type="xml">
+                <form string="Nuevo Componente">
+                    <sheet>
+                        <div class="oe_title">
+                            <h3>
                                 <field name="name" default_focus="1" placeholder="Nombre" readonly="1"/>
-                              </h3>
-                            </div>            
-                             <group>
-                                <group>
-                                    <field name="item" invisible="1"/>
-                                    <field name="component_type"/>
-                                    <field name="status"/>
-                                </group>
-                                <group>
-                                    <field name="serie"/>
-                                    <field name="manufacturer"/>
-                                    <field name="model"/>
-                                </group>
-                              </group>
-                            </sheet>
-                          </form>
-                    </field>
-                  </page>
-                  <page string="Items alternativos" >
-                    <field name="alternative_items" />
-                  </page>
-              </notebook>
-             
-            </sheet>
-          </form>
-        </field>
-    </record>
-    
-    <record id="cmdb_component_view_form" model="ir.ui.view">
-        <field name="name">component form</field>
-        <field name="model">cmdb.component</field>
-        <field name="arch" type="xml">
-           <form string="Nuevo Componente">
-            <sheet>  
-            <div class="oe_title">
-              <h3>
-                <field name="name" default_focus="1" placeholder="Nombre" readonly="1"/>
-              </h3>
-            </div>            
-             <group>
-                <group>
-                    <field name="item"/>
-                    <field name="component_type"/>
-                    <field name="status"/>
-                </group>
-                <group>
-                    <field name="serie"/>
-                    <field name="manufacturer"/>
-                    <field name="model"/>
-                </group>
-              </group>
-             
-            </sheet>
-          </form>
-        </field>
-    </record>
-    
-    <record id="cmdb_service_view_form" model="ir.ui.view">
-        <field name="name">service form</field>
-        <field name="model">cmdb.service</field>
-        <field name="arch" type="xml">
-           <form string="Nuevo servicio">
-            <sheet>
-              
-            <div class="oe_title">
-              <h3>
-                <field name="sequence" default_focus="1" placeholder="Codigo" readonly="1"/>
-              </h3>
-            </div>            
-             <group>
-                <group>
-                    <field name="name"/>
-                    <field name="service_type"/>
-                    <field name="status"/>
-                </group>
-                <group>
-                    <field name="category" widget="radio" options="{'horizontal': true}"/>
-                    <field name="owner"/>
-                    <field name="responsable"/>
-                </group>
-              </group>
-              <group>
-                <field name="description"/>
-                <field name="alternative_service"/>
-              </group>
-             
-            </sheet>
-          </form>
-        </field>
-    </record>
-    
+                            </h3>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="item"/>
+                                <field name="component_type"/>
+                                <field name="status"/>
+                            </group>
+                            <group>
+                                <field name="serie"/>
+                                <field name="manufacturer"/>
+                                <field name="model"/>
+                            </group>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="cmdb_service_view_form" model="ir.ui.view">
+            <field name="name">service form</field>
+            <field name="model">cmdb.service</field>
+            <field name="arch" type="xml">
+                <form string="Nuevo servicio">
+                    <sheet>
+
+                        <div class="oe_title">
+                            <h3>
+                                <field name="sequence" default_focus="1" placeholder="Codigo" readonly="1"/>
+                            </h3>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="service_type"/>
+                                <field name="status"/>
+                            </group>
+                            <group>
+                                <field name="category" widget="radio" options="{'horizontal': true}"/>
+                                <field name="owner"/>
+                                <field name="responsable"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="description"/>
+                            <field name="alternative_service"/>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="cmdb_technician_view_form" model="ir.ui.view">
+            <field name="name">Formulario personal técnico</field>
+            <field name="model">cmdb.technician</field>
+            <field name="arch" type="xml">
+                <form string="Nuevo técnico">
+                    <sheet>
+                        <div class="row">
+                            <div class="col-9 align-self-end">
+                                <div class="oe_title">
+                                    <h2>
+                                        <field name="name" default_focus="1" placeholder="Nombre" required='1'/>
+                                    </h2>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <field name="image_1920" widget="image" class="oe_avatar" options="{'preview_image': 'image_128'}"/>
+                            </div>
+                        </div>
+
+                        <group>
+                            <group>
+                                <field name="employe_number"/>
+                                <field name="function" placeholder="ej. Ing. Mantto Radar"/>
+                                <field name="mobile"/>                                
+                            </group>
+                            <group>
+                                <field name="email"/>
+                                <field name="title"/>
+                                <field name="category_id" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}" placeholder="Etiquetas..."/>
+
+                                <field name="signature" widget='image' class="oe_avatar"/>
+                                <field name="active"/>
+                            </group>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="parnert_header_buttom" model="ir.ui.view">
+            <field name="name">res.partner.header.button</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form//sheet" position="before">
+                    <header attrs="{'invisible': [('id', '=', False)]}">
+                        <button name="become_technician" string="Crear perfil técnico" 
+                        type="object" class="oe_highlight" attrs="{'invisible': [('has_tech_profile', '!=', False)]}"/>
+
+                        <button name="generate_user" string="Generar usuario de sistema" 
+                        type="object" class="oe_highlight" attrs="{'invisible': ['|',('user_ids', '!=', []), ('is_company', '=', True)]}"/>
+
+
+                        <field name="has_tech_profile" invisible="1" />
+                    </header>
+                </xpath>
+            </field>
+        </record>
 
 
     </data>

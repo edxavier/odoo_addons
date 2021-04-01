@@ -1,8 +1,13 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_net_manager,net.host,model_net_host,net_manager_group,1,1,1,1
-access_net_memory,net.memory,model_net_memory,net_manager_group,1,1,1,1
-access_net_systat,net.systat,model_net_systat,net_manager_group,1,1,1,1
+access_net_manager,net.host,model_net_host,cmdb.admin_technician_group,1,1,1,1
+access_net_memory,net.memory,model_net_memory,cmdb.admin_technician_group,1,1,1,1
+access_net_systat,net.systat,model_net_systat,cmdb.admin_technician_group,1,1,1,1
 
-access_net_iface,net.interface,model_net_interface,net_manager_group,1,1,1,1
-access_net_storage,net.storage,model_net_storage,net_manager_group,1,1,1,1
-access_net_soft,net.soft,model_net_soft,net_manager_group,1,1,1,1
+access_net_iface,net.interface,model_net_interface,cmdb.admin_technician_group,1,1,1,1
+access_net_storage,net.storage,model_net_storage,cmdb.admin_technician_group,1,1,1,1
+access_net_soft,net.soft,model_net_soft,cmdb.admin_technician_group,1,1,1,1
+access_net_performance,net.host.performance,model_net_host_performance,cmdb.admin_technician_group,1,1,1,1
+
+access_technician_host,net.host,model_net_host,cmdb.technician_group,1,1,1,0
+access_technician_performance,net.host.performance,model_net_host_performance,cmdb.technician_group,1,0,0,0
+access_technician_storage,net.storage,model_net_storage,cmdb.technician_group,1,0,0,0

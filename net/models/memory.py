@@ -37,7 +37,7 @@ class Memory(models.Model):
         cpu_ctx_sw_int = []
         cpu_io_ds = []
 
-        bar_ds = []
+        mem_pie_ds = []
         cpu_pie_ds = []
         mem_pie_serie   = { 
             'type':'pie', 'values':[], 'labels':['Uso','Cached','Shared','Buffered','Free',],
@@ -169,13 +169,13 @@ class Memory(models.Model):
             cpu_pie_serie['values'].append(100-(last_stat_hist.cpu_usage)) #/last_stat_hist.total) * 100
         
     
-        bar_ds.append(mem_pie_serie)
+        mem_pie_ds.append(mem_pie_serie)
         cpu_pie_ds.append(cpu_pie_serie)
         
         return {
             'cpu_io_ds':cpu_io_ds,
             'cpu_ctx_sw_int':cpu_ctx_sw_int,
-            'cpu_pie_ds': cpu_pie_ds, 'mem_bar_ds': bar_ds,
+            'cpu_pie_ds': cpu_pie_ds, 'mem_bar_ds': mem_pie_ds,
             'mem_history_ds': mem_history_ds, 
             'cpu_load_history_ds':cpu_load_history_ds, 
             'cpu_usage_history_ds':cpu_usage_history_ds}

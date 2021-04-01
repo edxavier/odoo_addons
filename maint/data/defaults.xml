@@ -1,0 +1,41 @@
+<odoo>
+    <data noupdate="1">
+        
+        <!-- SISTEMAS -->
+        <record id="diaria" model="maint.frecuency">
+            <field name="name">Diario</field>
+            <field name="days">1</field>
+        </record>
+        <record id="semanal" model="maint.frecuency">
+            <field name="name">Semanal</field>
+            <field name="days">7</field>
+        </record>
+        <record id="mensual" model="maint.frecuency">
+            <field name="name">Mensual</field>
+            <field name="days">30</field>
+        </record>
+        <record id="trimestral" model="maint.frecuency">
+            <field name="name">Trimestral</field>
+            <field name="days">90</field>
+        </record>
+        <record id="semestral" model="maint.frecuency">
+            <field name="name">Semestral</field>
+            <field name="days">180</field>
+        </record>
+        <record id="anual" model="maint.frecuency">
+            <field name="name">Anual</field>
+            <field name="days">365</field>
+        </record>
+        <!-- EDIFICIOS 
+        <record id="building_ccr" model="cmdb.building">
+            <field name="name">C.C.R MGA</field>
+        </record>
+        <record id="building_cr" model="cmdb.building">
+            <field name="name">C.R LNB</field>
+        </record>
+        -->
+
+
+
+    </data>
+</odoo>

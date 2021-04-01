@@ -1,2 +1,12 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_maint_maint,maint.maint,model_maint_maint,base.group_user,1,1,1,1
+accesso_admin_mantenimiento,Acceso a mantenimiento,model_maint_maintenance,cmdb.admin_technician_group,1,1,1,1
+accesso_admin_frecuencia,Acceso a Frecuencia,model_maint_frecuency,cmdb.admin_technician_group,1,1,1,1
+accesso_admin_status,Acceso a Estado de mantto,model_maint_status,cmdb.admin_technician_group,1,1,1,1
+accesso_admin_program,Acceso a Programa de mantto,model_maint_program,cmdb.admin_technician_group,1,1,1,1
+accesso_admin_plan,Acceso a Plan de mantto,model_maint_plan,cmdb.admin_technician_group,1,1,1,1
+
+accesso_technician_mantenimiento,Acceso a mantenimiento,model_maint_maintenance,cmdb.technician_group,1,0,0,0
+accesso_technician_frecuencia,Acceso a Frecuencia,model_maint_frecuency,cmdb.technician_group,1,0,0,0
+accesso_technician_status,Acceso a Estado de mantto,model_maint_status,cmdb.technician_group,1,0,0,0
+accesso_technician_program,Acceso a Programa de mantto,model_maint_program,cmdb.technician_group,1,0,0,0
+accesso_technician_plan,Acceso a Plan de mantto,model_maint_plan,cmdb.technician_group,1,0,0,0

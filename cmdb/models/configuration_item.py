@@ -15,7 +15,7 @@ class Item(models.Model):
             return {'domain': {'office': [('building', '=', rec.building.id)]}}
 
     @api.onchange('manufacturer')
-    def buindingOnchange(self):
+    def manufacturerOnchange(self):
         for rec in self:
             rec.model = None
             return {'domain': {'model': [('manufacturer', '=', rec.manufacturer.id)]}}
@@ -30,7 +30,7 @@ class Item(models.Model):
     manufacturer = fields.Many2one('cmdb.manufacturer', ondelete="cascade", string='Marca', domain=[('active', '=', True)])
     model = fields.Many2one('cmdb.model', ondelete="cascade", string='Modelo')
     building = fields.Many2one('cmdb.building', ondelete="cascade", string='Edificio', domain=[('active', '=', True)])
-    office = fields.Many2one('cmdb.office', ondelete="cascade", string='Oficina', )
+    office = fields.Many2one('cmdb.office', ondelete="cascade", string='Oficina', domain=[('active', '=', True)])
 
     owner = fields.Many2one('res.partner', ondelete="cascade", string='Propietario')
     responsable = fields.Many2one('res.partner', ondelete="cascade", string='Responsable')
@@ -42,6 +42,7 @@ class Item(models.Model):
     item_type = fields.Many2one('cmdb.item.type', ondelete="cascade", string='Tipo', required=True, domain=[('active', '=', True)])
     status = fields.Many2one('cmdb.item.status', ondelete="cascade", string='Estado', required=True, domain=[('active', '=', True)])
     installed = fields.Date("Fecha de instalacion o adquisicion", )
+    active = fields.Boolean(default=True, string='Activo')
 
 
     @api.model
@@ -63,6 +64,7 @@ class Component(models.Model):
     model = fields.Many2one('cmdb.model', ondelete="cascade", string='Modelo',)
     status = fields.Many2one('cmdb.item.status', ondelete="cascade", string='Estado', required=True,)
     component_type = fields.Many2one('cmdb.component.type', ondelete="cascade", string='Tipo', required=True,)
+    active = fields.Boolean(default=True, string='Activo')
 
     @api.model
     def create(self, vals):

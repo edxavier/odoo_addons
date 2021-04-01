@@ -18,47 +18,58 @@
                 </div>
             </div>
 
-            <div class="row mt-2">
-                <div class="col-6">
-                    <div class="card ">
+            <div class="row mt-2 justify-content-md-center">
+                <div class="col-md-8  col-sm-12">
+                    <div class="card mt-2">
                         <div class="card-body">
                             <div id="mem_chart" ></div>
                         </div>
                     </div>
                 </div>
-                <div class="col-6">
+               
+            </div>
+            
+
+            <div class="row mt-2 mb-2 justify-content-md-center">
+                <div class="col col-sm-12 col-md-8">
                     <div class="card ">
                         <div class="card-body">
-                            <div id="myChart2" ></div>
+                            <div id="cpu_bar" ></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-sm-12 col-md-8">
+                    <div class="card mt-2">
+                        <div class="card-body">
+                            <div id="procs_bar" ></div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="row mt-2">
-                
-            </div>
 
-            <div class="row mt-2">
-                <div class="col-6">
+            <div class="row mt-2 mb-3 justify-content-md-center">
+                <div class="col-md-8  col-sm-12">
                     <div class="card ">
-                        <div class="card-body">
+                        <div class="card-body ">
                             <div id="cpu_load" ></div>
                         </div>
                     </div>
                 </div>
-                <div class="col-6">
-                    <div class="card ">
+                <div class="col-md-8  col-sm-12">
+                    <div class="card  mt-2">
                         <div class="card-body">
                             <div id="cpu_usage" ></div>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-
-            <div class="row mt-2">
-                
+                 <div class="col-md-8 col-sm-12">
+                    <div class="card mt-2">
+                        <div class="card-body">
+                            <div id="myChart2" ></div>
+                        </div>
+                    </div>
+                </div>
             </div>
             
             

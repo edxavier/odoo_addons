@@ -1,24 +1,90 @@
 <odoo>
     <data>
-<!--
-        <template id="listing">
-          <ul>
-            <li t-foreach="objects" t-as="object">
-              <a t-attf-href="#{ root }/objects/#{ object.id }">
-                <t t-esc="object.display_name"/>
-              </a>
-            </li>
-          </ul>
-        </template>
-        <template id="object">
-          <h1><t t-esc="object.display_name"/></h1>
-          <dl>
-            <t t-foreach="object._fields" t-as="field">
-              <dt><t t-esc="field"/></dt>
-              <dd><t t-esc="object[field]"/></dd>
-            </t>
-          </dl>
-        </template>
--->
+
+    <record id="maint_maintenance_view_form" model="ir.ui.view">
+        <field name="name">Formulario rutina de mantenimiento</field>
+        <field name="model">maint.maintenance</field>
+        <field name="arch" type="xml">
+           <form string="Nuevo Item">
+            <sheet>
+              
+            <div class="oe_title">
+              <h3>
+                <field name="name" default_focus="1" placeholder="Nombre"/>
+              </h3>
+            </div>
+            <group>
+                <group>
+                    <field name="frecuency" />
+                </group>
+                <group>
+                    <field name="last_execution" />
+                </group>
+            </group>
+            <group>
+              <field name="affected_items">
+                  <tree string="Listado">
+                    <field name="name"/>
+                    <field name="item_type"/>
+                    <field name="serie"/>
+                    <field name="system"/>
+                  </tree>
+                </field>
+                <field name="description" widget='html'/>
+            </group>
+          
+            </sheet>
+          </form>
+        </field>
+    </record>
+
+    <record id="maint_program_view_form" model="ir.ui.view">
+        <field name="name">Formulario programacion de mantenimiento</field>
+        <field name="model">maint.program</field>
+        <field name="arch" type="xml">
+           <form string="Nueva Programacion">
+            <sheet>
+              
+            <div class="oe_title">
+              <h3>
+                <field name="name" default_focus="1" placeholder="Nombre"/>
+              </h3>
+            </div>
+            <group>
+                <group>
+                    <field name="maintenance" />
+                    <field name="responsable" />
+                </group>
+                <group>
+                    <field name="expected_execution" />
+                    <field name="status" />
+                </group>
+            </group>
+            <group>
+              <field name="support_staff">
+                  <tree string="Personal de apoyo">
+                    <field name="name"/>
+                  </tree>
+                </field>
+            </group>
+            </sheet>
+          </form>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="maint.program_list">
+            <field name="name">Listado de programacion de mantenimientos</field>
+            <field name="model">maint.program</field>
+            <field name="arch" type="xml">
+              <tree default_order="expected_execution desc">
+                <field name="maintenance"/>
+                <field name="responsable" />
+                <field name="expected_execution"/>
+                <field name="status"/>
+              </tree>
+            </field>
+    </record>
+
     </data>
 </odoo>

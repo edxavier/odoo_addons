@@ -1,5 +1,3 @@
 <odoo>
-    <record id="net_manager_group" model="res.groups">
-        <field name="name">Network Manager</field>
-    </record>
+   
 </odoo>

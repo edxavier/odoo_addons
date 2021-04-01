@@ -24,8 +24,11 @@ class FlightPlan(models.Model):
 
     @api.depends('initial_time',)
     def compute_date_format(self):
-        for rec in self:
-            rec.utc_date_str = rec.initial_time.strftime("%d-%m-%Y %H:%M")
+        try:
+            for rec in self:
+                rec.utc_date_str = rec.initial_time.strftime("%d-%m-%Y %H:%M")
+        except:
+            pass
 
     @api.depends('initial_time',)
     def compute_local_date_format(self):

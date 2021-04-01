@@ -1,8 +1,17 @@
 <odoo>
+
+    <record model="ir.module.category" id="billing_category">
+        <field name="name">Billing</field>
+        <field name="description">Niveles de acceso al modulo billing</field>
+        <!--<field name="sequence">20</field>-->
+    </record>
+
     <record id="billing_manager" model="res.groups">
         <field name="name">Administrador Billing</field>
+        <field name="category_id" ref="billing_category"/>
     </record>
     <record id="billing_operator" model="res.groups">
         <field name="name">Operador Billing</field>
+        <field name="category_id" ref="billing_category"/>
     </record>
 </odoo>

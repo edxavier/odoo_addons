@@ -19,7 +19,7 @@ function (require) {
         },
         init: function(parent, context) {
             this._super(parent, context);
-            console.log(context);
+            //console.log(context);
             this.host_id = context.context.host_id;
             this.host_name = context.context.host_name;
             //Primera funcion en ejecurat
@@ -39,8 +39,8 @@ function (require) {
         
             return this._super().then(function() {
                 self._rpc({
-                    model: 'net.memory',
-                    method: 'get_host_details',
+                    model: 'net.host.performance',
+                    method: 'get_perfomance_details',
                     args: [self.host_id]
                 }, []).then(function(result){
                     self.mem_bar_ds = result.mem_bar_ds
@@ -50,9 +50,10 @@ function (require) {
                     self.cpu_load_history_ds = result.cpu_load_history_ds
                     self.cpu_usage_history_ds = result.cpu_usage_history_ds
                     self.cpu_io_ds = result.cpu_io_ds
+                    self.processes_ds = result.processes_ds
 
                     self.cpu_ctx_sw_int = result.cpu_ctx_sw_int
-                    console.log("LLAMADA RPC FINALIZADA")
+                    //console.log("LLAMADA RPC FINALIZADA")
                     self.render();            
                     //self.employee_data = result[0]
                 });                
@@ -87,27 +88,39 @@ function (require) {
             };
             // Hcaer copia profunda del objeto de lo contrario todos referencian al mismo objeto y los cambios se sobreescriben
             var cpu_load_layout = $.extend( true, {}, base_history_layout );
+            var processes_layout = $.extend( true, {}, base_history_layout );
             var cpu_usage_layout = $.extend( true, {}, base_history_layout );
             var mem_usage_layout = $.extend( true, {}, base_history_layout );
-            var mem_usage_bar_layout = $.extend( true, {}, base_history_layout);
+            var mem_usage_bar_layout = $.extend( true, {}, base_history_layout );
+            var io_layout = $.extend( true, {}, base_history_layout);
+            var ctx_interrups_layout = $.extend( true, {}, base_history_layout);
 
-            cpu_load_layout.title = "Historial de carga de CPU";
-            cpu_usage_layout.title = "Historial de uso de CPU";
-            mem_usage_layout.title = "Historial de uso real de memoria";
+
+            processes_layout.title = "Historial procesos y tareas";
+            cpu_load_layout.title = "Historial carga de CPU";
+            cpu_usage_layout.title = "Historial uso de CPU";
+            mem_usage_layout.title = "Historial uso de memoria";
             mem_usage_bar_layout.title = "Uso de memoria RAM";
+            io_layout.title = "Actividad de lectura y escritura";
+            ctx_interrups_layout.title = "Cambios de contexto e interrupciones";
+
+            processes_layout.yaxis.title = "Total";
+            ctx_interrups_layout.yaxis.title = "Transacciones/s";
+            io_layout.yaxis.title = "Bloques/s";
             //mem_usage_bar_layout.barmode =  'stack';
             mem_usage_bar_layout.xaxis.zeroline = true;
 
-            Plotly.newPlot('cpu_ctxsw_int', self.cpu_ctx_sw_int, mem_usage_layout, {editable: true});
+            Plotly.newPlot('processes_chart', self.processes_ds, processes_layout, {editable: true});
+            Plotly.newPlot('cpu_ctxsw_int', self.cpu_ctx_sw_int, ctx_interrups_layout, {editable: true});
             Plotly.newPlot('cpu_load', self.cpu_load_history_ds, cpu_load_layout, {editable: true});
             Plotly.newPlot('cpu_usage', self.cpu_usage_history_ds, cpu_usage_layout, {editable: true});
-            Plotly.newPlot('io_chart', self.cpu_io_ds, cpu_usage_layout, {editable: true});
+            Plotly.newPlot('io_chart', self.cpu_io_ds, io_layout, {editable: true});
             
-            Plotly.newPlot('mem_hist_chart', self.mem_history_ds, cpu_usage_layout, {editable: true});
+            Plotly.newPlot('mem_hist_chart', self.mem_history_ds, mem_usage_layout, {editable: true});
             
             
             Plotly.newPlot('mem_bar_chart', self.mem_bar_ds, mem_usage_bar_layout ,{editable: true});
-            Plotly.newPlot('cpu_usage_bar_chart', self.cpu_pie_ds, mem_usage_bar_layout ,{editable: true});
+            Plotly.newPlot('cpu_usage_bar_chart', self.cpu_pie_ds, cpu_usage_layout ,{editable: true});
             
         }
 
