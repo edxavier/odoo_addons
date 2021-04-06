@@ -24,7 +24,7 @@ class Template(models.Model):
     _description = 'Plantilla de Matriz'
 
     name = fields.Char(required=True, string='Nombre plantilla')
-    cicles = fields.One2many('sched.cicle', 'ctemplate_id', string='Matriz', ondelete='cascade')
+    cicles = fields.One2many('sched.cicle', 'ctemplate_id', string='Matriz', ondelete='cascade', copy=True)
     employes = fields.One2many('sched.employe', 'etemplate_id', string='Empleados', ondelete='cascade')
 
 
@@ -34,6 +34,7 @@ class Template(models.Model):
 class Cicle(models.Model):
     _name = 'sched.cicle'
     _description = 'Ciclo/Fila matriz'
+    _order = 'sequence asc'
     #_rec_name = 'sequence'
 
     @api.depends('day1', 'day2', 'day3', 'day4', 'day5', 'day6', 'day7')
@@ -144,7 +145,7 @@ class Rol(models.Model):
         for rol in self:
             rol.state = 'generated'
             weeks_to_generate = rol.weeks
-            week_to_project = 12
+            week_to_project = 8
             matrix = [c for c in rol.template_id.cicles]
             #Recorrer cada empleado en la plantilla
             for emp in rol.template_id.employes:
@@ -153,7 +154,11 @@ class Rol(models.Model):
                 #Generar horario para las semanas especificadas, tomando siempre en cuenta el ciclo anterior
                 for week in range(0, week_to_project):
                     #obtener el siguiente ciclo basado en el ultimo, pasando a ser ahora el priximo el anterior de la proxima iteracion
-                    last_cicle = self.get_next_cicle(matrix, last_cicle)
+                    if emp.enabled:
+                        last_cicle = self.get_next_cicle(matrix, last_cicle)
+                        #Si el ciclo en la matrix no esta habilitado obtener el siguiente
+                        if not last_cicle.enabled:
+                            last_cicle = self.get_next_cicle(matrix, last_cicle)
                     #Guardar la referencia de el ultimo ciclo en la plantilla solo para las semanas oficiales, las priemras 4 o 5 semanas, el resto es solo una estimacion
                     if week<weeks_to_generate:
                         emp.last_cicle = last_cicle

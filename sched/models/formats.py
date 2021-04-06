@@ -38,3 +38,32 @@ class TurnChange(models.Model):
             vals['name'] = self.env['ir.sequence'].next_by_code('sched.turn.change.sequence') or 'Nuevo cambio de turno'
         return super(TurnChange, self).create(vals)
 
+
+class Permission(models.Model):
+    _name = 'sched.permission'
+    _description = 'Permiso de 1/2 a 3 dias'
+    _rec_name = 'requested_by'
+
+    @api.onchange('requested_by')
+    def compute_code(self):
+        for rec in self:
+            rec.code = rec.requested_by.employe_number
+
+    @api.onchange('requested_by2')
+    def compute_code2(self):
+        for rec in self:
+            rec.code2 = rec.requested_by2.employe_number
+
+    requested_by = fields.Many2one('cmdb.technician', string='Solicitante',)
+    code = fields.Char(string='Código empleado')
+    required_date = fields.Date(string="Fecha del permiso", )
+    count_as = fields.Selection([('vacations', 'Vacaciones'), ('salry', 'Salario'), ('earning_salry', 'Con goce de salario')], string='A cuenta de', default='vacations')
+    comment = fields.Char(string='Justificación')
+    perm_time = fields.Char(string='Tiempo')
+
+    requested_by2 = fields.Many2one('cmdb.technician', string='Solicitante')
+    code2 = fields.Char(string='Código empleado')
+    required_date2 = fields.Date(string="Fecha del permiso", )
+    count_as2 = fields.Selection([('vacations', 'Vacaciones'), ('salry', 'Salario'), ('earning_salry', 'Con goce de salario')], string='A cuenta de', default='vacations')
+    comment2 = fields.Char(string='Justificación')
+    perm_time2 = fields.Char(string='Tiempo')

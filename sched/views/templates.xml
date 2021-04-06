@@ -18,6 +18,18 @@
             </field>
         </record>
 
+        <record model="ir.ui.view" id="sched.rol_list">
+            <field name="name">Programaciones de turno</field>
+            <field name="model">sched.rol</field>
+            <field name="arch" type="xml">
+                <tree default_order='create_date desc'>
+                    <field name="name" string="Programacion"/>
+                    <field name="start_date"/>
+                    <field name="weeks"/>
+                </tree>
+            </field>
+        </record>
+
 
         <record id="sched_turn_change_form" model="ir.ui.view">
             <field name="name">Formulario de cambio de turno</field>
@@ -52,6 +64,42 @@
                             </group>
                         </group>
 
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="sched_perm_form" model="ir.ui.view">
+            <field name="name">Formulario Permiso de vacaciones</field>
+            <field name="model">sched.permission</field>
+            <field name="arch" type="xml">
+                <form string="Nuevo permiso">
+                    <sheet>
+                        <group string='Permiso 1'>
+                            <group>
+                                <field name="requested_by"/>
+                                <field name="code"/>
+                                <field name="perm_time"/>
+                            </group>
+                            <group>
+                                <field name="required_date"/>
+                                <field name="count_as"/>
+                                <field name="comment"/>
+                            </group>
+                        </group>
+                        
+                        <group string='Permiso 2'>
+                            <group>
+                                <field name="requested_by2"/>
+                                <field name="code2"/>
+                                <field name="perm_time2"/>
+                            </group>
+                            <group>
+                                <field name="required_date2"/>
+                                <field name="count_as2"/>
+                              <field name="comment2"/>
+                            </group>
+                        </group>                        
                     </sheet>
                 </form>
             </field>

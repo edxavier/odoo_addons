@@ -7,6 +7,7 @@ access_sched_employe,sched.employe,model_sched_employe,cmdb.admin_technician_gro
 access_sched_rol,sched.rol,model_sched_rol,cmdb.admin_technician_group,1,1,1,1
 access_sched_schedule,sched.schedule,model_sched_schedule,cmdb.admin_technician_group,1,1,1,1
 access_sched_turn_change,PermisoCambioTurno,model_sched_turn_change,cmdb.admin_technician_group,1,1,1,1
+access_sched_vacations_perm,PermisoVacaciones,model_sched_permission,cmdb.admin_technician_group,1,1,1,1
 
 access_technician_turn,sched.turn,model_sched_turn,cmdb.technician_group,1,0,0,0
 access_technician_cicle,sched.cicle,model_sched_cicle,cmdb.technician_group,1,0,0,0
@@ -14,4 +15,5 @@ access_technician_template,sched.template,model_sched_template,cmdb.technician_g
 access_technician_employe,sched.employe,model_sched_employe,cmdb.technician_group,1,0,0,0
 access_technician_rol,sched.rol,model_sched_rol,cmdb.technician_group,1,0,0,0
 access_technician_schedule,sched.schedule,model_sched_schedule,cmdb.technician_group,1,0,0,0
-access_technician_turn_change,PermisoCambioTurno,model_sched_turn_change,cmdb.technician_group,1,0,0,0
+access_technician_turn_change,PermisoCambioTurno,model_sched_turn_change,cmdb.technician_group,1,1,1,0
+access_technician_vacations_perm,PermisoVacaciones,model_sched_permission,cmdb.technician_group,1,1,1,0

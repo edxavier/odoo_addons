@@ -69,20 +69,20 @@
                             <label for="cicles" string="Matriz"/>
                         </div>
                         <field name="cicles" context="{'default_ctemplate_id': active_id}">
-                            <tree string="Ciclos" editable="bottom">
+                            <tree string="Ciclos" editable="bottom" >
                                 <field name="ctemplate_id" readonly="1" invisible='1'/>
                                 <field name="sequence" string='Codigo' widget='handle'/>
                                 <field name="name"/>
-                                <field name="day1" options="{'no_create': True, 'no_create_edit':True, 'no_open': True,}"/>
-                                <field name="day2" options="{'no_create': True, 'no_create_edit':True, 'no_open': True,}"/>
-                                <field name="day3" options="{'no_create': True, 'no_create_edit':True, 'no_open': True,}"/>
-                                <field name="day4" options="{'no_create': True, 'no_create_edit':True, 'no_open': True,}"/>
-                                <field name="day5" options="{'no_create': True, 'no_create_edit':True, 'no_open': True,}"/>
-                                <field name="day6" options="{'no_create': True, 'no_create_edit':True, 'no_open': True,}"/>
-                                <field name="day7" options="{'no_create': True, 'no_create_edit':True, 'no_open': True,}"/>
+                                <field name="day1" options="{'no_create_edit':True, 'no_open': True,}" />
+                                <field name="day2" options="{'no_create_edit':True, 'no_open': True,}"/>
+                                <field name="day3" options="{'no_create_edit':True, 'no_open': True,}"/>
+                                <field name="day4" options="{'no_create_edit':True, 'no_open': True,}"/>
+                                <field name="day5" options="{'no_create_edit':True, 'no_open': True,}"/>
+                                <field name="day6" options="{'no_create_edit':True, 'no_open': True,}"/>
+                                <field name="day7" options="{'no_create_edit':True, 'no_open': True,}"/>
                                 <field name="hours" string="Hrs Trabajadas"/>
-                                <field name="turn_hours" string="Hrs Turno"/>
-                                <field name="extra_hours" string="Hrs Extra"/>
+                                <field name="turn_hours" string="Hrs Turno" />
+                                <field name="extra_hours" string="Hrs Extra"  />
                                 <field name="enabled"/>
 
                             </tree>
@@ -184,6 +184,12 @@
             <field name="res_model">sched.turn.change</field>
             <field name="view_mode">tree,form</field>
         </record>
+        
+         <record model="ir.actions.act_window" id="sched.action_fmt_perms">
+            <field name="name">Permiso de vacaciones</field>
+            <field name="res_model">sched.permission</field>
+            <field name="view_mode">tree,form</field>
+        </record>
 
         <!-- Top menu item -->
         <menuitem name="Horario" id="sched.menu_root" web_icon="sched,static/description/icon.png" groups='cmdb.admin_technician_group,cmdb.technician_group'/>
@@ -192,6 +198,7 @@
         <menuitem name="Roles" id="sched.menu_rol" parent="sched.menu_root" action="sched.action_rol" sequence="0" groups='cmdb.admin_technician_group,cmdb.technician_group'/>
         <menuitem name="Formatos" id="sched.menu_fmt" parent="sched.menu_root" groups='cmdb.admin_technician_group,cmdb.technician_group'/>
         <menuitem name="Cambio de turno" id="sched.menu_fmt_turn_change" parent="sched.menu_fmt" action="sched.action_fmt_turn_change"/>
+        <menuitem name="Permiso de vacaciones" id="sched.menu_fmt_perms" parent="sched.menu_fmt" action="sched.action_fmt_perms"/>
 
 
     <!-- menu categories -->
