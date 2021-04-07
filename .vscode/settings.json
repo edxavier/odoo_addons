@@ -1,14 +1,14 @@
 {
     "python.autoComplete.extraPaths": [
         "/home/eradar/odoo/",
-        "C:\\Program Files (x86)\\Odoo 13.0\\server",
+        "C:\\Program Files (x86)\\Odoo14\\server",
     ],
     "git.ignoreLimitWarning": true,
-    "python.pythonPath": "/home/eradar/.virtualenvs/odoo-venv/bin/python",
+    //"python.pythonPath": "/home/eradar/.virtualenvs/odoo-venv/bin/python",
     "python.analysis.extraPaths": [
         "/home/eradar/odoo/",
         "C:\\Program Files (x86)\\Odoo 13.0\\server"
     ],
-    //"python.pythonPath": "C:\\Users\\Eder Xavier Rojas\\odoo_env",
+    "python.pythonPath": "c:\\Users\\Eder Xavier Rojas\\odoo_env\\Scripts\\python.exe",
     //"python.pythonPath": "/home/eradar/.virtualenvs/odoo-venv/bin/python3.6",
 }

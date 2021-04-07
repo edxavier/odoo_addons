@@ -8,9 +8,9 @@ class IncidentTracking(models.Model):
 
     incident_id = fields.Many2one('ope.incident', string='Incidente', ondelete='cascade',)
     description = fields.Text(string='Descripcion del seguimiento', required=True)
-    track_date = fields.Date(string="Fecha" required=True)
+    track_date = fields.Datetime(string="Fecha", required=True)
     attach = fields.Binary(string="Adjutno")
-
+    
 
 
 class Incident(models.Model):
@@ -39,4 +39,4 @@ class Incident(models.Model):
     def create(self, vals):
         if vals.get('name', 'Nuevo') == 'Nuevo':
             vals['name'] = self.env['ir.sequence'].next_by_code('ope.incident.sequence') or 'Nuevo'
-        return super(Service, self).create(vals)
+        return super(Incident, self).create(vals)

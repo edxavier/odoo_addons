@@ -24,12 +24,13 @@
     # always loaded
     'data': [
         #'security/security.xml',
-        #'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
+        'views/actions.xml',
         'views/menus.xml',
         #'views/templates.xml',
-        #'views/lists.xml',
-        #'views/forms.xml',
-        #'data/secuences.xml',
+        'views/lists.xml',
+        'views/forms.xml',
+        'data/secuences.xml',
         #'data/defaults.xml',
         
     ],

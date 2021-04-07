@@ -1,0 +1,19 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="ope_mgmt.incident_list">
+            <field name="name">Listado de incidentes</field>
+            <field name="model">ope.incident</field>
+            <field name="arch" type="xml">
+              <tree>
+                <field name="name"/>
+                <field name="reported_by"/>
+                <field name="reported_to"/>
+                <field name="reported_media"/>
+
+                <field name="state"/>
+              </tree>
+            </field>
+        </record>
+
+    </data>
+</odoo>

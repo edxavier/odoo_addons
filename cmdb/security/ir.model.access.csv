@@ -1,5 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 
+
 access_item_admin_technician,cmdb.item,model_cmdb_item,admin_technician_group,1,1,1,1
 access_cmpnt_admin_technician,cmdb.component,model_cmdb_component,admin_technician_group,1,1,1,1
 access_srvc_admin_technician,cmdb.service,model_cmdb_service,admin_technician_group,1,1,1,1
@@ -37,3 +38,6 @@ access_srvc_atc,cmdb.service,model_cmdb_service,atc_group,1,0,0,0
 access_building_atc,cmdb.building,model_cmdb_building,atc_group,1,0,0,0
 access_office_atc,cmdb.office,model_cmdb_office,atc_group,1,0,0,0
 access_system_atc,cmdb.system,model_cmdb_system,atc_group,1,0,0,0
+
+
+

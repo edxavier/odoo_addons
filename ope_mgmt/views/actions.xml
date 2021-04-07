@@ -1,8 +1,8 @@
 <odoo>
     <data>
-        <record model="ir.actions.act_window" id="ope_mgmt.incident_action_window">
+        <record model="ir.actions.act_window" id="ope_mgmt_incident_action_window">
             <field name="name">Incidencias</field>
-            <field name="res_model">cmdb.technician</field>
+            <field name="res_model">ope.incident</field>
             <field name="view_mode">tree,form</field>
         </record>
     </data>

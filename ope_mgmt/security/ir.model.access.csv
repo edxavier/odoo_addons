@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+
+access_incident_admin_technician,ope.incident,model_ope_incident,cmdb.admin_technician_group,1,1,1,1
+access_tracking_admin_technician,ope.incident.tracking,model_ope_incident_tracking,cmdb.admin_technician_group,1,1,1,1
+
+
+
+access_incident_technician,ope.incident,model_ope_incident,cmdb.technician_group,1,1,1,0
+access_tracking_technician,ope.incident.tracking,model_ope_incident_tracking,cmdb.technician_group,1,1,1,0
+

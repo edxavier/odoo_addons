@@ -1,0 +1,38 @@
+<odoo>
+    <data>
+
+        <record id="ope_incident_form" model="ir.ui.view">
+            <field name="name">Formulario incidente</field>
+            <field name="model">ope.incident</field>
+            <field name="arch" type="xml">
+                <form string="Nuevo incidente">
+                    <sheet>
+                        <div class="oe_title">
+                            <h3>
+                                <field name="name" placeholder="Referencia" readonly="1"/>
+                            </h3>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="reported_by"/>
+                                <field name="reported_to"/>
+                                
+                            </group>
+                            <group>
+                                <field name="reported_media"/>
+                                <field name="source"/>
+                                <field name="related_incident"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="description" widget='html'/>
+                            <field name="attended_by"/>
+                            <field name="tracking" />
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
