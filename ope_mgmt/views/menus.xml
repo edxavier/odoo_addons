@@ -1,6 +1,6 @@
 <odoo>
     <data>
-        <menuitem name="Bitácora operacional" id="ope_menu_root" web_icon="ope_mgmt,static/description/icon.png" groups='cmdb.admin_technician_group,cmdb.technician_group'/>
+        <menuitem name="Bitácoras" id="ope_menu_root" web_icon="ope_mgmt,static/description/icon.png" groups='cmdb.admin_technician_group,cmdb.technician_group'/>
         <menuitem name="Incidentes" id="ope_mgmt_incidents" parent="ope_menu_root" action="ope_mgmt_incident_action_window"/>
 
     </data>

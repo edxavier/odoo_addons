@@ -6,28 +6,49 @@
             <field name="model">ope.incident</field>
             <field name="arch" type="xml">
                 <form string="Nuevo incidente">
+                    <header>
+                        <!--<button string="Dar formato" name="generate_sched_formating" type="object" class="oe_highlight" states="created"/>-->
+
+                        <field name="state" widget="statusbar" statusbar_visible="draft,open,tracking,canceled,closed"/>
+                    </header>
                     <sheet>
                         <div class="oe_title">
                             <h3>
                                 <field name="name" placeholder="Referencia" readonly="1"/>
                             </h3>
                         </div>
-                        <group>
+                        <group string='Datos generales'>
                             <group>
-                                <field name="reported_by"/>
-                                <field name="reported_to"/>
-                                
+                                <field name="reported_by" options="{'no_create_edit':True, 'no_open': True,'no_create': True}"/>
+                                <field name="reported_to" options="{'no_create_edit':True, 'no_open': True,'no_create': True}"/>
+
                             </group>
                             <group>
                                 <field name="reported_media"/>
                                 <field name="source"/>
-                                <field name="related_incident"/>
+                                <field name="related_incident" options="{'no_create_edit':True, 'no_open': True,'no_create': True}"/>
                             </group>
                         </group>
-                        <group>
+                        <group string='Descripcion del reporte'>
                             <field name="description" widget='html'/>
-                            <field name="attended_by"/>
-                            <field name="tracking" />
+                        </group>
+                        <group string='Seguimiento del incidente' attrs="{'invisible': [('id', '=', False)]}">
+                            <field name="attended_by" widget="many2many_tags" options="{'no_create_edit': True,'no_create': True}">
+                               
+                            </field>
+                            <field name="tracking" context="{'default_incident_id': active_id}">
+                                <tree>
+                                    <field name='track_date'></field>
+                                    <field name="description" widget='html'/>
+                                </tree>
+                                <form string="Nuevo incidente">
+                                    <field name="incident_id" invisible='1'/>
+                                    <field name="track_date" />
+                                    <field name="description" />
+                                    <field name="attach" />
+                                </form>
+                            </field>
+                            <field name="closing_comment" widget='html'/>
                         </group>
 
                     </sheet>

@@ -25,7 +25,7 @@ class Incident(models.Model):
     description = fields.Text(string='Descripcion del incidente', required=True)
     closing_comment = fields.Text(string='Comentario de cierre', help='Especifique en resumen la causa y solucion al incidente')
 
-    source = fields.Selection([('internal', 'Interno'), ('external', 'Externo')], string='Origen del incidente', default='internal')
+    source = fields.Selection([('internal', 'Interno'), ('external', 'Externo'), ('unknown', 'Desconocido')], string='Origen del incidente', required=True, default='internal')
     state = fields.Selection([('draft', 'Borrador'), ('open', 'Abierta'), ('tracking', 'En seguimiento'), ('canceled', 'Cancelada'), ('closed', 'Cerrada')], required=True, string='Estado', default='draft')
     
     attended_by = fields.Many2many('res.partner', string='Personas que atendieron el incidente')
