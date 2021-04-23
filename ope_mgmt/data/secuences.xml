@@ -3,7 +3,7 @@
           <record id="seq_item" model="ir.sequence">
               <field name="name">Secuencia de Incidentes</field>
               <field name="code">ope.incident.sequence</field>
-              <field name="prefix">IOP</field>
+              <field name="prefix">I</field>
               <field name="padding">4</field>
           </record>
     </data>

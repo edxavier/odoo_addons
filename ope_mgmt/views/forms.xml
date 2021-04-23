@@ -32,22 +32,23 @@
                         <group string='Descripcion del reporte'>
                             <field name="description" widget='html'/>
                         </group>
+                        <field name="tracking" context="{'default_incident_id': active_id}">
+                            <tree>
+                                <field name='track_date'></field>
+                                <field name="description" widget='html' style='width:60%'/>
+                            </tree>
+                            <form string="Nuevo incidente">
+                                <field name="incident_id" invisible='1'/>
+                                <field name="track_date" />
+                                <field name="description" widget='html' />
+                                <field name="attach" />
+                            </form>
+                        </field>
                         <group string='Seguimiento del incidente' attrs="{'invisible': [('id', '=', False)]}">
                             <field name="attended_by" widget="many2many_tags" options="{'no_create_edit': True,'no_create': True}">
                                
                             </field>
-                            <field name="tracking" context="{'default_incident_id': active_id}">
-                                <tree>
-                                    <field name='track_date'></field>
-                                    <field name="description" widget='html'/>
-                                </tree>
-                                <form string="Nuevo incidente">
-                                    <field name="incident_id" invisible='1'/>
-                                    <field name="track_date" />
-                                    <field name="description" />
-                                    <field name="attach" />
-                                </form>
-                            </field>
+                            
                             <field name="closing_comment" widget='html'/>
                         </group>
 
