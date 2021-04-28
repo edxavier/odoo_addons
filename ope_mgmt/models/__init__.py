@@ -3,3 +3,4 @@
 from . import incidents
 from . import changes
 from . import interruptions
+from . import wizards

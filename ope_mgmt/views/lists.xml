@@ -4,11 +4,11 @@
             <field name="name">Listado de incidentes</field>
             <field name="model">ope.incident</field>
             <field name="arch" type="xml">
-                <tree>
+                <tree   decoration-warning="state == 'open'"  decoration-danger="state == 'tracking'">
                     <field name="name"/>
                     <field name="reported_by"/>
                     <field name="reported_media"/>
-                    <field name="description" widget='html'/>
+                    <field name="description" widget='html' class='html_field'/>
                     <field name="state"/>
                 </tree>
             </field>

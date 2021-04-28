@@ -19,18 +19,20 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'cmdb'],
+    'depends': ['base', 'cmdb', 'mail'],
 
     # always loaded
     'data': [
         #'security/security.xml',
         'security/ir.model.access.csv',
-        'views/actions.xml',
         'views/menus.xml',
         #'views/templates.xml',
         'views/lists.xml',
+        'views/wizards.xml',
+        'views/actions.xml',
         'views/forms.xml',
         'data/secuences.xml',
+
         #'data/defaults.xml',
         
     ],

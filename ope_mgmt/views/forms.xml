@@ -1,5 +1,10 @@
 <odoo>
     <data>
+        <template id="assets_backend" name="ope_mgmt assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/ope_mgmt/static/css/ope_mgmt.css" />
+            </xpath>
+        </template>
 
         <record id="ope_incident_form" model="ir.ui.view">
             <field name="name">Formulario incidente</field>
@@ -9,50 +14,89 @@
                     <header>
                         <!--<button string="Dar formato" name="generate_sched_formating" type="object" class="oe_highlight" states="created"/>-->
 
-                        <field name="state" widget="statusbar" statusbar_visible="draft,open,tracking,canceled,closed"/>
+                        <button string="Dar seguimiento" name="do_track" type="object" class="btn btn-primary" states="open" />
+                        <button string="Cerrar" name="%(incident_close)d" type="action" class="btn btn-info" states="open,tracking"/>
+                        <button string="Cerrar2" name="do_close" type="object" class="btn btn-info" states="open,tracking"/>
+                        <button string="Cancelar" name="do_cancel" type="object" confirm='Esta seguro de cancelar este registro?' class="btn btn-dark" states="open,tracking" />
+
+                        <field name="state" widget="statusbar" statusbar_visible="draft,open,tracking,canceled,closed" />
+
                     </header>
                     <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="%(open_tracking_hist)d" type="action" class="oe_stat_button" string="Seguimiento" icon="fa-book"></button>
+                        </div>
+
+                        <widget name="web_ribbon" text="Cerrada" states='closed' bg_color='bg-info'/>
+                        <widget name="web_ribbon" text="Cancelada" states='canceled' bg_color='bg-dark'/>
+
                         <div class="oe_title">
                             <h3>
-                                <field name="name" placeholder="Referencia" readonly="1"/>
+                                <field name="name" placeholder="Referencia" readonly="1" />
                             </h3>
                         </div>
-                        <group string='Datos generales'>
+                     
+                        <group>
                             <group>
-                                <field name="reported_by" options="{'no_create_edit':True, 'no_open': True,'no_create': True}"/>
-                                <field name="reported_to" options="{'no_create_edit':True, 'no_open': True,'no_create': True}"/>
+                                <field name="reported_media" />
+                                <field name="source" />
+        
+                            </group>
+                            <group>
+                                <field name="reported_by" options="{'no_create_edit':True, 'no_open': True,'no_create': True}" />
+                                <field name="reported_to" options="{'no_create_edit':True, 'no_open': True,'no_create': True}" />
+                            </group>
+                        </group>
+                        <group>
+                            <field name="description" widget='html' />
+                        </group>
 
-                            </group>
-                            <group>
-                                <field name="reported_media"/>
-                                <field name="source"/>
-                                <field name="related_incident" options="{'no_create_edit':True, 'no_open': True,'no_create': True}"/>
-                            </group>
-                        </group>
-                        <group string='Descripcion del reporte'>
-                            <field name="description" widget='html'/>
-                        </group>
-                        <field name="tracking" context="{'default_incident_id': active_id}">
-                            <tree>
-                                <field name='track_date'></field>
-                                <field name="description" widget='html' style='width:60%'/>
-                            </tree>
-                            <form string="Nuevo incidente">
-                                <field name="incident_id" invisible='1'/>
-                                <field name="track_date" />
-                                <field name="description" widget='html' />
-                                <field name="attach" />
-                            </form>
-                        </field>
-                        <group string='Seguimiento del incidente' attrs="{'invisible': [('id', '=', False)]}">
-                            <field name="attended_by" widget="many2many_tags" options="{'no_create_edit': True,'no_create': True}">
-                               
-                            </field>
-                            
-                            <field name="closing_comment" widget='html'/>
+                        <div class="container mt-4" attrs="{'invisible': ['|',('id', '=', False), ('state', 'in', ['open','draft'])]}">
+                     
+                            <div class="row mt-2 border-top">
+                                <label for="attended_by"  class='mt-4'>Atendido por:</label>
+                                <div class="col-md-12">
+                                    <field name="attended_by" string='Atendido por:' widget='many2many_tags' options="{'no_create_edit': True,'no_create': True}">
+                                        <tree class="">
+                                            <field name="name" />
+                                            <field name='email'></field>
+                                        </tree>
+                                    </field>
+                                </div>
+                            </div>
+                            <div class=" mt-4 border-top row">
+                                <label for="tracking" class='mt-4'>Atendido por:</label>
+                                <div class="col-md-12">
+                                    <field name="tracking" context="{'default_incident_id': active_id}"  attrs="{'readonly': [('state', '=', 'open')]}">
+                                        <tree class="">
+                                            <field name="description" widget='html'  class='html_field' />
+                                            <field name='track_date'></field>
+                                        </tree>
+                                        <form string="Nuevo incidente">
+                                            <field name="incident_id" invisible='1' />
+                                            <field name="track_date" />
+                                            <field name="description" widget='html' />
+                                            <field name="attach" />
+                                        </form>
+                                    </field>
+                                </div>
+                            </div>
+                        </div>
+                        <group attrs="{'invisible': ['|',('id', '=', False), ('state', '=', 'open')]}" class="html_limited">
+
+                            <field name="closing_comment" widget='html' states="closed" />
+
+                            <field name="related_incident" options="{'no_create_edit':True, 'no_open': True,'no_create': True}" states="closed" />
+
                         </group>
 
                     </sheet>
+
+                    <div class="oe_chatter">
+                        <field name='message_follower_ids' widget='mail_followers'></field>
+                        <field name='message_ids' widget='mail_thread' options='{"thread_level":1}'></field>
+                    </div>
+
                 </form>
             </field>
         </record>

@@ -1,0 +1,11 @@
+.html_limited{ max-width: 100%;}
+.tree_limited{ max-width: 70%;}
+
+
+.html_field {
+    max-width: 99%;
+    max-height: 50px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
