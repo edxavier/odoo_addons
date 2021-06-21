@@ -27,8 +27,6 @@ class System(models.Model):
     active = fields.Boolean(default=True)
 
 
-
-
 class Manufacturer(models.Model):
     _name = 'cmdb.manufacturer'
     _description = 'Marca'
@@ -60,6 +58,13 @@ class ServiceStatus(models.Model):
     name = fields.Char(string="Nombre", required=True)
     active = fields.Boolean(default=True)
 
+class ServiceStatus(models.Model):
+    _name = 'cmdb.asset.status'
+    _description = 'Estado del activo'
+
+    name = fields.Char(string="Nombre", required=True)
+    active = fields.Boolean(default=True)
+
 class ItemType(models.Model):
     _name = 'cmdb.item.type'
     _description = 'Tipo de Item'
@@ -77,6 +82,14 @@ class ServiceType(models.Model):
 class ComponentType(models.Model):
     _name = 'cmdb.component.type'
     _description = 'Tipo de componente'
+
+    name = fields.Char(string="Nombre", required=True)
+    active = fields.Boolean(default=True)
+
+
+class AssetType(models.Model):
+    _name = 'cmdb.asset.type'
+    _description = 'Tipo de activo'
 
     name = fields.Char(string="Nombre", required=True)
     active = fields.Boolean(default=True)

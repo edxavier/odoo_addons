@@ -1,0 +1,89 @@
+<odoo>
+    <data noupdate="1">
+         <!-- TIPOS DE ACTIVOS -->
+        <record model="cmdb.asset.type" id="ram">
+            <field name="name">Memoria RAM</field>
+        </record>
+        <record model="cmdb.asset.type" id="sdd">
+            <field name="name">Disco duro</field>
+        </record>
+        <record model="cmdb.asset.type" id="usb">
+            <field name="name">USB</field>
+        </record>
+        <record model="cmdb.asset.type" id="serial_port">
+            <field name="name">Puerto serie</field>
+        </record>
+        <record model="cmdb.asset.type" id="mother_board">
+            <field name="name">Tarjeta madre</field>
+        </record>
+        <record model="cmdb.asset.type" id="power">
+            <field name="name">Fuente de poder</field>
+        </record>
+        <record model="cmdb.asset.type" id="screen">
+            <field name="name">Pantalla</field>
+        </record>
+        <record model="cmdb.asset.type" id="cpu">
+            <field name="name">CPU</field>
+        </record>
+        <record model="cmdb.asset.type" id="keyboard">
+            <field name="name">Teclado</field>
+        </record>
+        <record model="cmdb.asset.type" id="mouse">
+            <field name="name">Raton</field>
+        </record>
+        <record model="cmdb.asset.type" id="speaker">
+            <field name="name">Parlante</field>
+        </record>
+        <record model="cmdb.asset.type" id="printer">
+            <field name="name">Impresora</field>
+        </record>
+        <record model="cmdb.asset.type" id="sensor">
+            <field name="name">Sensor</field>
+        </record>
+        <record model="cmdb.asset.type" id="radio">
+            <field name="name">Radio</field>
+        </record>
+        <record model="cmdb.asset.type" id="phone">
+            <field name="name">Telefono</field>
+        </record>
+        <record model="cmdb.asset.type" id="laptop">
+            <field name="name">Laptop</field>
+        </record>
+        <record model="cmdb.asset.type" id="server">
+            <field name="name">Servidor</field>
+        </record>
+        <record model="cmdb.asset.type" id="router">
+            <field name="name">Router</field>
+        </record>
+        <record model="cmdb.asset.type" id="switch">
+            <field name="name">Switch</field>
+        </record>
+        <record model="cmdb.asset.type" id="idu">
+            <field name="name">IDU</field>
+        </record>
+        <record model="cmdb.asset.type" id="odu">
+            <field name="name">ODU</field>
+        </record>
+        <record model="cmdb.asset.type" id="tool">
+            <field name="name">Herramienta</field>
+        </record>
+        <record model="cmdb.asset.type" id="measure_eq">
+            <field name="name">Equipo de medición</field>
+        </record>
+
+
+         <!-- ESTADO DE ACTIVOS -->
+
+        <record model="cmdb.asset.type" id="good">
+            <field name="name">Buen estado/Repuesto</field>
+            <field name="name">Buen estado/En uso</field>
+            <field name="name">Buen estado/En Desuso</field>
+            <field name="name">Degradado/En uso</field>
+            <field name="name">Degradado/En Desuso</field>
+            <field name="name">Mal estado/En uso</field>
+            <field name="name">Mal estado/En Desuso</field>
+            <field name="name">De baja</field>
+
+        </record>
+    </data>
+</odoo>

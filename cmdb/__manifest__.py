@@ -29,7 +29,13 @@
         'views/templates.xml',
         'views/lists.xml',
         'views/forms.xml',
+
         'data/secuences.xml',
+
+        'data/assets.xml',
+        'data/locations.xml',
+        'data/customers.xml',
+
         'data/defaults.xml',
         
     ],

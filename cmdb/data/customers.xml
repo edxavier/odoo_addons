@@ -1,0 +1,90 @@
+<odoo>
+    <data noupdate="1">
+        <!-- Posiciones de usuario -->
+        <record id="ucs1_pl" model="cmdb.customer">
+            <field name="name">UCS1 PL</field>
+            <field name="building" ref="building_ccr"></field>
+            <field name="office" ref="off_app"></field>
+        </record>
+        <record id="ucs1_pl" model="cmdb.customer">
+            <field name="name">UCS1 EJ</field>
+            <field name="building" ref="building_ccr"></field>
+            <field name="office" ref="off_app"></field>
+        </record>
+
+        <record id="ucs2_pl" model="cmdb.customer">
+            <field name="name">UCS2 PL</field>
+            <field name="building" ref="building_ccr"></field>
+            <field name="office" ref="off_app"></field>
+        </record>
+        <record id="ucs2_ej" model="cmdb.customer">
+            <field name="name">UCS2 EJ</field>
+            <field name="building" ref="building_ccr"></field>
+            <field name="office" ref="off_app"></field>
+        </record>
+
+
+        <record id="ucs3_pl" model="cmdb.customer">
+            <field name="name">UCS3 PL</field>
+            <field name="building" ref="building_ccr"></field>
+            <field name="office" ref="off_app"></field>
+        </record>
+        <record id="ucs3_ej" model="cmdb.customer">
+            <field name="name">UCS3 EJ</field>
+            <field name="building" ref="building_ccr"></field>
+            <field name="office" ref="off_app"></field>
+        </record>
+
+        <record id="spv_app" model="cmdb.customer">
+            <field name="name">SPV APP</field>
+            <field name="building" ref="building_ccr"></field>
+            <field name="office" ref="off_app"></field>
+        </record>
+
+        <record id="ucs4_pl" model="cmdb.customer">
+            <field name="name">UCS4 TWR</field>
+            <field name="building" ref="building_ccr"></field>
+            <field name="office" ref="off_twr"></field>
+        </record>
+        <record id="ucs4_ej" model="cmdb.customer">
+            <field name="name">UCS4 GND</field>
+            <field name="building" ref="building_ccr"></field>
+            <field name="office" ref="off_twr"></field>
+        </record>
+
+        <record id="spv_twr" model="cmdb.customer">
+            <field name="name">SPV TWR</field>
+            <field name="building" ref="building_ccr"></field>
+            <field name="office" ref="off_twr"></field>
+        </record>
+
+        <record id="ucs_sim_pl" model="cmdb.customer">
+            <field name="name">UCS SIM PL</field>
+            <field name="building" ref="building_ccr"></field>
+            <field name="office" ref="off_sim"></field>
+        </record>
+        <record id="ucs_sim_ej" model="cmdb.customer">
+            <field name="name">UCS SIM EJ</field>
+            <field name="building" ref="building_ccr"></field>
+            <field name="office" ref="off_sim"></field>
+        </record>
+
+        <record id="sim_piloto1" model="cmdb.customer">
+            <field name="name">Piloto 1</field>
+            <field name="building" ref="building_ccr"></field>
+            <field name="office" ref="off_sim"></field>
+        </record>
+        
+        <record id="sim_piloto2" model="cmdb.customer">
+            <field name="name">Piloto 2</field>
+            <field name="building" ref="building_ccr"></field>
+            <field name="office" ref="off_sim"></field>
+        </record>
+        <record id="spv_tec" model="cmdb.customer">
+            <field name="name">SPV TEC</field>
+            <field name="building" ref="building_ccr"></field>
+            <field name="office" ref="off_se"></field>
+        </record>
+
+    </data>
+</odoo>

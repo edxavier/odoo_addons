@@ -1,0 +1,46 @@
+<odoo>
+    <data noupdate="1">
+        <!-- EDIFICIOS -->
+        <record id="building_ccr" model="cmdb.building">
+            <field name="name">Centro Control MGA</field>
+        </record>
+        <record id="building_cr" model="cmdb.building">
+            <field name="name">Cabecera Radar LNB</field>
+        </record>
+
+        <!-- OFICINAS -->
+        <record id="off_se" model="cmdb.office">
+            <field name="name">Sala de equipos</field>
+            <field name="building" ref="building_ccr"></field>
+        </record>
+        <record model="cmdb.office" id="off_sups">
+            <field name="name">Sala UPS</field>
+            <field name="building" ref="building_ccr"></field>
+        </record>
+        <record model="cmdb.office" id="off_sdesc_twr">
+            <field name="name">Sala descanso TWR</field>
+            <field name="building" ref="building_ccr"></field>
+        </record>
+        <record model="cmdb.office" id="off_twr">
+            <field name="name">TWR</field>
+            <field name="building" ref="building_ccr"></field>
+        </record>
+        <record model="cmdb.office" id="off_app">
+            <field name="name">APP</field>
+            <field name="building" ref="building_ccr"></field>
+        </record>
+        <record model="cmdb.office" id="off_sim">
+            <field name="name">SIM</field>
+            <field name="building" ref="building_ccr"></field>
+        </record>
+
+        <record model="cmdb.office" id="off_selnb">
+            <field name="name">Sala Equipos LNB</field>
+            <field name="building" ref="building_cr"></field>
+        </record>
+        <record model="cmdb.office" id="off_saalnb">
+            <field name="name">Sala A/A LNB</field>
+            <field name="building" ref="building_cr"></field>
+        </record>
+    </data>
+</odoo>
