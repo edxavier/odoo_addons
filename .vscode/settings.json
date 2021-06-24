@@ -7,7 +7,7 @@
     //"python.pythonPath": "/home/eradar/.virtualenvs/odoo-venv/bin/python",
     "python.analysis.extraPaths": [
         "/home/eradar/odoo/",
-        "C:\\Program Files (x86)\\Odoo 13.0\\server"
+        "C:\\Program Files (x86)\\Odoo14\\server",
     ],
     "python.pythonPath": "/home/eradar/.virtualenvs/odoo-venv/bin/python",
     //"python.pythonPath": "/home/eradar/.virtualenvs/odoo-venv/bin/python3.6",

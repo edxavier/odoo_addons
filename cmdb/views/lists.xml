@@ -79,6 +79,24 @@
           </field>
         </record>
 
+        <record model="ir.ui.view" id="cmdb.asset_list">
+          <field name="name">Activos</field>
+          <field name="model">cmdb.asset</field>
+          <field name="arch" type="xml">
+            <tree>
+              <field name="name"/>
+              <field name="asset_type"/>
+              <field name="manufacturer"/>
+              <field name="model"/>
+              <field name="serie"/>
+              <field name="inventory"/>
+              <field name="system"/>
+              <field name="status"/>
+              <field name="location"/>
+            </tree>
+          </field>
+        </record>
+
 
     </data>
 </odoo>

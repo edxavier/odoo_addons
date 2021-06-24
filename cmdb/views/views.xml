@@ -92,6 +92,17 @@
             <field name="view_mode">tree,form</field>
         </record>
 
+        <record model="ir.actions.act_window" id="cmdb.customer_action_window">
+            <field name="name">Cliente</field>
+            <field name="res_model">cmdb.customer</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="cmdb.asset_action_window">
+            <field name="name">Activo</field>
+            <field name="res_model">cmdb.asset</field>
+            <field name="view_mode">tree,form</field>
+        </record>
         <!-- Top menu item -->
         <!--
                                         -->
@@ -102,6 +113,8 @@
         <menuitem name="Servicios" id="cmdb.services_menu" parent="cmdb.menu_root" action="cmdb.services_action_window"/>
         <menuitem name="Componentes" id="cmdb.component_menu" parent="cmdb.menu_root" action="cmdb.component_action_window"/>
         <menuitem name="Tecnicos" id="cmdb.technician" parent="cmdb.menu_root" action="cmdb.technician_action_window"/>
+        <menuitem name="Clientes" id="cmdb.customer" parent="cmdb.menu_root" action="cmdb.customer_action_window"/>
+        <menuitem name="Activos" id="cmdb.asset" parent="cmdb.menu_root" action="cmdb.asset_action_window"/>
 
         <menuitem name="Ajustes" id="cmdb.settings_menu" parent="cmdb.menu_root" sequence="100" groups='cmdb.admin_technician_group'/>
 

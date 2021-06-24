@@ -28,6 +28,7 @@ class Incident(models.Model):
     closing_comment = fields.Text(string='Comentario de cierre', help='Especifique en resumen la causa y solucion al incidente')
 
     source = fields.Selection([('internal', 'Interno'), ('external', 'Externo'), ('unknown', 'Desconocido')], string='Origen del incidente', required=True, default='internal', tracking=True)
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     state = fields.Selection([('draft', 'Borrador'), ('open', 'Abierta'), ('tracking', 'En seguimiento'), ('canceled', 'Cancelada'), ('closed', 'Cerrada')], required=True, string='Estado', default='draft', tracking=True)
     
     attended_by = fields.Many2many('res.partner', string='Personas que atendieron el incidente', tracking=True)

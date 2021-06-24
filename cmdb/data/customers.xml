@@ -6,7 +6,7 @@
             <field name="building" ref="building_ccr"></field>
             <field name="office" ref="off_app"></field>
         </record>
-        <record id="ucs1_pl" model="cmdb.customer">
+        <record id="ucs1_ej" model="cmdb.customer">
             <field name="name">UCS1 EJ</field>
             <field name="building" ref="building_ccr"></field>
             <field name="office" ref="off_app"></field>

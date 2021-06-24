@@ -58,7 +58,7 @@ class ServiceStatus(models.Model):
     name = fields.Char(string="Nombre", required=True)
     active = fields.Boolean(default=True)
 
-class ServiceStatus(models.Model):
+class AssetStatus(models.Model):
     _name = 'cmdb.asset.status'
     _description = 'Estado del activo'
 
