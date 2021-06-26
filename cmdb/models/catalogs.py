@@ -79,13 +79,6 @@ class ServiceType(models.Model):
     name = fields.Char(string="Nombre", required=True)
     active = fields.Boolean(default=True)
 
-class ComponentType(models.Model):
-    _name = 'cmdb.component.type'
-    _description = 'Tipo de componente'
-
-    name = fields.Char(string="Nombre", required=True)
-    active = fields.Boolean(default=True)
-
 
 class AssetType(models.Model):
     _name = 'cmdb.asset.type'

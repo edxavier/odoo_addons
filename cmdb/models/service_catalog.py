@@ -6,6 +6,7 @@ from odoo import models, fields, api
 class Service(models.Model):
     _name = 'cmdb.service'
     _description = 'Servicio'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
     sequence = fields.Char(string='Codigo servicio', required=True, copy=False, readonly=True, index=True, default='Nuevo')
     name = fields.Char(string="Nombre", help='Nombre', required=True)

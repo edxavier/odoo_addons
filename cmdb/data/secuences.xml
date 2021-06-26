@@ -3,20 +3,15 @@
           <record id="seq_item" model="ir.sequence">
               <field name="name">Secuencia de Items</field>
               <field name="code">cmdb.item.sequence</field>
-              <field name="prefix">ITM/%(y)s.%(month)s/</field>
+              <field name="prefix">ITM</field>
               <field name="padding">4</field>
           </record>
           <record id="seq_service" model="ir.sequence">
               <field name="name">Secuencia de servicios</field>
               <field name="code">cmdb.service.sequence</field>
-              <field name="prefix">SRV/%(y)s.%(month)s/</field>
+              <field name="prefix">SRV</field>
               <field name="padding">4</field>
           </record>
-        <record id="seq_component" model="ir.sequence">
-            <field name="name">Secuencia de componente</field>
-            <field name="code">cmdb.component.sequence</field>
-            <field name="prefix">CMP/%(y)s.%(month)s/</field>
-            <field name="padding">4</field>
-        </record>
+       
     </data>
 </odoo>

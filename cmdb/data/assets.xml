@@ -1,49 +1,49 @@
 <odoo>
     <data noupdate="1">
          <!-- TIPOS DE ACTIVOS -->
-        <record model="cmdb.asset.type" id="ram">
+        <record model="cmdb.asset.type" id="_ram">
             <field name="name">Memoria RAM</field>
         </record>
-        <record model="cmdb.asset.type" id="sdd">
+        <record model="cmdb.asset.type" id="_sdd">
             <field name="name">Disco duro</field>
         </record>
         <record model="cmdb.asset.type" id="usb">
             <field name="name">USB</field>
         </record>
-        <record model="cmdb.asset.type" id="serial_port">
+        <record model="cmdb.asset.type" id="_serial_port">
             <field name="name">Puerto serie</field>
         </record>
-        <record model="cmdb.asset.type" id="mother_board">
+        <record model="cmdb.asset.type" id="_mother_board">
             <field name="name">Tarjeta madre</field>
         </record>
-        <record model="cmdb.asset.type" id="power">
+        <record model="cmdb.asset.type" id="_power">
             <field name="name">Fuente de poder</field>
         </record>
-        <record model="cmdb.asset.type" id="screen">
+        <record model="cmdb.asset.type" id="_screen">
             <field name="name">Pantalla</field>
         </record>
-        <record model="cmdb.asset.type" id="cpu">
+        <record model="cmdb.asset.type" id="_cpu">
             <field name="name">CPU</field>
         </record>
-        <record model="cmdb.asset.type" id="keyboard">
+        <record model="cmdb.asset.type" id="_keyboard">
             <field name="name">Teclado</field>
         </record>
-        <record model="cmdb.asset.type" id="mouse">
+        <record model="cmdb.asset.type" id="_mouse">
             <field name="name">Raton</field>
         </record>
         <record model="cmdb.asset.type" id="speaker">
             <field name="name">Parlante</field>
         </record>
-        <record model="cmdb.asset.type" id="printer">
+        <record model="cmdb.asset.type" id="_printer">
             <field name="name">Impresora</field>
         </record>
-        <record model="cmdb.asset.type" id="sensor">
+        <record model="cmdb.asset.type" id="_sensor">
             <field name="name">Sensor</field>
         </record>
-        <record model="cmdb.asset.type" id="radio">
+        <record model="cmdb.asset.type" id="_radio">
             <field name="name">Radio</field>
         </record>
-        <record model="cmdb.asset.type" id="phone">
+        <record model="cmdb.asset.type" id="_phone">
             <field name="name">Telefono</field>
         </record>
         <record model="cmdb.asset.type" id="laptop">
