@@ -2,93 +2,116 @@
     <data>
         <template id="assets_backend" name="ope_mgmt assets" inherit_id="web.assets_backend">
             <xpath expr="." position="inside">
-                <link rel="stylesheet" href="/ope_mgmt/static/css/ope_mgmt.css" />
+                <link rel="stylesheet" href="/ope_mgmt/static/css/ope_mgmt.css"/>
             </xpath>
         </template>
+
+        <record id="ope_event_track_form" model="ir.ui.view">
+            <field name="name">Formulario Seguimiento de evento</field>
+            <field name="model">ope.event.tracking</field>
+            <field name="arch" type="xml">
+                <form string="Nota de seguimiento">
+                    <group>
+                        <field name="event_id" invisible='1'/>
+                        <field name="event_date"/>
+                        <field name="note"/>
+                        <field name="attach"/>
+                    </group>
+                </form>
+
+            </field>
+        </record>
 
         <record id="ope_incident_form" model="ir.ui.view">
             <field name="name">Formulario incidente</field>
             <field name="model">ope.incident</field>
             <field name="arch" type="xml">
                 <form string="Nuevo incidente">
+                    <field name="event_id" invisible='1' readonly="1"/>
                     <header>
-                        <!--<button string="Dar formato" name="generate_sched_formating" type="object" class="oe_highlight" states="created"/>-->
+                        <!--<button string="Dar formato" name="generate_sched_formating" type="object" class="oe_highlight" states="created"/>
+                        <button string="Cerrar" name="%(incident_close)d" type="action" class="btn btn-info" states="open,tracking"/>                        
+                        -->
 
-                        <button string="Dar seguimiento" name="do_track" type="object" class="btn btn-primary" states="open" />
-                        <button string="Cerrar" name="%(incident_close)d" type="action" class="btn btn-info" states="open,tracking"/>
-                        <button string="Cerrar2" name="do_close" type="object" class="btn btn-info" states="open,tracking"/>
-                        <button string="Cancelar" name="do_cancel" type="object" confirm='Esta seguro de cancelar este registro?' class="btn btn-dark" states="open,tracking" />
+                        <button string="Seguimiento" name="do_track" type="object" class="btn btn-info" states="open,tracking"/>
+                        <button string="Seguimiento y cerrar" name="do_close" type="object" class="btn btn-danger" states="open,tracking"/>
+                        <button string="Cancelar" name="do_cancel" type="object" confirm='Esta seguro de cancelar este registro?' class="btn btn-dark" states="open,tracking"/>
 
-                        <field name="state" widget="statusbar" statusbar_visible="draft,open,tracking,canceled,closed" />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,open,tracking,canceled,closed"/>
 
                     </header>
                     <sheet>
-                        <div class="oe_button_box" name="button_box">
+                        <div class="oe_button_box" name="button_box" invisible='1'>
                             <button name="%(open_tracking_hist)d" type="action" class="oe_stat_button" string="Seguimiento" icon="fa-book"></button>
                         </div>
 
                         <widget name="web_ribbon" text="Cerrada" states='closed' bg_color='bg-info'/>
+                        <widget name="web_ribbon" text="Abierto" states='open' bg_color='bg-danger'/>
+                        <widget name="web_ribbon" text="En seguimiento" states='tracking' bg_color='bg-warning'/>
                         <widget name="web_ribbon" text="Cancelada" states='canceled' bg_color='bg-dark'/>
 
-                        <div class="oe_title">
+                        <div class="oe_title" > 
                             <h3>
-                                <field name="name" placeholder="Referencia" readonly="1" />
+                                <field name="incident_code" placeholder="Referencia" readonly="1"/>
                             </h3>
                         </div>
-                     
-                        <group>
+
+                        <h3 >
+                            <field name="name" placeholder="Titulo"/>
+                        </h3>
+                        <group string=''>
                             <group>
-                                <field name="reported_media" />
-                                <field name="source" />
-        
+                                <field name="reported_datetime"/>
                             </group>
                             <group>
-                                <field name="reported_by" options="{'no_create_edit':True, 'no_open': True,'no_create': True}" />
-                                <field name="reported_to" options="{'no_create_edit':True, 'no_open': True,'no_create': True}" />
+                                <field name="related_incident" options="{'no_create_edit':True, 'no_open': True,'no_create': True}" states="closed"/>
+                            </group>
+                        </group>
+                        <group >
+                            <group>
+                                <field name="reported_media"/>
+                                <field name="source"/>
+                            </group>
+                            <group>
+                                <field name="reported_by" options="{'no_create_edit':True, 'no_open': True,'no_create': True}"/>
+                                <field name="reported_to" options="{'no_create_edit':True, 'no_open': True,'no_create': True}"/>
                             </group>
                         </group>
                         <group>
-                            <field name="description" widget='html' />
+                            <field name="description"/>
                         </group>
 
-                        <div class="container mt-4" attrs="{'invisible': ['|',('id', '=', False), ('state', 'in', ['open','draft'])]}">
-                     
-                            <div class="row mt-2 border-top">
-                                <label for="attended_by"  class='mt-4'>Atendido por:</label>
-                                <div class="col-md-12">
-                                    <field name="attended_by" string='Atendido por:' widget='many2many_tags' options="{'no_create_edit': True,'no_create': True}">
-                                        <tree class="">
-                                            <field name="name" />
-                                            <field name='email'></field>
-                                        </tree>
-                                    </field>
-                                </div>
-                            </div>
-                            <div class=" mt-4 border-top row">
-                                <label for="tracking" class='mt-4'>Atendido por:</label>
-                                <div class="col-md-12">
-                                    <field name="tracking" context="{'default_incident_id': active_id}"  attrs="{'readonly': [('state', '=', 'open')]}">
-                                        <tree class="">
-                                            <field name="description" widget='html'  class='html_field' />
-                                            <field name='track_date'></field>
-                                        </tree>
-                                        <form string="Nuevo incidente">
-                                            <field name="incident_id" invisible='1' />
-                                            <field name="track_date" />
-                                            <field name="description" widget='html' />
-                                            <field name="attach" />
-                                        </form>
-                                    </field>
-                                </div>
-                            </div>
-                        </div>
-                        <group attrs="{'invisible': ['|',('id', '=', False), ('state', '=', 'open')]}" class="html_limited">
+                        <group attrs="{'invisible': ['|',('id', '=', False), ('state', '=', 'open')]}" class="html_limited"></group>
 
-                            <field name="closing_comment" widget='html' states="closed" />
-
-                            <field name="related_incident" options="{'no_create_edit':True, 'no_open': True,'no_create': True}" states="closed" />
-
-                        </group>
+                        <notebook attrs="{'invisible': ['|',('id', '=', False), ('state', 'in', ['draft'])]}">
+                            <page string="Seguimiento" attrs="{'invisible': ['|',('id', '=', False), ('state', 'in', ['open','draft'])]}" >
+                                <field name="tracking" string=" Seguimiento" context="{'default_event_id': event_id}" readonly='1'>
+                                    <tree class="">
+                                        <field name="note"/>
+                                        <field name='event_date'></field>
+                                    </tree>
+                                    <!--widget='html' class='html_field'    attrs="{'readonly': [('state', '=', 'open')]}"-->
+                                </field>
+                            </page>
+                            <page string="Atendido por">
+                                <field name="attended_by" options="{'no_create_edit': True,'no_create': True}">
+                                    <tree class="">
+                                        <field name="name"/>
+                                        <field name='function'/>
+                                        <field name='parent_id'/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Unidades cliente afectadas">
+                                <field name="affected_customers"/>
+                            </page>
+                            <page string="Servicios afectados">
+                                <field name="affected_services"/>
+                            </page>
+                            <page string="Items relacionados">
+                                <field name="related_items"/>
+                            </page>
+                        </notebook>
 
                     </sheet>
 

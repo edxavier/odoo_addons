@@ -82,6 +82,18 @@
           </field>
         </record>
 
+        <record model="ir.ui.view" id="cmdb.customer_list">
+          <field name="name">Unidades cliente</field>
+          <field name="model">cmdb.customer</field>
+          <field name="arch" type="xml">
+            <tree>
+              <field name="name"/>
+              <field name="building"/>
+              <field name="office"/>
+            </tree>
+          </field>
+        </record>
+
 
     </data>
 </odoo>

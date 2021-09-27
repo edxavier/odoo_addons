@@ -17,6 +17,8 @@ access_inventory_admin_technician,cmdb.asset,model_cmdb_asset,admin_technician_g
 access_customer_admin_technician,cmdb.customer,model_cmdb_customer,admin_technician_group,1,1,1,1
 access_asset_type_admin_technician,cmdb.asset,model_cmdb_asset_type,admin_technician_group,1,1,1,1
 access_asset_status_admin_technician,cmdb.customer,model_cmdb_asset_status,admin_technician_group,1,1,1,1
+access_failure_admin_technician,cmdb.failure,model_cmdb_failure,admin_technician_group,1,1,1,1
+
 
 
 access_item_technician,cmdb.item,model_cmdb_item,technician_group,1,1,1,0
@@ -34,6 +36,7 @@ access_inventory_technician,cmdb.asset,model_cmdb_asset,technician_group,1,1,1,1
 access_customer_technician,cmdb.customer,model_cmdb_customer,technician_group,1,1,1,1
 access_asset_type_technician,cmdb.asset,model_cmdb_asset_type,technician_group,1,0,0,0
 access_asset_status_technician,cmdb.customer,model_cmdb_asset_status,technician_group,1,0,0,0
+access_failure_technician, cmdb.failure,model_cmdb_failure,technician_group,1,1,1,1
 
 
 access_item_atc,cmdb.item,model_cmdb_item,atc_group,1,0,0,0

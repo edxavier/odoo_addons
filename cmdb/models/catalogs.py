@@ -86,3 +86,12 @@ class AssetType(models.Model):
 
     name = fields.Char(string="Nombre", required=True)
     active = fields.Boolean(default=True)
+
+class Failure(models.Model):
+    _name = 'cmdb.failure'
+    _description = 'Fallo'
+
+    name = fields.Char(string="Nombre", required=True)
+    type = fields.Selection([('other', 'Otro'), ('hard', 'Componente hardware'), ('soft', 'Software'), ('person', 'Humano'),
+     ('net', 'Red'), ('phone', 'Telefonia'), ('radio', 'Radio'), ('structure', 'Infraestructura'), ('external', 'Externo')], required=True, string='Tipo de fallo')
+    active = fields.Boolean(default=True)

@@ -101,6 +101,13 @@
             <field name="res_model">cmdb.asset</field>
             <field name="view_mode">tree,form</field>
         </record>
+
+
+        <record model="ir.actions.act_window" id="cmdb.failure_action_window">
+            <field name="name">Fallo</field>
+            <field name="res_model">cmdb.failure</field>
+            <field name="view_mode">tree,form</field>
+        </record>
         <!-- Top menu item -->
         <!--
                                                 -->
@@ -125,6 +132,7 @@
         <menuitem name="Tipos de item" id="cmdb.item_type_menu" parent="cmdb.settings_menu" action="cmdb.item_type_action_window"/>
         <menuitem name="Tipos de servicio" id="cmdb.service_type_menu" parent="cmdb.settings_menu" action="cmdb.service_type_action_window"/>
         <menuitem name="Tipos de activo" id="cmdb.asset_type_menu" parent="cmdb.settings_menu" action="cmdb.asset_type_action_window"/>
+        <menuitem name="Tipos de fallo" id="cmdb.failure_menu" parent="cmdb.settings_menu" action="cmdb.failure_action_window"/>
 
         <menuitem name="Estados de servicio" id="cmdb.service_status_menu" parent="cmdb.settings_menu" action="cmdb.service_status_action_window"/>
         <menuitem name="Estados de item" id="cmdb.item_status_menu" parent="cmdb.settings_menu" action="cmdb.item_status_action_window"/>
