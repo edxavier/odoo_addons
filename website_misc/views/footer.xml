@@ -1,0 +1,19 @@
+<odoo>
+    <template id="website_misc.footer"  inherit_id="web.brand_promotion" customize_show='True' name='Ocultar promocion odoo'>
+        <xpath expr="//div[@class='o_brand_promotion']" position="replace">
+            <div class="col-sm text-center text-sm-left text-muted"> 
+                <span class="mr-2 o_footer_copyright_name">
+                    Desarrollado por:
+                    <i class="fa fa-1x fa-fw fa-terminal mr-2"/> 
+                    <a href="mailto:edxavier05@gmail.com" data-original-title="Escribir" title="Escribir a desarrollador" aria-describedby="tooltip858705">Eder Xavier Rojas</a>
+                </span>
+            </div>
+          </xpath>
+    </template>
+
+    <template id="website_misc.add_to_cart"  inherit_id="website_sale.product" customize_show='True' name='Ocultar boton de carrito'>
+        <xpath expr="//a[@id='add_to_cart']" position="replace">
+            <span></span>    
+        </xpath>
+    </template>
+</odoo>

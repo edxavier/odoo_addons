@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_c:\odoo_addons\website_misc_c:\odoo_addons\website_misc,c:\odoo_addons\website_misc.c:\odoo_addons\website_misc,model_c:\odoo_addons\website_misc_c:\odoo_addons\website_misc,base.group_user,1,1,1,1
