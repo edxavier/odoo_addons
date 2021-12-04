@@ -60,6 +60,8 @@ class Permission(models.Model):
     count_as = fields.Selection([('vacations', 'Vacaciones'), ('salry', 'Salario'), ('earning_salry', 'Con goce de salario')], string='A cuenta de', default='vacations')
     comment = fields.Char(string='Justificación')
     perm_time = fields.Char(string='Tiempo')
+    request_perm_date = fields.Date(string="Fecha en que se esta solicitando permiso", )
+
 
     requested_by2 = fields.Many2one('cmdb.technician', string='Solicitante')
     code2 = fields.Char(string='Código empleado')
@@ -67,3 +69,4 @@ class Permission(models.Model):
     count_as2 = fields.Selection([('vacations', 'Vacaciones'), ('salry', 'Salario'), ('earning_salry', 'Con goce de salario')], string='A cuenta de', default='vacations')
     comment2 = fields.Char(string='Justificación')
     perm_time2 = fields.Char(string='Tiempo')
+    request_perm_date2 = fields.Date(string="Fecha en que se esta solicitando permiso", )

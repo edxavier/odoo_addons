@@ -28,7 +28,7 @@
             <field name="name">Filtro Horario</field>
             <field name="model">sched.schedule</field>
             <field name="arch" type="xml">
-                <search string="Buscar host">
+                <search string="Buscar empleado">
                     <field name="employe_id" filter_domain="[('employe_id', 'ilike', self)]"/>
                     <field name="turn_id" filter_domain="[('turn_id', 'ilike', self)]"/>
                     <field name="turn_date" filter_domain="[('turn_date', 'ilike', self)]"/>

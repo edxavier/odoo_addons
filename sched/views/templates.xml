@@ -35,7 +35,7 @@
             <field name="name">Formulario de cambio de turno</field>
             <field name="model">sched.turn.change</field>
             <field name="arch" type="xml">
-                <form string="Nuevo Componente">
+                <form string="Nuevo cambio de turno">
                     <sheet>
                         <div class="oe_title">
                             <h3>
@@ -76,6 +76,9 @@
                 <form string="Nuevo permiso">
                     <sheet>
                         <group string='Permiso 1'>
+                            <field name="request_perm_date"/>
+                        </group>
+                        <group >
                             <group>
                                 <field name="requested_by"/>
                                 <field name="code"/>
@@ -89,6 +92,10 @@
                         </group>
                         
                         <group string='Permiso 2'>
+                                <field name="request_perm_date2"/>
+                        </group>
+                        <group >
+                            
                             <group>
                                 <field name="requested_by2"/>
                                 <field name="code2"/>

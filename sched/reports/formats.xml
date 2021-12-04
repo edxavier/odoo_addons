@@ -395,7 +395,7 @@
                                                 <b>Fecha:</b>
                                             </td>
                                             <td style='text-align:left;padding-left:15px;border-bottom: 1px solid #263238; width:180px;'>
-                                                    <span t-field="o.required_date"/>
+                                                    <span t-field="o.request_perm_date"/>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -552,7 +552,7 @@
                                                 <b>Fecha:</b>
                                             </td>
                                             <td style='text-align:left;padding-left:15px;border-bottom: 1px solid #263238; width:180px;'>
-                                                <span t-field="o.required_date2"/>
+                                                <span t-field="o.request_perm_date2"/>
                                             </td>
                                         </tr>
                                     </tbody>
