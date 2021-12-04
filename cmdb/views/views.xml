@@ -12,13 +12,6 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-        <record model="ir.actions.act_window" id="cmdb.component_action_window">
-            <field name="name">Componente</field>
-            <field name="res_model">cmdb.component</field>
-            <field name="view_mode">tree,form</field>
-        </record>
-
-
         <record model="ir.actions.act_window" id="cmdb.buildings_action_window">
             <field name="name">Edificios</field>
             <field name="res_model">cmdb.building</field>
@@ -58,16 +51,15 @@
         </record>
 
 
-        <record model="ir.actions.act_window" id="cmdb.component_type_action_window">
-            <field name="name">Tipos de componente</field>
-            <field name="res_model">cmdb.component.type</field>
-            <field name="view_mode">tree,form</field>
-        </record>
-
-
         <record model="ir.actions.act_window" id="cmdb.service_type_action_window">
             <field name="name">Tipo de servicio</field>
             <field name="res_model">cmdb.service.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="cmdb.asset_type_action_window">
+            <field name="name">Tipo de activo</field>
+            <field name="res_model">cmdb.asset.type</field>
             <field name="view_mode">tree,form</field>
         </record>
 
@@ -82,6 +74,12 @@
         <record model="ir.actions.act_window" id="cmdb.item_status_action_window">
             <field name="name">Estados de item</field>
             <field name="res_model">cmdb.item.status</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="cmdb.asset_status_action_window">
+            <field name="name">Estados de activo</field>
+            <field name="res_model">cmdb.asset.status</field>
             <field name="view_mode">tree,form</field>
         </record>
 
@@ -103,15 +101,21 @@
             <field name="res_model">cmdb.asset</field>
             <field name="view_mode">tree,form</field>
         </record>
+
+
+        <record model="ir.actions.act_window" id="cmdb.failure_action_window">
+            <field name="name">Fallo</field>
+            <field name="res_model">cmdb.failure</field>
+            <field name="view_mode">tree,form</field>
+        </record>
         <!-- Top menu item -->
         <!--
-                                        -->
+                                                -->
         <menuitem
         name="Inventario tecnico" id="cmdb.menu_root" web_icon="cmdb,static/description/icon.png" groups='cmdb.admin_technician_group,cmdb.technician_group'/>
         <!-- menu categories -->
         <menuitem name="Items" id="cmdb.items_menu" parent="cmdb.menu_root" action="cmdb.items_action_window"/>
         <menuitem name="Servicios" id="cmdb.services_menu" parent="cmdb.menu_root" action="cmdb.services_action_window"/>
-        <menuitem name="Componentes" id="cmdb.component_menu" parent="cmdb.menu_root" action="cmdb.component_action_window"/>
         <menuitem name="Tecnicos" id="cmdb.technician" parent="cmdb.menu_root" action="cmdb.technician_action_window"/>
         <menuitem name="Clientes" id="cmdb.customer" parent="cmdb.menu_root" action="cmdb.customer_action_window"/>
         <menuitem name="Activos" id="cmdb.asset" parent="cmdb.menu_root" action="cmdb.asset_action_window"/>
@@ -124,21 +128,25 @@
 
         <menuitem name="Marcas" id="cmdb.manufacturer_menu" parent="cmdb.settings_menu" action="cmdb.manufacturer_action_window"/>
         <menuitem name="Modelos" id="cmdb.model_menu" parent="cmdb.settings_menu" action="cmdb.model_action_window"/>
+
         <menuitem name="Tipos de item" id="cmdb.item_type_menu" parent="cmdb.settings_menu" action="cmdb.item_type_action_window"/>
-        <menuitem name="Tipos de componentes" id="cmdb.component_type_menu" parent="cmdb.settings_menu" action="cmdb.component_type_action_window"/>
         <menuitem name="Tipos de servicio" id="cmdb.service_type_menu" parent="cmdb.settings_menu" action="cmdb.service_type_action_window"/>
+        <menuitem name="Tipos de activo" id="cmdb.asset_type_menu" parent="cmdb.settings_menu" action="cmdb.asset_type_action_window"/>
+        <menuitem name="Tipos de fallo" id="cmdb.failure_menu" parent="cmdb.settings_menu" action="cmdb.failure_action_window"/>
+
         <menuitem name="Estados de servicio" id="cmdb.service_status_menu" parent="cmdb.settings_menu" action="cmdb.service_status_action_window"/>
         <menuitem name="Estados de item" id="cmdb.item_status_menu" parent="cmdb.settings_menu" action="cmdb.item_status_action_window"/>
+        <menuitem name="Estados de activos" id="cmdb.asset_status_menu" parent="cmdb.settings_menu" action="cmdb.asset_status_action_window"/>
 
     <!--
-                        <menuitem name="Menu 2" id="net.menu_2" parent="net.menu_root"/>
-                    -->
+                            <menuitem name="Menu 2" id="net.menu_2" parent="net.menu_root"/>
+                        -->
         <!-- actions -->
         <!--
-                                            <menuitem name="List" id="net.menu_1_list" parent="net.menu_1"
-                                                      action="net.action_window"/>
-                                            <menuitem name="Server to list" id="net" parent="net.menu_2"
-                                                      action="net.action_server"/>
-                                        -->
+                                                    <menuitem name="List" id="net.menu_1_list" parent="net.menu_1"
+                                                              action="net.action_window"/>
+                                                    <menuitem name="Server to list" id="net" parent="net.menu_2"
+                                                              action="net.action_server"/>
+                                                -->
     </data>
 </odoo>

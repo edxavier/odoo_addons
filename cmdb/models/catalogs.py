@@ -79,17 +79,19 @@ class ServiceType(models.Model):
     name = fields.Char(string="Nombre", required=True)
     active = fields.Boolean(default=True)
 
-class ComponentType(models.Model):
-    _name = 'cmdb.component.type'
-    _description = 'Tipo de componente'
-
-    name = fields.Char(string="Nombre", required=True)
-    active = fields.Boolean(default=True)
-
 
 class AssetType(models.Model):
     _name = 'cmdb.asset.type'
     _description = 'Tipo de activo'
 
     name = fields.Char(string="Nombre", required=True)
+    active = fields.Boolean(default=True)
+
+class Failure(models.Model):
+    _name = 'cmdb.failure'
+    _description = 'Fallo'
+
+    name = fields.Char(string="Nombre", required=True)
+    type = fields.Selection([('other', 'Otro'), ('hard', 'Componente hardware'), ('soft', 'Software'), ('person', 'Humano'),
+     ('net', 'Red'), ('phone', 'Telefonia'), ('radio', 'Radio'), ('structure', 'Infraestructura'), ('external', 'Externo')], required=True, string='Tipo de fallo')
     active = fields.Boolean(default=True)

@@ -6,9 +6,10 @@
             <field name="arch" type="xml">
                 <form string="Cierre de incidente">
                     <group>
+                        <field name="event_date" />
                         <field name="source" />
                         <field name="attended_by" string='Atendido por:' widget='many2many_tags' options="{'no_create_edit': True,'no_create': True}"/>
-                        <field name="closing_comment" widget='html'/>
+                        <field name="closing_comment" placeholder="Especifique en resumen la causa y solucion al incidente"/>
                     </group>
                     <footer>
                         <button name='close_incident' string='Guardar' type='object' class='btn-primary'/>

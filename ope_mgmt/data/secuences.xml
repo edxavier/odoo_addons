@@ -1,9 +1,16 @@
 <odoo>
-    <data noupdate="1">
-          <record id="seq_item" model="ir.sequence">
+    <data noupdate="0">
+          <record id="seq_inc" model="ir.sequence">
               <field name="name">Secuencia de Incidentes</field>
               <field name="code">ope.incident.sequence</field>
-              <field name="prefix">I</field>
+              <field name="prefix">INC</field>
+              <field name="padding">4</field>
+          </record>
+
+          <record id="seq_eve" model="ir.sequence">
+              <field name="name">Secuencia de Eventos</field>
+              <field name="code">ope.event.sequence</field>
+              <field name="prefix">EVE</field>
               <field name="padding">4</field>
           </record>
     </data>

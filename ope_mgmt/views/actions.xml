@@ -8,10 +8,10 @@
 
         <record id="open_tracking_hist" model="ir.actions.act_window">
             <field name="name">Historial de seguimiento</field>
-            <field name="res_model">ope.incident.tracking</field>
+            <field name="res_model">ope.event.tracking</field>
             <field name="view_mode">tree,form</field>
             
-            <field name="domain">[('incident_id','=', active_id)]</field>
+            <field name="domain">[('event_id','=', active_id)]</field>
             <field name="context">{}</field>
             <field name="help" type="html">
               <p class="o_view_nocontent_smiling_face">No se ha registrado ningun dato aun</p>
