@@ -69,13 +69,11 @@
           <field name="model">cmdb.asset</field>
           <field name="arch" type="xml">
             <tree>
-              <field name="name"/>
               <field name="asset_type"/>
+              <field name="serie"/>
               <field name="manufacturer"/>
               <field name="model"/>
-              <field name="serie"/>
               <field name="inventory"/>
-              <field name="system"/>
               <field name="status"/>
               <field name="location"/>
             </tree>

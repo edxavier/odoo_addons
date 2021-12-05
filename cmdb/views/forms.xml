@@ -146,31 +146,31 @@
                     <sheet>
                         <div class="oe_title">
                             <h3>
-                                <field name="name" default_focus="1" placeholder="Codigo"/>
+                                <field name="name" readonly="1"/>
                             </h3>
                         </div>
                         <group>
                             <group>
+                                <field name="serie" default_focus="1"/>
                                 <field name="asset_type"/>
-                                <field name="location"/>
-                                <field name="note"/>
-                            </group>
-                            <group>
                                 <field name="manufacturer"/>
                                 <field name="model"/>
-                                <field name="serie"/>
-                                <field name="inventory"/>
                             </group>
+                            <group>
+                                <field name="inventory"/>
+                                <field name="location"/>
+                                <field name="note"/>
+                            </group>                            
                         </group>
                         <group>
                             <group>
                                 <field name="owner"/>
                                 <field name="assigned"/>
-                                <field name="system"/>
+                                <field name="office"/>
                             </group>
                             <group>
                                 <field name="status"/>
-                                <field name="installed"/>
+                                <field name="building"/>
                                 <field name="active"/>
                             </group>
 
