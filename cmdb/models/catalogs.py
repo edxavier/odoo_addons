@@ -26,6 +26,13 @@ class System(models.Model):
     name = fields.Char(string="Nombre", required=True)
     active = fields.Boolean(default=True)
 
+class Subsystem(models.Model):
+    _name = 'cmdb.subsystem'
+    _description = 'Subsistema'
+
+    name = fields.Char(string="Nombre", required=True)
+    system = fields.Many2one('cmdb.system', required=True, ondelete="cascade", string='Sistema')
+    active = fields.Boolean(default=True)
 
 class Manufacturer(models.Model):
     _name = 'cmdb.manufacturer'

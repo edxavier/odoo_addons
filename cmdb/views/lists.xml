@@ -5,13 +5,10 @@
             <field name="model">cmdb.item</field>
             <field name="arch" type="xml">
               <tree>
-                <field name="sequence" />
                 <field name="name"/>
-                <field name="item_type"/>
                 <field name="system"/>
-                <field name="building" optional="hide"/>
-                <field name="office"/>
-                <field name="status"/>
+                <field name="subsystem"/>
+                <field name="state" widget="badge" decoration-success="state =='ok'" decoration-warning="state =='degraded'" decoration-danger="state =='fail'"/>
               </tree>
             </field>
         </record>
@@ -64,20 +61,43 @@
           </field>
         </record>
 
+<!-- ACTIVOS -->
         <record model="ir.ui.view" id="cmdb.asset_list">
           <field name="name">Activos</field>
           <field name="model">cmdb.asset</field>
           <field name="arch" type="xml">
-            <tree>
+            <tree default_order='write_date desc'>
               <field name="asset_type"/>
               <field name="serie"/>
               <field name="manufacturer"/>
               <field name="model"/>
               <field name="inventory"/>
-              <field name="status"/>
+              <field name="state" widget="badge" decoration-success="state =='good'" decoration-warning="state =='degraded'" decoration-danger="state =='fail'"/>
               <field name="location"/>
             </tree>
           </field>
+        </record>
+
+        <record id="view_asset_filter" model="ir.ui.view">
+            <field name="name">Filtro activos</field>
+            <field name="model">cmdb.asset</field>
+            <field name="arch" type="xml">
+                <search string="Buscar activo">
+                    <field name="name" filter_domain="[('name', 'ilike', self)]"/>
+                    <field name="asset_type" filter_domain="[('asset_type', 'ilike', self)]"/>
+                    <field name="serie" filter_domain="[('serie', 'ilike', self)]"/>
+                    <field name="inventory" filter_domain="[('inventory', 'ilike', self)]"/>
+                    <field name="model" filter_domain="[('model', 'ilike', self)]"/>
+                    <separator/>
+                    <!-- <filter string="Conectado" name="is_up" domain="[('is_up', '=', True)]"/>-->
+                    <separator/>
+                    <group expand="0" name="group_by" string="Agrupar por">
+                        <filter name="group_type" string="Tipo activo" domain="[]" context="{'group_by' : 'asset_type'}"/>
+                        <filter name="group_manufacturer" string="Marca" domain="[]" context="{'group_by' : 'manufacturer'}"/>
+                        <filter name="group_state" string="Estado" domain="[]" context="{'group_by' : 'state'}"/>
+                    </group>
+                </search>
+            </field>
         </record>
 
         <record model="ir.ui.view" id="cmdb.customer_list">

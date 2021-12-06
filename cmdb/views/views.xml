@@ -30,6 +30,12 @@
             <field name="view_mode">tree,form</field>
         </record>
 
+         <record model="ir.actions.act_window" id="cmdb.subsystem_action_window">
+            <field name="name">Subistemas</field>
+            <field name="res_model">cmdb.subsystem</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
 
         <record model="ir.actions.act_window" id="cmdb.manufacturer_action_window">
             <field name="name">Marcas</field>
@@ -112,7 +118,7 @@
         <!--
                                                 -->
         <menuitem
-        name="Inventario tecnico" id="cmdb.menu_root" web_icon="cmdb,static/description/icon.png" groups='cmdb.admin_technician_group,cmdb.technician_group'/>
+        name="Gestion tecnica" id="cmdb.menu_root" web_icon="cmdb,static/description/icon.png" groups='cmdb.admin_technician_group,cmdb.technician_group'/>
         <!-- menu categories -->
         <menuitem name="Items" id="cmdb.items_menu" parent="cmdb.menu_root" action="cmdb.items_action_window"/>
         <menuitem name="Servicios" id="cmdb.services_menu" parent="cmdb.menu_root" action="cmdb.services_action_window"/>
@@ -125,6 +131,7 @@
         <menuitem name="Edificios" id="cmdb.buildings_menu" parent="cmdb.settings_menu" action="cmdb.buildings_action_window"/>
         <menuitem name="Oficinas" id="cmdb.office_menu" parent="cmdb.settings_menu" action="cmdb.office_action_window"/>
         <menuitem name="Sistemas" id="cmdb.system_menu" parent="cmdb.settings_menu" action="cmdb.system_action_window"/>
+        <menuitem name="Subsistemas" id="cmdb.subsystem_menu" parent="cmdb.settings_menu" action="cmdb.subsystem_action_window"/>
 
         <menuitem name="Marcas" id="cmdb.manufacturer_menu" parent="cmdb.settings_menu" action="cmdb.manufacturer_action_window"/>
         <menuitem name="Modelos" id="cmdb.model_menu" parent="cmdb.settings_menu" action="cmdb.model_action_window"/>

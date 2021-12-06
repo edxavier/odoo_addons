@@ -24,7 +24,10 @@ class Asset(models.Model):
     @api.depends('asset_type', 'serie')
     def _compute_name(self):
         for rec in self:
-            rec.name = rec.asset_type.name  + '|' + rec.serie
+            if rec.asset_type.name:
+                rec.name = f"{rec.asset_type.name} [{rec.serie}]"
+            else:
+                rec.name = f"{rec.serie}"
             
     name = fields.Char(string="Titulo", compute='_compute_name', default='Nuevo')
     asset_type = fields.Many2one('cmdb.asset.type', ondelete="cascade", string='Tipo', required=True, domain=[('active', '=', True)], tracking=True)
@@ -32,18 +35,14 @@ class Asset(models.Model):
     manufacturer = fields.Many2one('cmdb.manufacturer', ondelete="cascade", string='Marca', domain=[('active', '=', True)], tracking=True)
     model = fields.Many2one('cmdb.model', ondelete="cascade", string='Modelo', tracking=True)
     inventory = fields.Char(string="Inventario", default="---", tracking=True)
-    
-    building = fields.Many2one('cmdb.building', ondelete="cascade", string='Edificio', domain=[('active', '=', True)])
-    office = fields.Many2one('cmdb.office', ondelete="cascade", string='Oficina', domain=[('active', '=', True)])
     location = fields.Char(string="Ubicacion", required=True, tracking=True)
     
-    note = fields.Text(string="Nota", help='Nota')
-    
-
     owner = fields.Many2one('res.partner', ondelete="cascade", string='Propietario',tracking=True, domain=[('is_company', '=', True)],)
-    assigned = fields.Many2one('res.partner', ondelete="cascade", string='Asignado', tracking=True, domain=[('active', '=', False)],)
-
-    status = fields.Many2one('cmdb.asset.status', ondelete="cascade", string='Estado', required=True, domain=[('active', '=', True)], tracking=True)
+    assigned = fields.Many2one('res.partner', ondelete="cascade", string='Asignado a', tracking=True, domain=[('is_company', '=', False)],)
+    
+    state = fields.Selection([('good', 'Bueno'), ('degraded', 'Degradado'), ('fail', 'Fallo'), ('stored', 'Almacenado'), ('discharged', 'Dado de baja')], required=True, string='Estado', default="good", tracking=True)
     active = fields.Boolean(default=True, string='Activo', tracking=True)
+    item_id = fields.Many2one('cmdb.item', ondelete="cascade", string='Item asociado')
+
 
 

@@ -2,7 +2,7 @@
     <data>
 
         <record id="cmdb_item_view_form" model="ir.ui.view">
-            <field name="name">item form</field>
+            <field name="name">Item form</field>
             <field name="model">cmdb.item</field>
             <field name="arch" type="xml">
                 <form string="Nuevo Item">
@@ -21,16 +21,18 @@
 
                         <group>
                             <group>
-                                <field name="item_type"/>
-                                <field name="status"/>
+                                <field name="state"/>
                                 <field name="system"/>
+                                <field name="subsystem"/>
                             </group>
-                            <group>
-                                <field name="building"/>
-                                <field name="office"/>
-                                <field name="owner"/>
-                                <field name="responsable"/>
-                            </group>
+                        </group>
+                        <group>
+                            <field name="related_assets" string=" Activos relacionados">
+                                <tree default_order='write_date desc'>
+                                    <field name="name" string="Activo"/>
+                                    <field name="state" widget="badge" decoration-success="state =='good'" decoration-warning="state =='degraded'" decoration-danger="state =='fail'"/>
+                                </tree>
+                            </field>
                         </group>
                     </sheet>
                      <div class="oe_chatter">
@@ -155,25 +157,16 @@
                                 <field name="asset_type"/>
                                 <field name="manufacturer"/>
                                 <field name="model"/>
+                                <field name="inventory"/>
+                                <field name="item_id"/>
                             </group>
                             <group>
-                                <field name="inventory"/>
                                 <field name="location"/>
-                                <field name="note"/>
-                            </group>                            
-                        </group>
-                        <group>
-                            <group>
                                 <field name="owner"/>
                                 <field name="assigned"/>
-                                <field name="office"/>
-                            </group>
-                            <group>
-                                <field name="status"/>
-                                <field name="building"/>
-                                <field name="active"/>
-                            </group>
-
+                                <field name="state"/>
+                                <field name="active" readonly="1"/>
+                            </group>                            
                         </group>
                     </sheet>
                     <div class="oe_chatter">

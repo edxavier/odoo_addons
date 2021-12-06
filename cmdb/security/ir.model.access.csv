@@ -18,6 +18,7 @@ access_customer_admin_technician,cmdb.customer,model_cmdb_customer,admin_technic
 access_asset_type_admin_technician,cmdb.asset,model_cmdb_asset_type,admin_technician_group,1,1,1,1
 access_asset_status_admin_technician,cmdb.customer,model_cmdb_asset_status,admin_technician_group,1,1,1,1
 access_failure_admin_technician,cmdb.failure,model_cmdb_failure,admin_technician_group,1,1,1,1
+access_subsystem_admin_technician,cmdb.subsystem,model_cmdb_subsystem,admin_technician_group,1,1,1,1
 
 
 

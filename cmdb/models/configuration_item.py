@@ -6,13 +6,13 @@ from odoo import models, fields, api
 class Item(models.Model):
     _name = 'cmdb.item'
     _description = 'Item de configuracion'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherit = ['mail.thread']
 
-    @api.onchange('building')
-    def buindingOnchange(self):
+    @api.onchange('system')
+    def systemOnchange(self):
         for rec in self:
-            rec.office = None
-            return {'domain': {'office': [('building', '=', rec.building.id)]}}
+            rec.subsystem = None
+            return {'domain': {'subsystem': [('system', '=', rec.system.id)]}}
 
     """@api.onchange('manufacturer')
     def manufacturerOnchange(self):
@@ -23,20 +23,22 @@ class Item(models.Model):
 
     sequence = fields.Char(string='Codigo item', required=True, copy=False, readonly=True, index=True, default='Nuevo')
     name = fields.Char(string="Nombre", help='Nombre o clasificacion del equipo', required=True,)
-    
-    item_type = fields.Many2one('cmdb.item.type', ondelete="cascade", string='Tipo', required=True, domain=[('active', '=', True)])
     system = fields.Many2one('cmdb.system', ondelete="cascade", string='Sistema', required=True, domain=[('active', '=', True)])
-    building = fields.Many2one('cmdb.building', ondelete="cascade", string='Edificio', domain=[('active', '=', True)])
-    office = fields.Many2one('cmdb.office', ondelete="cascade", string='Oficina', domain=[('active', '=', True)])
+    subsystem = fields.Many2one('cmdb.subsystem', ondelete="cascade", string='Subsistema', required=True, domain=[('active', '=', True)])
+    state = fields.Selection([('ok', 'Operando'), ('degraded', 'Degradado'), ('fail', 'Fallo'), ('inactive', 'Inactivo')], required=True, string='Estado', default="ok", tracking=True)
+    active = fields.Boolean(default=True, string='Activo')
+    related_assets =  fields.One2many('cmdb.asset', 'item_id', string=' Activos asociados', ondelete='cascade')
+    
+    #item_type = fields.Many2one('cmdb.item.type', ondelete="cascade", string='Tipo', required=True, domain=[('active', '=', True)])
+    #building = fields.Many2one('cmdb.building', ondelete="cascade", string='Edificio', domain=[('active', '=', True)])
+    #office = fields.Many2one('cmdb.office', ondelete="cascade", string='Oficina', domain=[('active', '=', True)])
 
-    owner = fields.Many2one('res.partner', ondelete="cascade", string='Propietario')
-    responsable = fields.Many2one('res.partner', ondelete="cascade", string='Responsable')
+    #owner = fields.Many2one('res.partner', ondelete="cascade", string='Propietario')
+    #responsable = fields.Many2one('res.partner', ondelete="cascade", string='Responsable')
     
     #alternative_items = fields.Many2many('cmdb.item', column1='item_id', relation="item_alternatives", column2='item_alt_id', string='Item alternativos')
 
-    status = fields.Many2one('cmdb.item.status', ondelete="cascade", string='Estado', required=True, domain=[('active', '=', True)])
-    installed = fields.Date("Fecha de instalacion o adquisicion", )
-    active = fields.Boolean(default=True, string='Activo')
+    #installed = fields.Date("Fecha de instalacion o adquisicion", )
 
 
     @api.model
