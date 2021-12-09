@@ -1,0 +1,16 @@
+id,name,system:id
+sdd,SDD,aircon
+fdd,FDD,aircon
+fdp,FDP,aircon
+sdp,SDP,aircon
+rdcu,RDCU,aircon
+drf,DRF,aircon
+dbm,DBM,aircon
+cmd,CMD,aircon
+dls,DLS,aircon
+snet,SNET,aircon
+ifv,IFV,aircon
+cwp,CWP,sdc
+tmcs,TMCS,sdc
+gw,GW1,sdc
+gw2,GW2,sdc

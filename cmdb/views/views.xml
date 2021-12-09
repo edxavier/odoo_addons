@@ -49,14 +49,6 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-
-        <record model="ir.actions.act_window" id="cmdb.item_type_action_window">
-            <field name="name">Tipos de item</field>
-            <field name="res_model">cmdb.item.type</field>
-            <field name="view_mode">tree,form</field>
-        </record>
-
-
         <record model="ir.actions.act_window" id="cmdb.service_type_action_window">
             <field name="name">Tipo de servicio</field>
             <field name="res_model">cmdb.service.type</field>
@@ -75,20 +67,6 @@
             <field name="res_model">cmdb.service.status</field>
             <field name="view_mode">tree,form</field>
         </record>
-
-
-        <record model="ir.actions.act_window" id="cmdb.item_status_action_window">
-            <field name="name">Estados de item</field>
-            <field name="res_model">cmdb.item.status</field>
-            <field name="view_mode">tree,form</field>
-        </record>
-
-        <record model="ir.actions.act_window" id="cmdb.asset_status_action_window">
-            <field name="name">Estados de activo</field>
-            <field name="res_model">cmdb.asset.status</field>
-            <field name="view_mode">tree,form</field>
-        </record>
-
 
         <record model="ir.actions.act_window" id="cmdb.technician_action_window">
             <field name="name">Personal técnico</field>
@@ -118,15 +96,16 @@
         <!--
                                                 -->
         <menuitem
-        name="Gestion tecnica" id="cmdb.menu_root" web_icon="cmdb,static/description/icon.png" groups='cmdb.admin_technician_group,cmdb.technician_group'/>
+        name="Gestion tecnica" id="cmdb.menu_root" web_icon="cmdb,static/description/icon.png" groups='cmdb.root_group,cmdb.technician_group'/>
         <!-- menu categories -->
-        <menuitem name="Items" id="cmdb.items_menu" parent="cmdb.menu_root" action="cmdb.items_action_window"/>
-        <menuitem name="Servicios" id="cmdb.services_menu" parent="cmdb.menu_root" action="cmdb.services_action_window"/>
-        <menuitem name="Tecnicos" id="cmdb.technician" parent="cmdb.menu_root" action="cmdb.technician_action_window"/>
-        <menuitem name="Clientes" id="cmdb.customer" parent="cmdb.menu_root" action="cmdb.customer_action_window"/>
-        <menuitem name="Activos" id="cmdb.asset" parent="cmdb.menu_root" action="cmdb.asset_action_window"/>
+        <menuitem name="Catalogos" id="cmdb.catalogs_menu" parent="cmdb.menu_root" sequence="99"/>
+        <menuitem name="Items" id="cmdb.items_menu" parent="cmdb.catalogs_menu" action="cmdb.items_action_window"/>
+        <menuitem name="Servicios" id="cmdb.services_menu" parent="cmdb.catalogs_menu" action="cmdb.services_action_window"/>
+        <menuitem name="Tecnicos" id="cmdb.technician" parent="cmdb.catalogs_menu" action="cmdb.technician_action_window"/>
+        <menuitem name="Clientes" id="cmdb.customer" parent="cmdb.catalogs_menu" action="cmdb.customer_action_window"/>
+        <menuitem name="Activos" id="cmdb.asset" parent="cmdb.catalogs_menu" action="cmdb.asset_action_window"/>
 
-        <menuitem name="Ajustes" id="cmdb.settings_menu" parent="cmdb.menu_root" sequence="100" groups='cmdb.admin_technician_group'/>
+        <menuitem name="Ajustes" id="cmdb.settings_menu" parent="cmdb.menu_root" sequence="100" groups='cmdb.root_group'/>
 
         <menuitem name="Edificios" id="cmdb.buildings_menu" parent="cmdb.settings_menu" action="cmdb.buildings_action_window"/>
         <menuitem name="Oficinas" id="cmdb.office_menu" parent="cmdb.settings_menu" action="cmdb.office_action_window"/>
@@ -136,15 +115,12 @@
         <menuitem name="Marcas" id="cmdb.manufacturer_menu" parent="cmdb.settings_menu" action="cmdb.manufacturer_action_window"/>
         <menuitem name="Modelos" id="cmdb.model_menu" parent="cmdb.settings_menu" action="cmdb.model_action_window"/>
 
-        <menuitem name="Tipos de item" id="cmdb.item_type_menu" parent="cmdb.settings_menu" action="cmdb.item_type_action_window"/>
         <menuitem name="Tipos de servicio" id="cmdb.service_type_menu" parent="cmdb.settings_menu" action="cmdb.service_type_action_window"/>
         <menuitem name="Tipos de activo" id="cmdb.asset_type_menu" parent="cmdb.settings_menu" action="cmdb.asset_type_action_window"/>
         <menuitem name="Tipos de fallo" id="cmdb.failure_menu" parent="cmdb.settings_menu" action="cmdb.failure_action_window"/>
 
         <menuitem name="Estados de servicio" id="cmdb.service_status_menu" parent="cmdb.settings_menu" action="cmdb.service_status_action_window"/>
-        <menuitem name="Estados de item" id="cmdb.item_status_menu" parent="cmdb.settings_menu" action="cmdb.item_status_action_window"/>
-        <menuitem name="Estados de activos" id="cmdb.asset_status_menu" parent="cmdb.settings_menu" action="cmdb.asset_status_action_window"/>
-
+       
     <!--
                             <menuitem name="Menu 2" id="net.menu_2" parent="net.menu_root"/>
                         -->

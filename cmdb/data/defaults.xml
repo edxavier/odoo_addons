@@ -51,56 +51,7 @@
             <field name="manufacturer" ref="hp"></field>
         </record>
 
-       
-        <!-- TIPOS DE ITEM -->
-        <record model="cmdb.item.type" id="other">
-            <field name="name">Otro</field>
-        </record>
-        <record model="cmdb.item.type" id="iapp">
-            <field name="name">Aplicacion</field>
-        </record>
-        <record model="cmdb.item.type" id="workstation">
-            <field name="name">Workstation</field>
-        </record>
-        <record model="cmdb.item.type" id="server">
-            <field name="name">Servidor</field>
-        </record>
-        <record model="cmdb.item.type" id="monitor">
-            <field name="name">Pantalla</field>
-        </record>
-        <record model="cmdb.item.type" id="printer">
-            <field name="name">Impresora</field>
-        </record>
-        <record model="cmdb.item.type" id="switch">
-            <field name="name">Switch</field>
-        </record>
-        <record model="cmdb.item.type" id="router">
-            <field name="name">Router</field>
-        </record>
-        <record model="cmdb.item.type" id="antenna">
-            <field name="name">Antena</field>
-        </record>
-        <record model="cmdb.item.type" id="idu">
-            <field name="name">IDU</field>
-        </record>
-        <record model="cmdb.item.type" id="odu">
-            <field name="name">ODU</field>
-        </record>
-        <record model="cmdb.item.type" id="radio_card">
-            <field name="name">Tarjeta Radio</field>
-        </record>
-        <record model="cmdb.item.type" id="tel_card">
-            <field name="name">Tarjeta Telefonia</field>
-        </record>
-        <record model="cmdb.item.type" id="proc_card">
-            <field name="name">Tarjeta Procesadora</field>
-        </record>
-        <record model="cmdb.item.type" id="ups">
-            <field name="name">UPS</field>
-        </record>
-        <record model="cmdb.item.type" id="sensor">
-            <field name="name">Sensor</field>
-        </record>
+  
 
         <!-- TIPOS DE SERVICIO -->
         <record model="cmdb.service.type" id="other">
@@ -231,29 +182,7 @@
             <field name="category">intern</field>
             <field name="service_type" ref="telephony"></field>
             <field name="status" ref="active"></field>
-        </record>
-    
-        
-        <!-- ESTADOS DE ITEM -->
-        <record model="cmdb.item.status" id="operative">
-            <field name="name">Operando</field>
-        </record>
-        <record model="cmdb.item.status" id="degraded">
-            <field name="name">Degradado</field>
-        </record>
-        <record model="cmdb.item.status" id="ifail">
-            <field name="name">En fallo</field>
-        </record>
-        <record model="cmdb.item.status" id="maint">
-            <field name="name">En mantenimiento</field>
-        </record>
-        <record model="cmdb.item.status" id="retired">
-            <field name="name">Retirado</field>
-        </record>
-        <record model="cmdb.item.status" id="ino_use">
-            <field name="name">Sin usar</field>
-        </record>
-                
+        </record>               
 
 
     </data>

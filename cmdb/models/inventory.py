@@ -31,10 +31,10 @@ class Asset(models.Model):
             
     name = fields.Char(string="Titulo", compute='_compute_name', default='Nuevo')
     asset_type = fields.Many2one('cmdb.asset.type', ondelete="cascade", string='Tipo', required=True, domain=[('active', '=', True)], tracking=True)
-    serie = fields.Char(string="Serie", help='Numero serie del activo', tracking=True, required=True)
+    serie = fields.Char(string="Numero de serie", help='Numero serie del activo', tracking=True, required=True)
     manufacturer = fields.Many2one('cmdb.manufacturer', ondelete="cascade", string='Marca', domain=[('active', '=', True)], tracking=True)
     model = fields.Many2one('cmdb.model', ondelete="cascade", string='Modelo', tracking=True)
-    inventory = fields.Char(string="Inventario", default="---", tracking=True)
+    inventory = fields.Char(string="Numero de inventario", default="---", tracking=True)
     location = fields.Char(string="Ubicacion", required=True, tracking=True)
     
     owner = fields.Many2one('res.partner', ondelete="cascade", string='Propietario',tracking=True, domain=[('is_company', '=', True)],)
@@ -42,7 +42,7 @@ class Asset(models.Model):
     
     state = fields.Selection([('good', 'Bueno'), ('degraded', 'Degradado'), ('fail', 'Fallo'), ('stored', 'Almacenado'), ('discharged', 'Dado de baja')], required=True, string='Estado', default="good", tracking=True)
     active = fields.Boolean(default=True, string='Activo', tracking=True)
-    item_id = fields.Many2one('cmdb.item', ondelete="cascade", string='Item asociado')
+    item_id = fields.Many2one('cmdb.item', ondelete="set null", string='Item asociado')
 
 
 

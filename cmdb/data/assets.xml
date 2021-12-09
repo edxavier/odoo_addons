@@ -70,33 +70,6 @@
         <record model="cmdb.asset.type" id="measure_eq">
             <field name="name">Equipo de medición</field>
         </record>
-
-
-         <!-- ESTADO DE ACTIVOS -->
-         <record model="cmdb.asset.status" id="good1">
-            <field name="name">Buen estado/Repuesto</field>
-        </record>
-        <record model="cmdb.asset.status" id="good2">
-            <field name="name">Buen estado/En uso</field>
-        </record>
-        <record model="cmdb.asset.status" id="good3">
-            <field name="name">Buen estado/En Desuso</field>
-        </record>
-        <record model="cmdb.asset.status" id="degraded">
-            <field name="name">Degradado/En uso</field>
-        </record>
-        <record model="cmdb.asset.status" id="degraded2">
-            <field name="name">Degradado/En Desuso</field>
-        </record>
-        <record model="cmdb.asset.status" id="damage">
-            <field name="name">Mal estado/En uso</field>
-        </record>
-        <record model="cmdb.asset.status" id="damage2">
-            <field name="name">Mal estado/En Desuso</field>
-        </record>
-        <record model="cmdb.asset.status" id="inactive">
-            <field name="name">De baja</field>
-        </record>
     
     </data>
 </odoo>

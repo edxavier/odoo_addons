@@ -37,6 +37,7 @@
         'data/customers.xml',
 
         'data/defaults.xml',
+        'data/cmdb.subsystem.csv',
         
     ],
     # only loaded in demonstration mode

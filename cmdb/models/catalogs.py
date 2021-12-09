@@ -50,13 +50,6 @@ class ManufacturerModel(models.Model):
     active = fields.Boolean(default=True)
 
 
-class ItemStatus(models.Model):
-    _name = 'cmdb.item.status'
-    _description = 'Estado de Item'
-
-    name = fields.Char(string="Nombre", required=True)
-    active = fields.Boolean(default=True)
-
 
 class ServiceStatus(models.Model):
     _name = 'cmdb.service.status'
@@ -65,19 +58,6 @@ class ServiceStatus(models.Model):
     name = fields.Char(string="Nombre", required=True)
     active = fields.Boolean(default=True)
 
-class AssetStatus(models.Model):
-    _name = 'cmdb.asset.status'
-    _description = 'Estado del activo'
-
-    name = fields.Char(string="Nombre", required=True)
-    active = fields.Boolean(default=True)
-
-class ItemType(models.Model):
-    _name = 'cmdb.item.type'
-    _description = 'Tipo de Item'
-
-    name = fields.Char(string="Nombre", required=True)
-    active = fields.Boolean(default=True)
 
 class ServiceType(models.Model):
     _name = 'cmdb.service.type'
