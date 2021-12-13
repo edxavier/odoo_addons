@@ -62,12 +62,6 @@
         </record>
 
 
-        <record model="ir.actions.act_window" id="cmdb.service_status_action_window">
-            <field name="name">Estados de servicio</field>
-            <field name="res_model">cmdb.service.status</field>
-            <field name="view_mode">tree,form</field>
-        </record>
-
         <record model="ir.actions.act_window" id="cmdb.technician_action_window">
             <field name="name">Personal técnico</field>
             <field name="res_model">cmdb.technician</field>
@@ -118,8 +112,6 @@
         <menuitem name="Tipos de servicio" id="cmdb.service_type_menu" parent="cmdb.settings_menu" action="cmdb.service_type_action_window"/>
         <menuitem name="Tipos de activo" id="cmdb.asset_type_menu" parent="cmdb.settings_menu" action="cmdb.asset_type_action_window"/>
         <menuitem name="Tipos de fallo" id="cmdb.failure_menu" parent="cmdb.settings_menu" action="cmdb.failure_action_window"/>
-
-        <menuitem name="Estados de servicio" id="cmdb.service_status_menu" parent="cmdb.settings_menu" action="cmdb.service_status_action_window"/>
        
     <!--
                             <menuitem name="Menu 2" id="net.menu_2" parent="net.menu_root"/>

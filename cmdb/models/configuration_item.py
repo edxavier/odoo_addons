@@ -23,8 +23,8 @@ class Item(models.Model):
 
     sequence = fields.Char(string='Codigo item', required=True, copy=False, readonly=True, index=True, default='Nuevo')
     name = fields.Char(string="Nombre", help='Nombre o clasificacion del equipo', required=True,)
-    system = fields.Many2one('cmdb.system', ondelete="set null", string='Sistema', required=True, domain=[('active', '=', True)])
-    subsystem = fields.Many2one('cmdb.subsystem', ondelete="set null", string='Subsistema', required=True, domain=[('active', '=', True)])
+    system = fields.Many2one('cmdb.system', ondelete="cascade", string='Sistema', required=True, domain=[('active', '=', True)])
+    subsystem = fields.Many2one('cmdb.subsystem', ondelete="cascade", string='Subsistema', required=True, domain=[('active', '=', True)])
     state = fields.Selection([('ok', 'Operando'), ('degraded', 'Degradado'), ('fail', 'Fallo'), ('inactive', 'Inactivo')], required=True, string='Estado', default="ok", tracking=True)
     active = fields.Boolean(default=True, string='Activo')
     related_assets =  fields.One2many('cmdb.asset', 'item_id', string=' Activos asociados', ondelete='set null')

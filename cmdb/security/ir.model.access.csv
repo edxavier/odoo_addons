@@ -8,7 +8,6 @@ access_office_root_group,cmdb.office,model_cmdb_office,root_group,1,1,1,1
 access_system_root_group,cmdb.system,model_cmdb_system,root_group,1,1,1,1
 access_model_root_group,cmdb.model,model_cmdb_model,root_group,1,1,1,1
 access_manufacturer_root_group,cmdb.manufacturer,model_cmdb_manufacturer,root_group,1,1,1,1
-access_service_status_root_group,cmdb.service_status,model_cmdb_service_status,root_group,1,1,1,1
 access_service_type_root_group,cmdb.service_type,model_cmdb_service_type,root_group,1,1,1,1
 access_technician_root_group,cmdb.technician,model_cmdb_technician,root_group,1,1,1,1
 access_inventory_root_group,cmdb.asset,model_cmdb_asset,root_group,1,1,1,1
@@ -26,7 +25,6 @@ access_office_technician,cmdb.office,model_cmdb_office,technician_group,1,0,0,0
 access_system_technician,cmdb.system,model_cmdb_system,technician_group,1,0,0,0
 access_model_technician,cmdb.model,model_cmdb_model,technician_group,1,0,0,0
 access_manufacturer_technician,cmdb.manufacturer,model_cmdb_manufacturer,technician_group,1,0,0,0
-access_service_status_technician,cmdb.service_status,model_cmdb_service_status,technician_group,1,0,0,0
 access_service_type_technician,cmdb.service_type,model_cmdb_service_type,technician_group,1,0,0,0
 access_inventory_technician,cmdb.asset,model_cmdb_asset,technician_group,1,1,1,1
 access_customer_technician,cmdb.customer,model_cmdb_customer,technician_group,1,1,1,1

@@ -16,10 +16,12 @@ class Service(models.Model):
     service_type = fields.Many2one('cmdb.service.type', ondelete="cascade", string='Tipo', required=True)
     category = fields.Selection([('intern', ' Interno'), ('extern', 'Externo')], required=True, string='Categoria')
 
-    alternative_service = fields.Many2many('cmdb.service', column1='service_id', 
-    relation="service_alternatives", column2='service_alt_id', string='Servicios alternativos')
+    #alternative_service = fields.Many2many('cmdb.service', column1='service_id', 
+    #relation="service_alternatives", column2='service_alt_id', string='Servicios alternativos')
 
-    status = fields.Many2one('cmdb.service.status', ondelete="cascade", string='Estado', required=True)
+    #status = fields.Many2one('cmdb.service.status', ondelete="set null", string='Estado', required=True)
+    state = fields.Selection([('active', 'Activo'), ('degraded', 'Degradado'), ('inactive', 'Inactivo'),  ('retired', 'Retirado')], required=True, string='Estado', default="active", tracking=True)
+
     active = fields.Boolean(default=True, string='Activo')
 
     @api.model

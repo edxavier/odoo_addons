@@ -38,6 +38,7 @@
 
         'data/defaults.xml',
         'data/cmdb.subsystem.csv',
+        'data/cmdb.service.csv',
         
     ],
     # only loaded in demonstration mode

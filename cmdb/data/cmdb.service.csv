@@ -1,0 +1,18 @@
+id,name,category,service_type:id
+other,Otro,intern,other
+aftn,AFTN,extern,message
+aidc,AIDC,extern,message
+119eaai,119.4 EAAI,intern,radio
+118eaai,118.1 EAAI,intern,radio
+121eaai,121.9 EAAI,intern,radio
+119cuesta,119.4 CUESTA,extern,radio
+cenamer,CENAMER,extern,telephony
+coco,COCO,extern,telephony
+liberia,LIBERIA,extern,telephony
+tnt,TNT,extern,telephony
+salvador,SALVADOR,extern,telephony
+2617,2617,intern,telephony
+2618,2618,intern,telephony
+2619,2619,intern,telephony
+2620,2620,intern,telephony
+cana8,CANAL 8,extern,telephony
