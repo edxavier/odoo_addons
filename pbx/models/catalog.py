@@ -159,7 +159,16 @@ class Area(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _sql_constraints = [
         ('unique_name', 'unique (name)', 'Este nombre ya existe')
-    ]    
+    ]
+    def name_get(self):
+        results = []
+        for rec in self:
+            if rec.area_id:
+                name = f"{rec.area_id.name} / {rec.name}"
+            else:
+                name = f"{rec.name}"
+            results.append((rec.id, name))
+        return results    
     area_id = fields.Many2one('pbx.area', ondelete="set null",
                                      string='Area padre', required=False, tracking=True)
     name = fields.Char(string="Nombre", required=True, tracking=True)
