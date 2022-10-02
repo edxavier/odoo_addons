@@ -1,0 +1,83 @@
+<odoo>
+  <data>
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="pbx.number_action_window">
+      <field name="name">Plan numeración</field>
+      <field name="res_model">pbx.number</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    <record model="ir.actions.act_window" id="pbx.campus_action_window">
+      <field name="name">Campus</field>
+      <field name="res_model">pbx.campus</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    <record model="ir.actions.act_window" id="pbx.building_action_window">
+      <field name="name">Edificios</field>
+      <field name="res_model">pbx.building</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    <record model="ir.actions.act_window" id="pbx.room_action_window">
+      <field name="name">Cuarto</field>
+      <field name="res_model">pbx.room</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    <record model="ir.actions.act_window" id="pbx.point_action_window">
+      <field name="name">Punto</field>
+      <field name="res_model">pbx.point</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="pbx.area_action_window">
+      <field name="name">Areas</field>
+      <field name="res_model">pbx.area</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    <record model="ir.actions.act_window" id="pbx.position_action_window">
+      <field name="name">Cargo</field>
+      <field name="res_model">pbx.position</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    <record model="ir.actions.act_window" id="pbx.phonebook_action_window">
+      <field name="name">Directorio</field>
+      <field name="res_model">pbx.phonebook</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    <record model="ir.actions.act_window" id="pbx.space_action_window">
+      <field name="name">Espacio de cuarto</field>
+      <field name="res_model">pbx.room.space</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- Top menu item -->
+
+    <menuitem name="Telefonia" id="pbx.menu_root" web_icon="pbx,static/description/icon.png"/>
+    
+    <!-- menu categories -->
+
+    <menuitem name="Numeros" id="pbx.number_menu" parent="pbx.menu_root" action="pbx.number_action_window"/>
+    <menuitem name="Directorio" id="pbx.phonebook_menu" parent="pbx.menu_root" action="pbx.phonebook_action_window"/>
+    <menuitem name="Cableado" id="pbx.point_menu" parent="pbx.menu_root" action="pbx.point_action_window"/>
+    <menuitem name="Catalogos" id="pbx.catalogs_menu" parent="pbx.menu_root" sequence="99"/>
+
+<!--
+    <menuitem name="Menu 1" id="pbx.menu_1" parent="pbx.menu_root"/>
+    <menuitem name="Menu 2" id="pbx.menu_2" parent="pbx.menu_root"/>
+-->
+    <!-- actions -->
+    <menuitem name="" id="pbx.campus_menu" parent="pbx.catalogs_menu" action="pbx.campus_action_window"/>
+    <menuitem name="" id="pbx.building_menu" parent="pbx.catalogs_menu" action="pbx.building_action_window"/>
+    <menuitem name="" id="pbx.room_menu" parent="pbx.catalogs_menu" action="pbx.room_action_window"/>
+    <menuitem name="" id="pbx.space_menu" parent="pbx.catalogs_menu" action="pbx.space_action_window"/>
+    <menuitem name="" id="pbx.area_menu" parent="pbx.catalogs_menu" action="pbx.area_action_window"/>
+    <menuitem name="" id="pbx.position_menu" parent="pbx.catalogs_menu" action="pbx.position_action_window"/>
+
+    <!--
+    <menuitem name="List" id="pbx.menu_1_list" parent="pbx.menu_1"
+              action="pbx.action_window"/>
+    <menuitem name="Server to list" id="pbx" parent="pbx.menu_2"
+              action="pbx.action_server"/>
+-->
+  </data>
+</odoo>

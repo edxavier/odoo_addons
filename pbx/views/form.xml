@@ -1,0 +1,248 @@
+<odoo>
+    <data>
+        <record id="pbx_number_view_form" model="ir.ui.view">
+            <field name="name">Formulario numeracion</field>
+            <field name="model">pbx.number</field>
+            <field name="arch" type="xml">
+                <form string="Nuevo numero">
+                    <sheet>
+                        <div class="oe_title">
+                            <h3>
+                                <field name="number" default_focus="1" placeholder="Registrar Extension/Virtual/Directo"/>
+                            </h3>
+                        </div>
+                        <group>
+                            <field name="num_status" widget="radio" options="{'horizontal': true}"/>
+                            <field name="num_category" widget="radio" options="{'horizontal': true}"/>
+                            <field name="num_type" widget="radio" options="{'horizontal': true}"/>
+                        </group>
+                        <notebook>
+                              <page string="Personal asignado">
+                                <field name="phonebook_ids" context="{'default_number_ids': [active_id]}">
+                                    <tree >
+                                        <field name="partner_id"/>
+                                        <field name="area_id"/>
+                                        <field name="position_id"/>
+                                    </tree>
+                                </field>
+                              </page>
+                              <page string="Puntos de cableado">
+                                <field name="point_ids" >
+                                    <tree >
+                                        <field name="full_code"/>
+                                        <field name="building_id"/>
+                                        <field name="room_id"/>
+                                        <field name="space_id"/>
+                                        <field name="comment"/>
+                                    </tree>
+                                </field>
+                              </page>
+                        </notebook>
+                    </sheet>
+                     <div class="oe_chatter">
+                        <field name='message_follower_ids' widget='mail_followers'></field>
+                        <field name='message_ids' widget='mail_thread' options='{"thread_level":1}'></field>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="pbx_campus_view_form" model="ir.ui.view">
+            <field name="name">Formulario Campus</field>
+            <field name="model">pbx.campus</field>
+            <field name="arch" type="xml">
+                <form string="Nuevo campus">
+                    <sheet>
+                        <div class="oe_title">
+                            <h3>
+                                <field name="name" default_focus="1" placeholder="Registrar Campus"/>
+                            </h3>
+                        </div>
+                        <group>
+                            <field name="code"/>
+                        </group>
+                    </sheet>
+                     <div class="oe_chatter">
+                        <field name='message_follower_ids' widget='mail_followers'></field>
+                        <field name='message_ids' widget='mail_thread' options='{"thread_level":1}'></field>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="pbx_building_view_form" model="ir.ui.view">
+            <field name="name">Formulario Edificio</field>
+            <field name="model">pbx.building</field>
+            <field name="arch" type="xml">
+                <form string="Nuevo Edificio">
+                    <sheet>
+                        <div class="oe_title">
+                            <h2>
+                                <field name="full_code" default_focus="1" readonly="1"/>
+                            </h2>
+                        </div>
+                        <group>
+                            <field name="campus_id"/>
+                            <field name="name"/>
+                            <field name="code"/>
+                        </group>
+                    </sheet>
+                     <div class="oe_chatter">
+                        <field name='message_follower_ids' widget='mail_followers'></field>
+                        <field name='message_ids' widget='mail_thread' options='{"thread_level":1}'></field>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="pbx_room_view_form" model="ir.ui.view">
+            <field name="name">Formulario cuarto</field>
+            <field name="model">pbx.room</field>
+            <field name="arch" type="xml">
+                <form string="Nuevo cuarto">
+                    <sheet>
+                        <div class="oe_title">
+                            <h2>
+                                <field name="full_code" default_focus="1" readonly="1"/>
+                            </h2>
+                        </div>
+                        <group>
+                            <field name="building_id"/>
+                            <field name="name"/>
+                            <field name="code"/>
+                        </group>
+                    </sheet>
+                     <div class="oe_chatter">
+                        <field name='message_follower_ids' widget='mail_followers'></field>
+                        <field name='message_ids' widget='mail_thread' options='{"thread_level":1}'></field>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="pbx_room_space_view_form" model="ir.ui.view">
+            <field name="name">Formulario espacio de cuarto</field>
+            <field name="model">pbx.room.space</field>
+            <field name="arch" type="xml">
+                <form string="Nuevo cuarto">
+                    <sheet>
+                        <div class="oe_title">
+                            <h2>
+                                <field name="full_code" default_focus="1" readonly="1"/>
+                            </h2>
+                        </div>
+                        <group>
+                            <field name="building_id"/>
+                            <field name="room_id"/>
+                            <field name="name"/>
+                            <field name="code"/>
+                        </group>
+                    </sheet>
+                     <div class="oe_chatter">
+                        <field name='message_follower_ids' widget='mail_followers'></field>
+                        <field name='message_ids' widget='mail_thread' options='{"thread_level":1}'></field>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="pbx_point_view_form" model="ir.ui.view">
+            <field name="name">Formulario punto de cableado</field>
+            <field name="model">pbx.point</field>
+            <field name="arch" type="xml">
+                <form string="Nuevo punto">
+                    <sheet>
+                        <div class="oe_title">
+                            <h2>
+                                <field name="full_code" default_focus="1" readonly="1"/>
+                            </h2>
+                        </div>
+                        <group string="Datos del punto">
+                                <field name="building_id"/>
+                                <field name="room_id"/>
+                                <field name="space_id" context="{'default_building_id': building_id, 'default_room_id': room_id}"/>
+                                <field name="code"/>
+                                <field name="number_id"/>
+                                <field name="destination_id"  domain="[('id', '!=', id)]" 
+                                context="{'default_building_id': building_id, 'default_number_id': number_id, 'default_code': code }"/>
+                        </group>                           
+                        <group>
+                            <field name="comment"/>
+                        </group>
+                    </sheet>
+                     <div class="oe_chatter">
+                        <field name='message_follower_ids' widget='mail_followers'></field>
+                        <field name='message_ids' widget='mail_thread' options='{"thread_level":1}'></field>
+                    </div>
+                </form>
+            </field>
+        </record>
+        
+
+        <record id="pbx_area_view_form" model="ir.ui.view">
+            <field name="name">Formulario Area</field>
+            <field name="model">pbx.area</field>
+            <field name="arch" type="xml">
+                <form string="Nueva Area">
+                    <sheet>
+                        <group>
+                            <field name="area_id"/>
+                            <field name="name" default_focus="1"/>
+                        </group>
+                    </sheet>
+                     <div class="oe_chatter">
+                        <field name='message_follower_ids' widget='mail_followers'></field>
+                        <field name='message_ids' widget='mail_thread' options='{"thread_level":1}'></field>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="pbx_position_view_form" model="ir.ui.view">
+            <field name="name">Formulario Cargo</field>
+            <field name="model">pbx.position</field>
+            <field name="arch" type="xml">
+                <form string="Nuevo cargo">
+                    <sheet>
+                        <div class="oe_title">
+                            <h2>
+                                <field name="name" default_focus="1"/>
+                            </h2>
+                        </div>
+                        <group>
+                            <field name="area_id"/>
+                        </group>
+                    </sheet>
+                     <div class="oe_chatter">
+                        <field name='message_follower_ids' widget='mail_followers'></field>
+                        <field name='message_ids' widget='mail_thread' options='{"thread_level":1}'></field>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="pbx_phonebook_view_form" model="ir.ui.view">
+            <field name="name">Formulario directorio</field>
+            <field name="model">pbx.phonebook</field>
+            <field name="arch" type="xml">
+                <form string="Nueva entrada">
+                    <sheet>
+                        <group>
+                            <field name="partner_id" default_focus="1"/>
+                            <field name="area_id"/>
+                            <field name="position_id"/>
+                        </group>
+                        <group>
+                            <field name="number_ids">
+                            </field>
+                        </group>
+                    </sheet>
+                     <div class="oe_chatter">
+                        <field name='message_follower_ids' widget='mail_followers'></field>
+                        <field name='message_ids' widget='mail_thread' options='{"thread_level":1}'></field>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

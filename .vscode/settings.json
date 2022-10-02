@@ -9,6 +9,6 @@
         "/home/eradar/odoo/",
         "C:\\Program Files (x86)\\Odoo14\\server",
     ],
-    "python.pythonPath": "/home/eradar/.virtualenvs/odoo-venv/bin/python",
-    //"python.pythonPath": "/home/eradar/.virtualenvs/odoo-venv/bin/python3.6",
+    //"python.pythonPath": "/home/eradar/.virtualenvs/odoo-venv/bin/python",
+    "python.pythonPath":  "C:\\Program Files (x86)\\Odoo14\\python\\python",
 }

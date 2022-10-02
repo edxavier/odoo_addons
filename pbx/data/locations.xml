@@ -1,0 +1,80 @@
+<odoo>
+    <data noupdate="0">
+        <!-- Campus -->
+        <record id="c1" model="pbx.campus">
+            <field name="name">Campus 01</field>
+            <field name="code">C1</field>
+        </record>
+        <record id="c2" model="pbx.campus">
+            <field name="name">Campus 02</field>
+            <field name="code">C2</field>
+        </record>
+        <record id="c3" model="pbx.campus">
+            <field name="name">Campus 03</field>
+            <field name="code">C3</field>
+        </record>
+        <record id="c4" model="pbx.campus">
+            <field name="name">Campus 04</field>
+            <field name="code">C4</field>
+        </record>
+
+        <!-- Edificios -->
+        <record id="c1e1" model="pbx.building">
+            <field name="name">Contabilidad, Tecnologías de la información</field>
+            <field name="code">E1</field>
+            <field name="campus_id" ref="c1"></field>
+        </record>
+        <record id="c1e2" model="pbx.building">
+            <field name="name">Activos fijos</field>
+            <field name="code">E2</field>
+            <field name="campus_id" ref="c1"></field>
+        </record>
+        <record id="c1e3" model="pbx.building">
+            <field name="name">RRHH, Servicios Generales</field>
+            <field name="code">E3</field>
+            <field name="campus_id" ref="c1"></field>
+        </record>
+        <record id="c1e5" model="pbx.building">
+            <field name="name">Tesorería</field>
+            <field name="code">E5</field>
+            <field name="campus_id" ref="c1"></field>
+        </record>
+        <record id="c1e6" model="pbx.building">
+            <field name="name">Gerencia General, Suministro y adquisiciones</field>
+            <field name="code">E6</field>
+            <field name="campus_id" ref="c1"></field>
+        </record>
+        <record id="c1e8" model="pbx.building">
+            <field name="name">CUTE, SMS</field>
+            <field name="code">E8</field>
+            <field name="campus_id" ref="c1"></field>
+        </record>
+        <record id="c1e9" model="pbx.building">
+            <field name="name">Campo de antenas</field>
+            <field name="code">E9</field>
+            <field name="campus_id" ref="c1"></field>
+        </record>
+
+        <!-- Cuartos -->
+        <record id="c1e3_dist" model="pbx.room">
+            <field name="name">Distribuidor RRHH</field>
+            <field name="code">DIST</field>
+            <field name="building_id" ref="c1e3"></field>
+        </record>
+        <record id="c1e3_rrhh" model="pbx.room">
+            <field name="name">Recursos humanos</field>
+            <field name="code">RRHH</field>
+            <field name="building_id" ref="c1e3"></field>
+        </record>
+        <record id="c1e3_srvg" model="pbx.room">
+            <field name="name">Servicios generales</field>
+            <field name="code">SRVG</field>
+            <field name="building_id" ref="c1e3"></field>
+        </record>
+        <record id="c1e6_idf" model="pbx.room">
+            <field name="name">IDF adquisiciones</field>
+            <field name="code">IDF</field>
+            <field name="building_id" ref="c1e6"></field>
+        </record>
+    </data>
+</odoo>

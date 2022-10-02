@@ -1,0 +1,104 @@
+<odoo>
+    <data>
+        <record id="view_point_filter" model="ir.ui.view">
+            <field name="name">Filtros Puntos</field>
+            <field name="model">pbx.point</field>
+            <field name="arch" type="xml">
+                <search string="Buscar punto">
+                    <field name="full_code" filter_domain="[('full_code', 'ilike', self)]"/>
+                    <field name="space_id" filter_domain="[('space_id', 'ilike', self)]"/>
+                    <field name="code" filter_domain="[('code', 'ilike', self)]"/>
+                    <field name="number_id" filter_domain="[('number_id', 'ilike', self)]"/>
+                    <field name="room_id" filter_domain="[('room_id', 'ilike', self)]"/>
+                    
+                    <separator/>
+                       <!-- <filter string="Conectado" name="is_up" domain="[('is_up', '=', True)]"/>-->
+                    <group expand="0" name="group_by" string="Agrupar por">
+                        <filter name="group_number_id" string="Numero" domain="[]" context="{'group_by' : 'number_id'}" />
+                        <filter name="group_room_id" string="Cuarto" domain="[]" context="{'group_by' : 'room_id'}" />
+                        <filter name="group_building" string="Edificio" domain="[]" context="{'group_by' : 'building_id'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_number_filter" model="ir.ui.view">
+            <field name="name">Filtros Numeros</field>
+            <field name="model">pbx.number</field>
+            <field name="arch" type="xml">
+                <search string="Buscar punto">
+                    <field name="number" filter_domain="[('number', 'ilike', self)]"/>
+                    <separator/>
+                       <filter string="Extension" name="is_extension" domain="[('num_category', '=', 'extension')]"/>
+                       <filter string="Virtual" name="is_virtual" domain="[('num_category', '=', 'virtual')]"/>
+                       <filter string="Directo" name="is_direct" domain="[('num_category', '=', 'direct')]"/>
+                    <separator/>
+                       <filter string="Analogico" name="is_analog" domain="[('num_type', '=', 'analog')]"/>
+                       <filter string="Virtual" name="is_digital" domain="[('num_type', '=', 'digital')]"/>
+                       <filter string="IP" name="is_ip" domain="[('num_type', '=', 'ip')]"/>
+                    <separator/>
+                       <!-- <filter string="Conectado" name="is_up" domain="[('is_up', '=', True)]"/>-->
+                    <group expand="0" name="group_by" string="Agrupar por">
+                        <filter name="group_num_category" string="Categoria" domain="[]" context="{'group_by' : 'num_category'}" />
+                        <filter name="group_num_status" string="Estado" domain="[]" context="{'group_by' : 'num_status'}" />
+                        <filter name="group_num_type" string="Tipo" domain="[]" context="{'group_by' : 'num_type'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_building_filter" model="ir.ui.view">
+            <field name="name">Filtros Edificios</field>
+            <field name="model">pbx.building</field>
+            <field name="arch" type="xml">
+                <search string="Buscar edificio">
+                    <field name="name" filter_domain="[('name', 'ilike', self)]"/>
+                    <field name="full_code" filter_domain="[('code', 'ilike', self)]"/>
+                    <field name="campus_id" filter_domain="[('code', 'ilike', self)]"/>
+                    <field name="code" filter_domain="[('code', 'ilike', self)]"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_room_filter" model="ir.ui.view">
+            <field name="name">Filtros Cuartos</field>
+            <field name="model">pbx.room</field>
+            <field name="arch" type="xml">
+                <search string="Buscar cuarto">
+                    <field name="name" filter_domain="[('name', 'ilike', self)]"/>
+                    <field name="building_id" filter_domain="[('building_id', 'ilike', self)]"/>
+                    <field name="code" filter_domain="[('code', 'ilike', self)]"/>
+                    
+                    <separator/>
+                       <!-- <filter string="Conectado" name="is_up" domain="[('is_up', '=', True)]"/>-->
+                    <group expand="0" name="group_by" string="Agrupar por">
+                        <filter name="group_building" string="Edificio" domain="[]" context="{'group_by' : 'building_id'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_phonebook_filter" model="ir.ui.view">
+            <field name="name">Filtros directorio</field>
+            <field name="model">pbx.phonebook</field>
+            <field name="arch" type="xml">
+                <search string="Buscar en directorio">
+                    <field name="partner_id" filter_domain="[('partner_id', 'ilike', self)]"/>
+                    <field name="area_id" filter_domain="[('area_id', 'ilike', self)]"/>
+                    <field name="position_id" filter_domain="[('position_id', 'ilike', self)]"/>
+                    <field name="number_ids" filter_domain="[('number_ids.number', 'ilike', self)]"/>
+                    
+                    <separator/>
+                       <!-- <filter string="Conectado" name="is_up" domain="[('is_up', '=', True)]"/>-->
+                    <group expand="0" name="group_by" string="Agrupar por">
+                        <filter name="group_area_id" string="Area" domain="[]" context="{'group_by' : 'area_id'}" />
+                        <filter name="group_position_id" string="Cargo" domain="[]" context="{'group_by' : 'position_id'}" />
+                        <filter name="group_partner_id" string="Asignado" domain="[]" context="{'group_by' : 'partner_id'}" />
+                        <filter name="group_number_ids" string="Numeros" domain="[]" context="{'group_by' : 'number_ids'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+    
+    </data>
+</odoo>

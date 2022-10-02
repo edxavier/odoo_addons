@@ -1,0 +1,96 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="pbx.campus_list">
+            <field name="name">Campus</field>
+            <field name="model">pbx.campus</field>
+            <field name="arch" type="xml">
+              <tree>
+                <field name="name"/>
+                <field name="code"/>
+              </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="pbx.building_list">
+            <field name="name">Edificios</field>
+            <field name="model">pbx.building</field>
+            <field name="arch" type="xml">
+              <tree>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="campus_id"/>
+              </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="pbx.room_list">
+            <field name="name">Cuarto</field>
+            <field name="model">pbx.room</field>
+            <field name="arch" type="xml">
+              <tree>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="building_id"/>
+              </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="pbx.room_space_list">
+          <field name="name">Espacio de cuarto</field>
+          <field name="model">pbx.room.space</field>
+          <field name="arch" type="xml">
+            <tree>
+              <field name="name"/>
+              <field name="code"/>
+              <field name="room_id"/>
+            </tree>
+          </field>
+      </record>
+        <record model="ir.ui.view" id="pbx.number_list">
+            <field name="name">Numeros</field>
+            <field name="model">pbx.number</field>
+            <field name="arch" type="xml">
+              <tree>
+                <field name="number"/>
+                <field name="num_category"/>
+                <field name="num_status"/>
+                <field name="num_type"/>
+              </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="pbx.point_list">
+            <field name="name">Puntos</field>
+            <field name="model">pbx.point</field>
+            <field name="arch" type="xml">
+              <tree >
+                <field name="number_id"/>
+                <field name="full_code"/>
+                <field name="destination_id"/>
+                <field name="building_id" optional="1"/>
+                <field name="room_id" optional="1"/>
+                <field name="space_id" optional="1"/>
+              </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="pbx.position_list">
+          <field name="name">Cargos</field>
+          <field name="model">pbx.position</field>
+          <field name="arch" type="xml">
+            <tree >
+              <field name="name"/>
+              <field name="area_id"/>
+            </tree>
+          </field>
+      </record>
+      <record model="ir.ui.view" id="pbx.phonebook_list">
+        <field name="name">Directorio</field>
+        <field name="model">pbx.phonebook</field>
+        <field name="arch" type="xml">
+          <tree >
+            <field name="partner_id"/>
+            <field name="area_id" optional="0"/>
+            <field name="position_id" optional="0"/>
+            <field name="number_ids" widget="many2many_tags" optional="0"/>
+          </tree>
+        </field>
+    </record>
+    </data>
+</odoo>

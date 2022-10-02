@@ -1,0 +1,18 @@
+<odoo>
+    <record model="ir.module.category" id="pbx_category">
+        <field name="name">Gestion Telefonia</field>
+        <field name="description">Niveles de acceso al modulo Gestion Telefonia</field>
+        <!--<field name="sequence">20</field>-->
+    </record>
+
+    <record id="pbx_tec_group" model="res.groups">
+        <field name="name">Técnico telefonia</field>
+        <field name="category_id" ref="pbx_category"/>
+    </record>
+
+    <record id="pbx_admin_group" model="res.groups">
+        <field name="name">Administrador telefonia</field>
+        <field name="category_id" ref="pbx_category"/>
+    </record>
+
+</odoo>
