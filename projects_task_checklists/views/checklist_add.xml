@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="project_task_progress_inherited" model="ir.ui.view">
+        <field name="name">project.task.inherit.form</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="start_date"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="project_task_calendar_inherited" model="ir.ui.view">
+        <field name="name">project.task.inherit.cal</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_calendar"/>
+        <field name="arch" type="xml">
+            <calendar position="attributes">
+                <attribute name="date_start">start_date</attribute>
+                <attribute name="date_stop">date_deadline</attribute>
+            </calendar>
+
+            
+        </field>
+    </record>
+
+</odoo>
