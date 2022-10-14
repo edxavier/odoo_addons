@@ -19,10 +19,25 @@
 #
 ##############################################################################
 from odoo import models, fields, api
+from datetime import datetime, timedelta
 
 class ProjectTask(models.Model):
     _inherit = 'project.task'
 
-    start_date = fields.Datetime(string='Fecha inicio')
+    @api.depends('start_date', 'duration', 'duration_unit')
+    def _compute_deadline(self):
+        for rec in self:
+            if rec.duration_unit == 'day' and rec.start_date:
+                rec.date_deadline = rec.start_date + timedelta(days=rec.duration)
+            if rec.duration_unit == 'week' and rec.start_date:
+                rec.date_deadline = rec.start_date + timedelta(weeks=rec.duration)
+                
+            
+                
+    start_date = fields.Date(string='Fecha inicio')
+    duration = fields.Integer(string='Duracion de tarea')
+    duration_unit = fields.Selection([('day', 'Día'), ('week', 'Semana')], string='Unidad de duracion', default="week")
+    date_deadline = fields.Date(string='Fecha límite', readonly=True, compute="_compute_deadline", store=True)
+
 
 
