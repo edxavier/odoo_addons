@@ -7,18 +7,31 @@
                 <form string="Nuevo numero">
                     <sheet>
                         <div class="oe_title">
-                            <h3>
+                            <h1>
                                 <field name="number" default_focus="1" placeholder="Registrar Extension/Virtual/Directo"/>
-                            </h3>
+                            </h1>
                         </div>
                         <group>
                             <field name="num_status" widget="radio" options="{'horizontal': true}"/>
                             <field name="num_category" widget="radio" options="{'horizontal': true}"/>
                             <field name="num_type" widget="radio" options="{'horizontal': true}"/>
+                            <field name="out_permission" widget="radio" options="{'horizontal': true}"/>
+                            <field name="capture_group" />
+                            <field name="address" />
+                            <field name="comments" widget="html"/>
                         </group>
                         <notebook>
                               <page string="Personal asignado">
-                                <field name="phonebook_ids" context="{'default_number_ids': [active_id]}">
+                                <field name="phonebook_ids" >
+                                    <form string="Nueva entrada">
+                                        <sheet>
+                                            <group>
+                                                <field name="partner_id" default_focus="1"/>
+                                                <field name="area_id"/>
+                                                <field name="position_id" domain="[('area_id', '=', area_id)]" context="{'default_area_id': area_id}"/>
+                                            </group>
+                                        </sheet>
+                                    </form>
                                     <tree >
                                         <field name="partner_id"/>
                                         <field name="area_id"/>
@@ -28,11 +41,12 @@
                               </page>
                               <page string="Puntos de cableado">
                                 <field name="point_ids" >
-                                    <tree >
-                                        <field name="full_code"/>
-                                        <field name="building_id"/>
+                                    <tree editable="bottom" >
+                                        <field name="full_code"  readonly="1"/>
                                         <field name="room_id"/>
+                                        <field name="rack_id"/>
                                         <field name="space_id"/>
+                                        <field name="point"/>
                                         <field name="comment"/>
                                     </tree>
                                 </field>
@@ -75,6 +89,9 @@
             <field name="model">pbx.building</field>
             <field name="arch" type="xml">
                 <form string="Nuevo Edificio">
+                    <header attrs="{'invisible': [('id', '=', False)]}">
+                        <button name="compute_code" string="Actualizar codigo" type="object" class="oe_highlight"/>
+                    </header>
                     <sheet>
                         <div class="oe_title">
                             <h2>
@@ -100,6 +117,9 @@
             <field name="model">pbx.room</field>
             <field name="arch" type="xml">
                 <form string="Nuevo cuarto">
+                    <header attrs="{'invisible': [('id', '=', False)]}">
+                        <button name="compute_code" string="Actualizar codigo" type="object" class="oe_highlight"/>
+                    </header>
                     <sheet>
                         <div class="oe_title">
                             <h2>
@@ -120,11 +140,14 @@
             </field>
         </record>
 
-        <record id="pbx_room_space_view_form" model="ir.ui.view">
-            <field name="name">Formulario espacio de cuarto</field>
-            <field name="model">pbx.room.space</field>
+        <record id="pbx_room_rack_view_form" model="ir.ui.view">
+            <field name="name">Formulario Rack</field>
+            <field name="model">pbx.room.rack</field>
             <field name="arch" type="xml">
-                <form string="Nuevo cuarto">
+                <form string="Nuevo Rack">
+                    <header attrs="{'invisible': [('id', '=', False)]}">
+                        <button name="compute_code" string="Actualizar codigo" type="object" class="oe_highlight"/>
+                    </header>
                     <sheet>
                         <div class="oe_title">
                             <h2>
@@ -132,8 +155,44 @@
                             </h2>
                         </div>
                         <group>
-                            <field name="building_id"/>
                             <field name="room_id"/>
+                            <field name="name"/>
+                            <field name="code" />
+                        </group>
+                        <group>
+                            <field name="space_ids" context="{'default_rack_id': [active_id]}" attrs="{'readonly': [('id', '=', False)]}">
+                                <tree editable="bottom" >
+                                    <field name="sequence"  widget='handle'/>
+                                    <field name="code" placeholder="Ej: T01, PP01, SW01, SRV01"/>
+                                    <field name="full_code"/>
+                                    <field name="name"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                     <div class="oe_chatter">
+                        <field name='message_follower_ids' widget='mail_followers'></field>
+                        <field name='message_ids' widget='mail_thread' options='{"thread_level":1}'></field>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="pbx_rack_space_view_form" model="ir.ui.view">
+            <field name="name">Formulario Espacio Rack</field>
+            <field name="model">pbx.rack.space</field>
+            <field name="arch" type="xml">
+                <form string="Nuevo Espacio Rack">
+                    <header attrs="{'invisible': [('id', '=', False)]}">
+                        <button name="compute_code" string="Actualizar codigo" type="object" class="oe_highlight"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h2>
+                                <field name="full_code" default_focus="1" readonly="1"/>
+                            </h2>
+                        </div>
+                        <group>
+                            <field name="rack_id"/>
                             <field name="name"/>
                             <field name="code"/>
                         </group>
@@ -145,12 +204,16 @@
                 </form>
             </field>
         </record>
+
 
         <record id="pbx_point_view_form" model="ir.ui.view">
             <field name="name">Formulario punto de cableado</field>
             <field name="model">pbx.point</field>
             <field name="arch" type="xml">
                 <form string="Nuevo punto">
+                    <header attrs="{'invisible': [('id', '=', False)]}">
+                        <button name="compute_code" string="Actualizar codigo" type="object" class="oe_highlight"/>
+                    </header>
                     <sheet>
                         <div class="oe_title">
                             <h2>
@@ -158,13 +221,19 @@
                             </h2>
                         </div>
                         <group string="Datos del punto">
-                                <field name="building_id"/>
-                                <field name="room_id"/>
-                                <field name="space_id" context="{'default_building_id': building_id, 'default_room_id': room_id}"/>
-                                <field name="code"/>
-                                <field name="number_id"/>
-                                <field name="destination_id"  domain="[('id', '!=', id)]" 
-                                context="{'default_building_id': building_id, 'default_number_id': number_id, 'default_code': code }"/>
+                            <field name="room_id" placeholder="Cuarto" options="{'no_create': True, 'no_create_edit':True, 'no_open': True}" />
+                            <field name="rack_id" placeholder="Rack" options="{'no_create': True, 'no_create_edit':True, 'no_open': True}"  domain="[('room_id', '=', room_id)]"/>
+                            <field name="space_id" placeholder="Espacio" options="{'no_create': True, 'no_create_edit':True, 'no_open': True}"   domain="[('rack_id', '=', rack_id)]"/>
+
+                            <field name="point" placeholder="Punto/Par" />                            
+                            
+                            <field name="number_id" placeholder="Numero o extension"/>
+                            <field name="origin_id"  domain="[('id', '!=', id)]" placeholder="Punto origen"
+                            options="{'no_create': True, 'no_create_edit':True}"
+                            context="{'default_room_id': room_id, 'default_number_id': number_id }"/>
+                            <field name="destination_id"  domain="[('id', '!=', id)]" placeholder="Punto destino"
+                            options="{'no_create': True, 'no_create_edit':True}"
+                            context="{'default_room_id': room_id, 'default_number_id': number_id }"/>
                         </group>                           
                         <group>
                             <field name="comment"/>
@@ -197,6 +266,7 @@
                 </form>
             </field>
         </record>
+
         <record id="pbx_position_view_form" model="ir.ui.view">
             <field name="name">Formulario Cargo</field>
             <field name="model">pbx.position</field>
@@ -229,18 +299,62 @@
                         <group>
                             <field name="partner_id" default_focus="1"/>
                             <field name="area_id"/>
-                            <field name="position_id"/>
+                            <field name="position_id" domain="[('area_id', '=', area_id)]" context="{'default_area_id': area_id}"/>
                         </group>
                         <group>
                             <field name="number_ids">
                             </field>
                         </group>
                     </sheet>
-                     <div class="oe_chatter">
+                    <div class="oe_chatter">
                         <field name='message_follower_ids' widget='mail_followers'></field>
                         <field name='message_ids' widget='mail_thread' options='{"thread_level":1}'></field>
                     </div>
                 </form>
+            </field>
+        </record>
+
+        <record id="point_report_wizard" model="ir.ui.view">
+            <field name="name">Formulario reporte de puntos</field>
+            <field name="model">pbx.point.report</field>
+            <field name="arch" type="xml">
+                <form string="Reporte telefonia">
+                    <group>
+                        <field name="title" placeholder="Titulo opcional"/>
+                        <field name="type" placeholder="Tipo de reporte" widget="radio" options="{'horizontal': true}"/>
+                        <field name="room_id" placeholder="Opcional" attrs="{'invisible': [('type', '=', 'number')]}"/>
+                        <field name="rack_id" placeholder="Opcional" attrs="{'invisible': [('type', '=', 'number')]}" options="{'no_create': True, 'no_create_edit':True, 'no_open': True}"  domain="[('room_id', '=', room_id)]"/>
+                    </group>
+                    <footer>
+                        <button name='print_report' string='Imprimir' type='object' class='btn-primary'/>
+                        <button string='Cancelar' class='btn-secondary' special='cancel'/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+         <record id="project_task_progress_inherited" model="ir.ui.view">
+            <field name="name">project.task.inherit.form</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="date_start"/>
+                    <field name="duration"/>
+                    <field name="duration_unit"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="project_task_calendar_inherited" model="ir.ui.view">
+            <field name="name">project.task.inherit.cal</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_calendar"/>
+            <field name="arch" type="xml">
+                <calendar position="attributes">
+                    <attribute name="date_start">date_start</attribute>
+                    <attribute name="date_stop">date_deadline</attribute>
+                </calendar>
             </field>
         </record>
 

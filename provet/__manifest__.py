@@ -1,33 +1,29 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Gestion PBX",
+    'name': "Provetnicsa",
 
     'summary': """
-        Gestion de extensiones telefonicas y cableado""",
+        Modulo modificado para uso de Productos Veterinarios de Nicaragua""",
 
     'description': """
-        Gestion de extensiones y puntos de cableado estructurado de telefonia
+       Adaptacion de ciertos campos para uso especifico
     """,
 
-    'author': "Xavier Rojas",
+    'author': "EDXR",
 
     # Categories can be used to filter modules in modules listing
-    # Check https://github.com/odoo/odoo/blob/14.0/odoo/addons/base/data/ir_module_category_data.xml
+    # Check https://github.com/odoo/odoo/blob/15.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
-    'category': 'Telefonia',
-    'version': '0.1',
+    'category': 'Veterinaria',
+    'version': '1.0.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base',  'mail', 'project'],
+    'depends': ['base', 'account', 'sale_management'],
 
     # always loaded
     'data': [
-        'data/locations.xml',
         'security/security.xml',
         'security/ir.model.access.csv',
-        'views/filters.xml',
-        'views/form.xml',
-        'views/list.xml',
         'views/views.xml',
         'views/templates.xml',
         'reports/formats.xml',

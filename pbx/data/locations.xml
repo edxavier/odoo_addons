@@ -1,5 +1,5 @@
 <odoo>
-    <data noupdate="0">
+    <data noupdate="1">
         <!-- Campus -->
         <record id="c1" model="pbx.campus">
             <field name="name">Campus 01</field>
@@ -55,10 +55,22 @@
             <field name="campus_id" ref="c1"></field>
         </record>
 
+
+        <record id="c2e1" model="pbx.building">
+            <field name="name">Terminal Vuelos Nacionales</field>
+            <field name="code">E1</field>
+            <field name="campus_id" ref="c2"></field>
+        </record>
+        <record id="c2e2" model="pbx.building">
+            <field name="name">Terminal Vuelos Internacionales</field>
+            <field name="code">E2</field>
+            <field name="campus_id" ref="c2"></field>
+        </record>
+
         <!-- Cuartos -->
         <record id="c1e3_dist" model="pbx.room">
             <field name="name">Distribuidor RRHH</field>
-            <field name="code">DIST</field>
+            <field name="code">D1</field>
             <field name="building_id" ref="c1e3"></field>
         </record>
         <record id="c1e3_rrhh" model="pbx.room">
@@ -73,8 +85,14 @@
         </record>
         <record id="c1e6_idf" model="pbx.room">
             <field name="name">IDF adquisiciones</field>
-            <field name="code">IDF</field>
+            <field name="code">CT01</field>
             <field name="building_id" ref="c1e6"></field>
+        </record>
+
+        <record id="c2e2_mdf" model="pbx.room">
+            <field name="name">MDF</field>
+            <field name="code">2CT01</field>
+            <field name="building_id" ref="c2e2"></field>
         </record>
     </data>
 </odoo>

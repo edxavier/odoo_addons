@@ -1,0 +1,76 @@
+<odoo>
+
+
+    <template id="custom_header">
+        <div class="header">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1 style="font-size:20px;" >Empresa Administradora de Aeropuertos Internacionales</h1>
+                </div>
+            </div>
+        </div>
+    </template>
+
+
+    <template id="custom_footer">
+        <div class="footer o_standard_footer">
+            <div class="text-center" style="font-size:14px;">
+                <div t-if="report_type == 'pdf'" class="text-muted">
+                </div>
+            </div>
+        </div>
+    </template>
+
+
+    <template  id="report_invoice">
+        <t t-call="web.html_container">
+            <div class="article">
+                <t t-call="provet.custom_header"/>
+                <t t-call="provet.custom_footer"/>
+                 <t t-foreach="docs" t-as="f">
+                     <p>
+                         <t t-esc="f.invoice_payment_term_id.note"/>
+                         Emision: <t t-esc="f.invoice_date"/> <br/>
+                         Vence: <t t-esc="f.invoice_date_due"/> <br/>
+                     </p>
+                     <h3>
+                        <t t-if="f.partner_id.parent_id" t-esc="f.partner_id.parent_id.name"/>/<t t-esc="f.partner_id.name"/>
+                     </h3>
+                     <span><t t-esc="f.partner_id.street" t-if="f.partner_id.street"/> <br/> <t  t-if="f.partner_id.street2" t-esc="f.partner_id.street2"/></span>
+                     <t t-esc="f.partner_id.city"  t-if="f.partner_id.city"/>, <t t-esc="f.partner_id.state_id.name"/>
+                 </t>
+            </div>
+        </t>
+    </template>
+
+        <!--Margen top de todo el documento incluye cabecera-->
+        <!-- Espaceado de cabecera y contenido, de  lo contrario la cabecera se sobre pone-->
+
+    <!--
+                <t t-call="pbx.custom_header"/>
+            <t t-call="pbx.custom_footer"/>
+-->
+
+    <record model="report.paperformat" id="paperformat_invoice_report">
+        <field name="name">Formato factura</field>
+        <field name="default" eval="False"/>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">100</field>
+        <field name="margin_right">15</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">15</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">180</field>
+        <field name="dpi">96</field>
+    </record>
+
+
+ <report paperformat="paperformat_invoice_report" id="action_report_invoice"
+         model="account.move" string="Factura provetnic SA"
+         report_type="qweb-pdf"
+         name="provet.report_invoice"
+         file="provet.report_invoice"/>
+
+
+</odoo>

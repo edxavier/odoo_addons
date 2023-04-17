@@ -32,17 +32,7 @@
               </tree>
             </field>
         </record>
-        <record model="ir.ui.view" id="pbx.room_space_list">
-          <field name="name">Espacio de cuarto</field>
-          <field name="model">pbx.room.space</field>
-          <field name="arch" type="xml">
-            <tree>
-              <field name="name"/>
-              <field name="code"/>
-              <field name="room_id"/>
-            </tree>
-          </field>
-      </record>
+
         <record model="ir.ui.view" id="pbx.number_list">
             <field name="name">Numeros</field>
             <field name="model">pbx.number</field>
@@ -52,6 +42,11 @@
                 <field name="num_category" optional="0"/>
                 <field name="num_status" optional="0"/>
                 <field name="num_type" optional="0"/>
+                <field name="phonebook_ids" optional="show" widget="many2many_tags"/>
+                <field name="out_permission" optional="show"/>
+                <field name="address" optional="show"/>
+                <field name="capture_group" optional="show"/>
+                <field name="comments" optional="hide"  widget="html"/>
               </tree>
             </field>
         </record>
@@ -61,14 +56,15 @@
             <field name="model">pbx.point</field>
             <field name="arch" type="xml">
               <tree >
-                <field name="number_id" optional="0"/>
-                <field name="code" optional="0"/>
-                <field name="full_code" optional="1"/>
-                <field name="destination_id" optional="1"/>
-                <field name="building_id" optional="1"/>
-                <field name="room_id" optional="1"/>
-                <field name="space_id" optional="1"/>
-                <field name="comment" optional="1"/>
+                <field name="full_code" optional="show" readonly="1"/>
+                <field name="room_id" optional="hide" placeholder="Cuarto"/>
+                <field name="rack_id" optional="show" placeholder="Rack"/>
+                <field name="space_id" optional="show" placeholder="Espacio Rack"/>
+                <field name="point" optional="show" placeholder="Par"/>
+                <field name="number_id" placeholder="Numero|Extension"/>
+                <field name="origin_id" optional="hide"/>
+                <field name="destination_id" optional="hide"/>
+                <field name="comment" optional="show"/>
               </tree>
             </field>
         </record>
@@ -82,7 +78,33 @@
             </tree>
           </field>
       </record>
-      <record model="ir.ui.view" id="pbx.phonebook_list">
+
+      <record model="ir.ui.view" id="pbx.rack_list">
+        <field name="name">Racks</field>
+        <field name="model">pbx.room.rack</field>
+        <field name="arch" type="xml">
+          <tree >
+            <field name="full_code"/>
+            <field name="name"/>
+            <field name="room_id"/>
+          </tree>
+        </field>
+    </record>
+    
+    <record model="ir.ui.view" id="pbx.rack_space_list">
+      <field name="name">Espacios Racks</field>
+      <field name="model">pbx.rack.space</field>
+      <field name="arch" type="xml">
+        <tree >
+          <field name="sequence"  widget='handle'/>
+          <field name="full_code"/>
+          <field name="name"/>
+          <field name="rack_id"/>
+        </tree>
+      </field>
+  </record>
+
+    <record model="ir.ui.view" id="pbx.phonebook_list">
         <field name="name">Directorio</field>
         <field name="model">pbx.phonebook</field>
         <field name="arch" type="xml">

@@ -5,18 +5,20 @@
             <field name="model">pbx.point</field>
             <field name="arch" type="xml">
                 <search string="Buscar punto">
-                    <field name="full_code" filter_domain="[('full_code', 'ilike', self)]"/>
-                    <field name="space_id" filter_domain="[('space_id', 'ilike', self)]"/>
-                    <field name="code" filter_domain="[('code', 'ilike', self)]"/>
                     <field name="number_id" filter_domain="[('number_id', 'ilike', self)]"/>
+                    <field name="full_code" filter_domain="[('full_code', 'ilike', self)]"/>
                     <field name="room_id" filter_domain="[('room_id', 'ilike', self)]"/>
+                    <field name="rack_id" filter_domain="[('rack_id', 'ilike', self)]"/>
+                    <field name="space_id" filter_domain="[('space_id', 'ilike', self)]"/>
+                    <field name="point" filter_domain="[('point', 'ilike', self)]"/>
                     
                     <separator/>
-                       <!-- <filter string="Conectado" name="is_up" domain="[('is_up', '=', True)]"/>-->
+                    <!-- <filter string="Conectado" name="is_up" domain="[('is_up', '=', True)]"/>-->
                     <group expand="0" name="group_by" string="Agrupar por">
                         <filter name="group_number_id" string="Numero" domain="[]" context="{'group_by' : 'number_id'}" />
                         <filter name="group_room_id" string="Cuarto" domain="[]" context="{'group_by' : 'room_id'}" />
-                        <filter name="group_building" string="Edificio" domain="[]" context="{'group_by' : 'building_id'}" />
+                        <filter name="group_rack_id" string="Rack" domain="[]" context="{'group_by' : 'rack_id'}" />
+                        <filter name="group_space_id" string="Espacio Rack" domain="[]" context="{'group_by' : 'space_id'}" />
                     </group>
                 </search>
             </field>

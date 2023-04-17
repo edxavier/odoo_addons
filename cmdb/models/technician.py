@@ -7,7 +7,6 @@ class Partner(models.Model):
     _name = 'res.partner'
     _inherit = 'res.partner'
 
-
     def become_technician(self):
         for o in self:
             if self.is_technician():
